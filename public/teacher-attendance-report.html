@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Attendance Report</title>
+
+<link rel="stylesheet"
+href="css/teacher-attendance-report.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-user-check"></i>
+
+                Teacher Attendance
+
+            </h1>
+
+            <p id="schoolName">
+                Loading School...
+            </p>
+            <small id="todayDate"></small>
+
+        </div>
+
+        <button
+            id="backBtn"
+            class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </div>
+
+    <div class="filter-bar">
+
+    <label>Attendance Date</label>
+
+    <input
+        type="date"
+        id="attendanceDate">
+
+    <button
+        id="loadAttendanceBtn">
+
+        Load Attendance
+
+    </button>
+
+    <button
+        id="todayBtn">
+
+        Today
+
+    </button>
+
+</div>
+
+    <!-- Summary Cards -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h2 id="totalTeachers">0</h2>
+
+            <p>Total Teachers</p>
+
+        </div>
+
+        <div class="summary-card present">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2 id="presentTeachers">0</h2>
+
+            <p>Present</p>
+
+        </div>
+
+        <div class="summary-card absent">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            <h2 id="absentTeachers">0</h2>
+
+            <p>Absent</p>
+
+        </div>
+
+        <div class="summary-card leave">
+
+            <i class="fa-solid fa-calendar-xmark"></i>
+
+            <h2 id="leaveTeachers">0</h2>
+
+            <p>Leave</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchTeacher"
+            placeholder="Search Teacher...">
+
+    </div>
+
+
+    <!-- Attendance Table -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+              <tr>
+
+    <th>Teacher</th>
+
+    <th>Subject</th>
+
+    <th>Class</th>
+
+    <th>Status</th>
+
+    <th>Reason</th>
+
+    <th>Approval</th>
+
+    <th>Check In</th>
+
+    <th>Date</th>
+
+    <th>Action</th>
+
+</tr>
+
+            </thead>
+
+            <tbody id="attendanceBody">
+
+                <tr>
+
+                    <td colspan="9"
+                        style="text-align:center">
+
+                        Loading...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/teacher-attendance-report.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+    
+<title>Student Attendance</title>
+
+<link rel="stylesheet"
+href="css/teacher-attendance.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+
+            <h1>Student Attendance</h1>
+
+            <p>Mark daily attendance</p>
+
+        </div>
+
+        <a
+        href="teacher-dashboard.html"
+        class="back-btn">
+
+            <i class="fas fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+    <div class="attendance-card">
+
+    <!-- Summary Cards -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card total">
+            <i class="fas fa-users"></i>
+            <h2 id="totalStudents">0</h2>
+            <p>Total Students</p>
+        </div>
+
+        <div class="summary-card present">
+            <i class="fas fa-user-check"></i>
+            <h2 id="presentCount">0</h2>
+            <p>Present</p>
+        </div>
+
+        <div class="summary-card absent">
+            <i class="fas fa-user-times"></i>
+            <h2 id="absentCount">0</h2>
+            <p>Absent</p>
+        </div>
+
+        <div class="summary-card leave">
+            <i class="fas fa-user-clock"></i>
+            <h2 id="leaveCount">0</h2>
+            <p>Leave</p>
+        </div>
+
+        <div class="summary-card percent">
+            <i class="fas fa-chart-pie"></i>
+            <h2 id="attendancePercent">0%</h2>
+            <p>Attendance</p>
+        </div>
+
+    </div>
+
+    <!-- Toolbar -->
+
+    <div class="top-bar">
+
+        <div class="field">
+            <label>Date</label>
+            <input type="date" id="attendanceDate">
+        </div>
+
+        <div class="field search-box">
+            <label>Search Student</label>
+            <input
+                type="text"
+                id="searchStudent"
+                placeholder="Search by name or roll no">
+        </div>
+
+        <div class="action-buttons">
+
+            <button
+                id="loadStudentsBtn"
+                class="load-btn">
+
+                <i class="fas fa-users"></i>
+                Load Students
+
+            </button>
+
+            <button
+                id="markAllPresentBtn"
+                class="present-btn">
+
+                <i class="fas fa-check-double"></i>
+                Mark All Present
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Attendance Table -->
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th width="80">Roll</th>
+
+                    <th>Student Name</th>
+
+                    <th width="140">Present</th>
+
+                    <th width="140">Absent</th>
+
+                    <th width="140">Leave</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="attendanceTable">
+
+                <tr>
+
+                    <td colspan="5" style="text-align:center">
+
+                        Click "Load Students"
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="attendance-footer">
+
+        <div class="footer-summary">
+
+            <span>
+                Total :
+                <strong id="footerTotal">0</strong>
+            </span>
+
+            <span>
+                Present :
+                <strong id="footerPresent">0</strong>
+            </span>
+
+            <span>
+                Absent :
+                <strong id="footerAbsent">0</strong>
+            </span>
+
+            <span>
+                Leave :
+                <strong id="footerLeave">0</strong>
+            </span>
+
+        </div>
+
+        <button
+            id="saveAttendanceBtn"
+            class="save-btn">
+
+            <i class="fas fa-save"></i>
+
+            Save Attendance
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="js/teacher-attendance.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My Attendance</title>
+
+<link rel="stylesheet"
+href="css/my-attendance.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-user-check"></i>
+
+                My Attendance
+            </h1>
+
+            <p id="todayDate"></p>
+
+        </div>
+
+        <button id="backBtn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </div>
+
+    <div class="attendance-card">
+
+        <div class="teacher-info">
+
+            <h2 id="teacherName">
+                Loading...
+            </h2>
+
+            <p id="schoolName">
+                Loading...
+            </p>
+
+        </div>
+
+        <div class="status-section">
+
+    <label class="status-item present">
+
+        <input
+        type="radio"
+        name="status"
+        value="Present"
+        checked>
+
+        <span>Present</span>
+
+    </label>
+
+    <label class="status-item late">
+
+        <input
+        type="radio"
+        name="status"
+        value="Late">
+
+        <span>Late</span>
+
+    </label>
+
+    <label class="status-item half">
+
+        <input
+        type="radio"
+        name="status"
+        value="Half Day">
+
+        <span>Half Day</span>
+
+    </label>
+
+    <label class="status-item cl">
+
+        <input
+        type="radio"
+        name="status"
+        value="CL">
+
+        <span>Casual Leave (CL)</span>
+
+    </label>
+
+    <label class="status-item el">
+
+        <input
+        type="radio"
+        name="status"
+        value="EL">
+
+        <span>Earned Leave (EL)</span>
+
+    </label>
+
+    <label class="status-item sl">
+
+        <input
+        type="radio"
+        name="status"
+        value="SL">
+
+        <span>Sick Leave (SL)</span>
+
+    </label>
+
+    <label class="status-item absent">
+
+        <input
+        type="radio"
+        name="status"
+        value="Absent">
+
+        <span>Absent</span>
+
+    </label>
+
+</div>
+
+<!-- Leave Reason -->
+
+<div
+id="leaveReasonBox"
+style="display:none;margin-top:25px;">
+
+    <label
+    style="font-weight:600;display:block;margin-bottom:8px;">
+
+        Leave Reason
+
+    </label>
+
+    <textarea
+
+        id="leaveReason"
+
+        rows="4"
+
+        placeholder="Enter reason for leave..."
+
+        style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;font-size:15px;resize:none;">
+
+    </textarea>
+
+</div>
+
+        <button
+        id="markAttendanceBtn">
+
+            <i class="fa-solid fa-check"></i>
+
+            Mark Attendance
+
+        </button>
+
+        <div
+        id="attendanceMessage">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/my-attendance.js"></script>
+
+</body>
+
+</html>

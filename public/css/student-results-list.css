@@ -1,0 +1,331 @@
+/* ==========================================================
+   STUDENT RESULT LIST
+========================================================== */
+
+body{
+
+    background:#f4f7fb;
+
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
+}
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+/* ==========================================================
+   PAGE TITLE
+========================================================== */
+
+h2{
+
+    font-weight:700;
+
+    color:#0d6efd;
+
+}
+
+h2 i{
+
+    margin-right:10px;
+
+}
+
+/* ==========================================================
+   SUMMARY CARDS
+========================================================== */
+
+.summary-card{
+
+    color:#fff;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    padding:25px 15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.summary-card h3{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.summary-card p{
+
+    margin:0;
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   FILTERS
+========================================================== */
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+
+    height:46px;
+
+    border:1px solid #d8d8d8;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.2);
+
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:#0d6efd;
+
+}
+
+.btn-success{
+
+    background:#198754;
+
+}
+
+.btn-secondary{
+
+    background:#6c757d;
+
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.table thead th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+}
+
+.table tbody td{
+
+    vertical-align:middle;
+
+    text-align:center;
+
+}
+
+.table tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+}
+
+.badge-pass{
+
+    background:#198754;
+
+    color:#fff;
+
+}
+
+.badge-fail{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.badge-grade{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.view-btn{
+
+    border-radius:8px;
+
+    padding:6px 16px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   EMPTY DATA
+========================================================== */
+
+.no-data{
+
+    padding:40px;
+
+    color:#777;
+
+    font-size:18px;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .summary-card{
+
+        margin-bottom:15px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    h2{
+
+        font-size:24px;
+
+    }
+
+    .card-body{
+
+        padding:18px;
+
+    }
+
+    .summary-card h3{
+
+        font-size:28px;
+
+    }
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        margin-top:8px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .summary-card{
+
+        padding:18px;
+
+    }
+
+    .summary-card h3{
+
+        font-size:24px;
+
+    }
+
+    .summary-card p{
+
+        font-size:13px;
+
+    }
+
+}

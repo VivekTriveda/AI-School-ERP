@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Answer Sheet Evaluation</title>
+
+    <link rel="stylesheet" href="css/evaluate-paper.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-robot"></i>
+                AI Answer Sheet Evaluation
+            </h1>
+
+            <p>
+                Upload answer sheets and evaluate an entire class using AI.
+            </p>
+
+        </div>
+
+        <a href="teacher-dashboard.html"
+           class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- Filter Card -->
+
+    <div class="filter-card">
+
+        <h2>Exam Details</h2>
+
+        <div class="filter-grid">
+
+            <div class="form-group">
+
+                <label>Board</label>
+
+                <select id="board">
+
+                    <option value="">
+                        Select Board
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Class</label>
+
+                <select id="className">
+
+                    <option value="">
+                        Select Class
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Section</label>
+
+                <select id="section">
+
+                    <option>A</option>
+
+                    <option>B</option>
+
+                    <option>C</option>
+
+                    <option>D</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Subject</label>
+
+                <select id="subject">
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Exam</label>
+
+                <select id="examName">
+
+                    <option value="">
+                        Select Exam
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="button-row">
+
+            <button
+                id="loadStudentsBtn">
+
+                <i class="fa-solid fa-users"></i>
+
+                Load Students
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Student List -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                Student List
+
+            </h2>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+               <tr>
+    <th width="8%">Roll</th>
+    <th width="30%">Student Name</th>
+    <th width="20%">Roll No.</th>
+    <th width="20%">Status</th>
+    <th width="22%">Marks</th>
+</tr>
+
+                </thead>
+
+                <tbody id="studentTable">
+
+                <tr>
+
+                    <td colspan="5">
+
+                        Select exam details and click
+                        <strong>Load Students</strong>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <div class="upload-card">
+
+    <h2>
+        <i class="fa-solid fa-folder-open"></i>
+        Upload Multiple Answer Sheets
+    </h2>
+
+    <p class="upload-note">
+        Select all scanned answer sheets (PDF/JPG/PNG). The system will
+        automatically identify the student and evaluate every paper.
+    </p>
+
+    <input
+        type="file"
+        id="multipleFiles"
+        multiple
+        accept=".pdf,.jpg,.jpeg,.png"
+    >
+
+    <button id="uploadAllBtn">
+
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+        Upload & Evaluate All Papers
+
+    </button>
+
+</div>
+<div class="progress-card">
+
+    <h2>
+
+        <i class="fa-solid fa-spinner"></i>
+
+        Evaluation Progress
+
+    </h2>
+
+    <div class="progress-bar">
+
+        <div
+            id="progressFill"
+            class="progress-fill">
+        </div>
+
+    </div>
+
+    <p id="progressText">
+
+        Waiting for upload...
+
+    </p>
+
+</div>
+
+</div>
+
+<script src="js/evaluate-paper.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Time Table</title>
+
+<link rel="stylesheet"
+href="css/teacher-dashboard.css">
+
+<link rel="stylesheet"
+href="css/teacher-timetable.css">
+
+</head>
+
+<body>
+
+
+<div class="teacher-page">
+
+<header class="header">
+
+<div>
+
+<h1>
+
+📅 My Time Table
+
+</h1>
+
+<p>
+
+Welcome,
+<span id="teacherName"></span>
+
+</p>
+
+</div>
+
+<div class="profile">
+
+<div class="avatar">
+
+👨‍🏫
+
+</div>
+
+<div>
+
+<h3 id="teacherName2"></h3>
+
+<p id="teacherSubject"></p>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="toolbar">
+
+<button
+onclick="window.location='teacher-dashboard.html'">
+
+⬅ Back Dashboard
+
+</button>
+
+<select id="dayFilter">
+
+<option>Monday</option>
+
+<option>Tuesday</option>
+
+<option>Wednesday</option>
+
+<option>Thursday</option>
+
+<option>Friday</option>
+
+<option>Saturday</option>
+
+</select>
+
+</div>
+
+<div
+id="timeTableContainer"
+class="cards">
+
+</div>
+
+</div>
+
+<script src="js/teacher-timetable.js"></script>
+
+</body>
+
+
+
+</html>

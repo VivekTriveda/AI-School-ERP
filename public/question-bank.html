@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Question Bank</title>
+
+    <link rel="stylesheet" href="css/question-bank.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="top-header">
+
+        <div class="header-left">
+
+            <button id="backBtn" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back
+            </button>
+
+            <div>
+
+                <h1>
+                    <i class="fa-solid fa-circle-question"></i>
+                    Question Bank
+                </h1>
+
+                <p id="schoolName"></p>
+
+            </div>
+
+        </div>
+
+        <button id="addQuestionBtn" class="add-btn">
+            <i class="fa-solid fa-plus"></i>
+            Add Question
+        </button>
+
+    </div>
+
+    <!-- ================= CARDS ================= -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2 id="totalQuestions">0</h2>
+
+            <p>Total Questions</p>
+
+        </div>
+
+        <div class="card">
+
+            <h2 id="totalSubjects">0</h2>
+
+            <p>Subjects</p>
+
+        </div>
+
+        <div class="card">
+
+            <h2 id="totalChapters">0</h2>
+
+            <p>Chapters</p>
+
+        </div>
+
+        <div class="card">
+
+            <h2 id="totalBooks">0</h2>
+
+            <p>Books</p>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FILTER ================= -->
+
+<div class="filter-box">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search Question...">
+
+
+    <select id="classFilter">
+        <option value="">All Classes</option>
+    </select>
+
+    <select id="subjectFilter">
+        <option value="">All Subjects</option>
+    </select>
+
+    <select id="chapterFilter">
+        <option value="">All Chapters</option>
+    </select>
+
+    <button id="refreshBtn">
+        <i class="fa-solid fa-rotate"></i>
+        Refresh
+    </button>
+
+</div>
+
+    <!-- ================= TABLE ================= -->
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Subject</th>
+
+                    <th>Chapter</th>
+
+                    <th>Question</th>
+
+                    <th>Marks</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="questionTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- ================= PAGINATION ================= -->
+
+    <div class="pagination">
+
+        <button id="prevBtn">
+            <i class="fa-solid fa-angle-left"></i>
+        </button>
+
+        <span id="pageInfo">
+            Page 1 of 1
+        </span>
+
+        <button id="nextBtn">
+            <i class="fa-solid fa-angle-right"></i>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= EDIT MODAL ================= -->
+
+<div class="modal" id="editModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Edit Question</h2>
+
+            <span onclick="closeModal()">&times;</span>
+
+        </div>
+
+        <input type="hidden" id="editId">
+
+        <label>Subject</label>
+
+        <input
+            type="text"
+            id="editSubject">
+
+        <label>Chapter</label>
+
+        <input
+            type="text"
+            id="editChapter">
+
+        <label>Question</label>
+
+        <textarea
+            id="editQuestion"
+            rows="6"></textarea>
+
+        <label>Marks</label>
+
+        <input
+            type="number"
+            id="editMarks">
+
+        <div class="modal-buttons">
+
+            <button
+                class="save-btn"
+                onclick="updateQuestion()">
+
+                Update
+
+            </button>
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= DELETE MODAL ================= -->
+
+<div class="confirm-modal" id="confirmModal">
+
+    <div class="confirm-box">
+
+        <h3>Delete Question?</h3>
+
+        <p>
+            This action cannot be undone.
+        </p>
+
+        <div class="confirm-buttons">
+
+            <button
+                id="confirmDelete"
+                class="delete-btn">
+
+                Delete
+
+            </button>
+
+            <button
+                onclick="closeConfirm()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/question-bank.js"></script>
+
+</body>
+</html>

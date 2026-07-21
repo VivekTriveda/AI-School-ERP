@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Fee Structure</title>
+
+<link rel="stylesheet"
+href="css/dashboard.css">
+
+<link rel="stylesheet"
+href="css/school-dashboard.css">
+
+<link rel="stylesheet"
+href="css/fees-structure.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- ========================= HEADER ========================= -->
+
+<div class="page-header">
+
+    <div class="header-left">
+
+        <div class="header-icon">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+        </div>
+
+        <div>
+
+            <h1>
+
+                Fee Structure Management
+
+            </h1>
+
+            <p>
+
+                Configure annual class-wise fee structure for your school
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <button
+        class="dashboard-btn"
+        onclick="history.back()">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Dashboard
+
+    </button>
+
+</div>
+
+
+<!-- ========================= SUMMARY ========================= -->
+
+<div class="summary-grid">
+
+    <div class="summary-card">
+
+        <div class="summary-icon blue">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+
+                Configured Classes
+
+            </span>
+
+            <h2 id="totalClasses">
+
+                0
+
+            </h2>
+
+            <small>
+
+                Classes Configured
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon green">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+
+                Academic Year
+
+            </span>
+
+            <h2 id="currentYear">
+
+                2026-27
+
+            </h2>
+
+            <small>
+
+                Current Session
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon orange">
+
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+
+                Highest Fee
+
+            </span>
+
+            <h2 id="highestFee">
+
+                ₹0
+
+            </h2>
+
+            <small>
+
+                Annual Fee
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon purple">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+
+                Last Updated
+
+            </span>
+
+            <h2 id="lastUpdated">
+
+                --
+
+            </h2>
+
+            <small>
+
+                Latest Change
+
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+FEE FORM
+========================= -->
+
+<section class="activity-section">
+
+<div class="form-header">
+
+    <div>
+
+        <h3>
+
+            <i class="fa-solid fa-money-check-dollar"></i>
+
+            Fee Structure
+
+        </h3>
+
+        <p>
+
+            Configure annual fees for each class.
+
+        </p>
+
+    </div>
+
+    <div class="form-badge">
+
+        Academic Session
+
+        <strong id="currentYearBadge">
+
+            2026-27
+
+        </strong>
+
+    </div>
+
+</div>
+
+<div class="fee-form">
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>Academic Year</label>
+
+<input
+type="text"
+id="academicYear"
+value="2026-27">
+
+</div>
+
+<div class="form-group">
+
+<label>Class</label>
+
+<select id="className">
+
+<option value="">Select Class</option>
+
+<option>Nursery</option>
+<option>LKG</option>
+<option>UKG</option>
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+
+</select>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Admission Fee</label>
+
+<input
+type="number"
+id="admissionFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Tuition Fee</label>
+
+<input
+type="number"
+id="tuitionFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Computer Fee</label>
+
+<input
+type="number"
+id="computerFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Examination Fee</label>
+
+<input
+type="number"
+id="examinationFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Library Fee</label>
+
+<input
+type="number"
+id="libraryFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Sports Fee</label>
+
+<input
+type="number"
+id="sportsFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Transport Fee</label>
+
+<input
+type="number"
+id="transportFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Hostel Fee</label>
+
+<input
+type="number"
+id="hostelFee"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label>Miscellaneous Fee</label>
+
+<input
+type="number"
+id="miscellaneousFee"
+value="0">
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="total-fee-card">
+
+    <span>Total Annual Fee</span>
+
+    <h1 id="grandTotal">
+
+        ₹0
+
+    </h1>
+
+    <small>
+
+        Automatically calculated
+
+    </small>
+
+</div>
+
+<div class="button-group">
+
+    <button
+        id="saveBtn"
+        class="btn-save">
+
+        <i class="fa-solid fa-floppy-disk"></i>
+
+        Save Fee Structure
+
+    </button>
+
+    <button
+        type="reset"
+        class="btn-reset">
+
+        <i class="fa-solid fa-rotate-left"></i>
+
+        Reset
+
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+TABLE
+========================= -->
+
+<section class="activity-section">
+
+<div class="table-header">
+
+    <div>
+
+        <h3>
+
+            <i class="fa-solid fa-table"></i>
+
+            Fee Structure List
+
+        </h3>
+
+        <p>
+
+            Manage all configured class fee structures.
+
+        </p>
+
+    </div>
+
+    <input
+        type="text"
+        id="searchFee"
+        placeholder="🔍 Search Class...">
+
+</div>
+
+<div class="table-responsive">
+
+<table class="fee-table">
+
+<thead>
+
+<tr>
+
+<th>Class</th>
+
+<th>Session</th>
+
+<th>Total Fee</th>
+
+<th style="width:120px;">Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="feeTableBody">
+
+<tr>
+
+<td colspan="5">
+
+No Fee Structure Found
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</div>
+
+<script src="js/fees-structure.js"></script>
+
+</body>
+
+</html>

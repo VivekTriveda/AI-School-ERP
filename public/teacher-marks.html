@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Marks Entry</title>
+
+    <link rel="stylesheet" href="css/teacher-marks.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+
+            <h1>Marks Entry</h1>
+
+            <p>Enter subject-wise student marks</p>
+
+        </div>
+
+        <a href="teacher-dashboard.html" class="back-btn">
+
+            <i class="fas fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+    <div class="marks-card">
+
+        <div class="top-bar">
+
+            <div class="field">
+
+                <label>Exam</label>
+
+                <select id="exam">
+
+                    <option value="">Select Exam</option>
+
+                    <option>Unit Test 1</option>
+
+                    <option>Unit Test 2</option>
+
+                    <option>Half Yearly</option>
+
+                    <option>Pre Board</option>
+
+                    <option>Final Exam</option>
+
+                </select>
+
+            </div>
+
+            <div class="field">
+
+                <label>Maximum Marks</label>
+
+                <input
+                    type="number"
+                    id="maxMarks"
+                    value="100">
+
+            </div>
+
+            <button
+                id="loadStudentsBtn"
+                class="save-btn">
+
+                <i class="fas fa-users"></i>
+
+                Load Students
+
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Roll No</th>
+
+                <th>Student Name</th>
+
+                <th>Marks</th>
+
+                <th>Remarks</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="marksTable">
+
+            <tr>
+
+                <td colspan="4">
+
+                    Click "Load Students"
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="footer">
+
+            <button
+                id="saveMarksBtn"
+                class="save-btn">
+
+                <i class="fas fa-save"></i>
+
+                Save Marks
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/teacher-marks.js"></script>
+
+</body>
+
+</html>

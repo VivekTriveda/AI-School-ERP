@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>School Dashboard</title>
+
+<link rel="stylesheet"
+href="css/dashboard.css">
+
+<link rel="stylesheet"
+href="css/school-dashboard.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- ===========================
+HEADER
+============================ -->
+
+<header class="top-header">
+
+<div class="school-info">
+
+<div class="school-logo">
+
+<i class="fa-solid fa-school"></i>
+
+</div>
+
+<div>
+
+<h1 id="schoolName">
+
+Loading...
+
+</h1>
+
+<p>
+
+<span id="schoolBoard"></span>
+
+•
+
+<span id="schoolCity"></span>
+
+</p>
+
+</div>
+
+</div>
+
+<div class="header-actions">
+
+    <button
+class="header-btn"
+onclick="location.href='teacher-management.html'">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Teachers
+
+</button>
+
+<button
+class="header-btn"
+onclick="location.href='manage-books.html'">
+
+<i class="fa-solid fa-book"></i>
+
+Books
+
+</button>
+
+<button
+class="back-btn"
+onclick="logoutPrincipal()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+<!-- ===========================
+Dashboard Cards
+============================ -->
+
+<section class="dashboard-grid">
+
+<!-- Principal -->
+
+<div class="card principal-card">
+
+<div class="card-icon">
+
+<i class="fa-solid fa-user-tie"></i>
+
+</div>
+
+<h2>Principal</h2>
+
+<h3 id="principalName">
+
+Loading...
+
+</h3>
+
+<p id="principalEmail">
+
+Loading...
+
+</p>
+
+
+</div>
+
+<!-- ===========================
+Teachers
+============================ -->
+
+<div class="card" onclick="location.href='teacher-management.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-chalkboard-user"></i>
+    </div>
+
+    <h2>Teachers</h2>
+
+    <h1 id="teacherCount">0</h1>
+
+    <p>Add / Manage Teachers</p>
+
+</div>
+
+<!-- ===========================
+Students
+============================ -->
+
+<div class="card" onclick="location.href='student-management.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-user-graduate"></i>
+    </div>
+
+    <h2>Students</h2>
+
+    <h1 id="studentCount">0</h1>
+
+    <p>Manage Students</p>
+
+</div>
+
+<!-- ===========================
+Books
+============================ -->
+
+<div class="card" onclick="location.href='manage-books.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-book"></i>
+    </div>
+
+    <h2>Books</h2>
+
+    <h1 id="bookCount">0</h1>
+
+    <p>Import / Manage Books</p>
+
+</div>
+
+
+<!-- ===========================
+Student Results
+============================ -->
+
+<div class="card" onclick="location.href='student-results.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-square-poll-vertical"></i>
+    </div>
+
+    <h2>Results</h2>
+
+    <h1>
+        <i class="fa-solid fa-arrow-right"></i>
+    </h1>
+
+    <p>View Student Results</p>
+
+</div>
+
+<!-- ===========================
+Timetable
+============================ -->
+
+<div class="card" onclick="location.href='manage-timetable.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+    </div>
+
+    <h2>Timetable</h2>
+
+    <h1>
+        <i class="fa-solid fa-arrow-right"></i>
+    </h1>
+
+    <p>Create / Manage Timetable</p>
+
+</div>
+
+<!-- ===========================
+Teacher Performance
+============================ -->
+
+<div class="card" onclick="location.href='teacher-performance.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-chart-line"></i>
+    </div>
+
+    <h2>Teacher Performance</h2>
+
+    <h1>
+        <i class="fa-solid fa-arrow-right"></i>
+    </h1>
+
+    <p>Review Teacher Performance</p>
+
+</div>
+<!-- ===========================
+Teacher Attendance Report
+============================ -->
+
+<div class="card" onclick="location.href='teacher-attendance-report.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-chart-line"></i>
+    </div>
+
+    <h2>Teacher Attendance Report</h2>
+
+    <h1>
+        <i class="fa-solid fa-arrow-right"></i>
+    </h1>
+
+    <p>Review Teacher Attendance</p>
+
+</div>
+<!-- ===========================
+Fees Management
+============================ -->
+
+<div class="card" onclick="location.href='principal-fees.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-chart-column"></i>
+    </div>
+
+    <h2>Fee Monitoring</h2>
+
+    <h1>
+        <i class="fa-solid fa-eye"></i>
+    </h1>
+
+    <p>Monitor Collection & Defaulters</p>
+
+</div>
+
+<!-- ===========================
+Settings
+============================ -->
+
+<div class="card" onclick="location.href='settings.html'">
+
+    <div class="card-icon">
+        <i class="fa-solid fa-gear"></i>
+    </div>
+
+    <h2>Settings</h2>
+
+    <h1>
+        <i class="fa-solid fa-sliders"></i>
+    </h1>
+
+    <p>School Settings</p>
+
+</div>
+
+</section>
+<!-- ===========================
+Recent Activity
+============================ -->
+
+<section class="activity-section">
+
+    <div class="activity-header">
+
+        <h2>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Recent Activity
+
+        </h2>
+
+    </div>
+
+    <div id="activityList" class="activity-list">
+
+        <div class="activity-item">
+
+            Dashboard is ready.
+
+        </div>
+
+        <div class="activity-item">
+
+            Teacher activities will appear here.
+
+        </div>
+
+        <div class="activity-item">
+
+            Generated papers will appear here.
+
+        </div>
+
+        <div class="activity-item">
+
+            AI evaluation history will appear here.
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<script src="js/school-dashboard.js"></script>
+
+</body>
+
+</html>

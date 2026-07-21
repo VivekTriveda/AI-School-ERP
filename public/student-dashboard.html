@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/student-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo-section">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+            <h2>
+
+                Student ERP
+
+            </h2>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+
+                <a href="#" class="active">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+
+                        Dashboard
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="student-tests.html">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    <span>
+
+                        Online Tests
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="student-results-list.html">
+
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+
+                    <span>
+
+                        Results
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+
+                        Performance
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="student-profile.html">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>
+
+                        My Profile
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="student-attendance.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+
+                        Attendance
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>
+
+                        Messages
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>
+
+                        Settings
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#" onclick="logoutStudent()">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>
+
+                        Logout
+
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main-content">
+
+        <!-- ================= Top Bar ================= -->
+
+        <header class="topbar">
+
+            <div class="top-left">
+
+                <button class="menu-toggle">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <div class="search-box">
+
+                    <i class="fa fa-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Search...">
+
+                </div>
+
+            </div>
+
+            <div class="top-right">
+
+                <div class="notification">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span class="badge">
+
+                        3
+
+                    </span>
+
+                </div>
+
+                <div class="student-info">
+
+                    <img
+                        src="images/default-student.png"
+                        id="studentPhoto">
+
+                    <div>
+
+                        <h5 id="studentName">
+
+                            Student
+
+                        </h5>
+
+                        <small id="studentClass">
+
+                            Class
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ================= Welcome ================= -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <h2>
+
+                    Welcome Back 👋
+
+                </h2>
+
+                <p>
+
+                    Have a great learning day.
+
+                </p>
+
+            </div>
+
+            <div class="today-date">
+
+                <h5 id="currentDate"></h5>
+
+                <small id="currentTime"></small>
+
+            </div>
+
+        </section>
+
+        <!-- ================= Dashboard Cards ================= -->
+
+        <section class="dashboard-cards">
+
+            <div class="dashboard-card blue">
+
+                <div>
+
+                    <h3 id="totalTests">
+
+                        0
+
+                    </h3>
+
+                    <p>
+
+                        Total Tests
+
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+            </div>
+
+            <div class="dashboard-card orange">
+
+                <div>
+
+                    <h3 id="pendingTests">
+
+                        0
+
+                    </h3>
+
+                    <p>
+
+                        Pending Tests
+
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+            <div class="dashboard-card green">
+
+                <div>
+
+                    <h3 id="completedTests">
+
+                        0
+
+                    </h3>
+
+                    <p>
+
+                        Completed
+
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div class="dashboard-card purple">
+
+                <div>
+
+                    <h3 id="averageScore">
+
+                        0%
+
+                    </h3>
+
+                    <p>
+
+                        Average Score
+
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+            </div>
+            <div class="dashboard-card teal"
+     onclick="location.href='student-fees.html'"
+     style="cursor:pointer;">
+
+    <div>
+
+        <h3 id="pendingFee">
+
+            ₹0
+
+        </h3>
+
+        <p>
+
+            Pending Fees
+
+        </p>
+
+    </div>
+
+    <i class="fa-solid fa-money-bill-wave"></i>
+
+</div>
+
+        </section>
+
+        <!-- ================= Main Grid ================= -->
+
+        <section class="content-grid">
+
+           <!-- ================= Left Content ================= -->
+
+    <div class="left-content">
+
+        <!-- Upcoming Tests -->
+
+        <div class="content-card">
+
+            <div class="card-header">
+
+                <h4>
+                    <i class="fa-solid fa-book-open"></i>
+                    Upcoming Online Tests
+                </h4>
+
+                <a href="student-results-list.html">
+                    View All
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Exam</th>
+
+                            <th>Subject</th>
+
+                            <th>Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="upcomingTests">
+
+                        <tr>
+
+                            <td colspan="5" class="text-center">
+
+                                No Online Test Available
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Recent Results -->
+
+        <div class="content-card mt-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    Recent Results
+
+                </h4>
+
+                <a href="student-results-list.html">
+
+                    View All
+
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                        <tr>
+
+<th>Exam</th>
+
+<th>Subject</th>
+
+<th>Marks</th>
+
+<th>Grade</th>
+
+<th>Action</th>
+
+</tr>
+
+                    </thead>
+
+                    <tbody id="recentResults">
+
+                        <tr>
+
+                            <td colspan="4" class="text-center">
+
+                                No Result Available
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Right Sidebar ================= -->
+
+    <div class="right-content">
+
+        <!-- Student Profile -->
+
+        <div class="content-card profile-card">
+
+            <img
+                src="images/default-student.png"
+                id="profilePhoto"
+                class="profile-photo">
+
+            <h4 id="profileName">
+
+                Student Name
+
+            </h4>
+
+            <p id="profileAdmission">
+
+                Admission No
+
+            </p>
+
+            <hr>
+
+            <div class="profile-item">
+
+                <span>Class</span>
+
+                <strong id="profileClass">
+
+                    X-A
+
+                </strong>
+
+            </div>
+
+            <div class="profile-item">
+
+                <span>Roll No</span>
+
+                <strong id="profileRoll">
+
+                    0
+
+                </strong>
+
+            </div>
+
+            <div class="profile-item">
+
+                <span>Attendance</span>
+
+                <strong id="attendance">
+
+                    100%
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- Notice Board -->
+
+        <div class="content-card mt-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    Notice Board
+
+                </h4>
+
+            </div>
+
+            <ul class="notice-list">
+
+                <li>
+
+                    Mid Term Examination starts next week.
+
+                </li>
+
+                <li>
+
+                    Submit assignments before Friday.
+
+                </li>
+
+                <li>
+
+                    Mathematics online test available.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="content-card mt-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    Quick Actions
+
+                </h4>
+
+            </div>
+
+            <button
+                class="btn btn-primary w-100 mb-2"
+                onclick="location.href='student-tests.html'">
+
+                Start Online Test
+
+            </button>
+
+            <button
+                class="btn btn-success w-100 mb-2"
+                onclick="location.href='student-results.html'">
+
+                View Results
+
+            </button>
+
+            <button
+                class="btn btn-warning w-100"
+                onclick="location.href='student-profile.html'">
+
+                My Profile
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    © 2026 AI School ERP | Powered by AI
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/student-dashboard.js"></script>
+
+</body>
+
+</html>     

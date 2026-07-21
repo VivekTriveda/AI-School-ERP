@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Dashboard</title>
+
+<link rel="stylesheet" href="css/teacher-dashboard.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header>
+
+        <h1 id="welcome"></h1>
+
+        <p id="teacherInfo"></p>
+
+        <button id="logoutBtn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </header>
+
+    <div class="cards">
+
+        <div class="card" onclick="location.href='generate-paper.html'">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            <h3>Generate Paper</h3>
+
+        </div>
+
+        <div class="card" onclick="location.href='question-bank.html'">
+
+            <i class="fa-solid fa-book"></i>
+
+            <h3>Question Bank</h3>
+
+        </div>
+
+        <div class="card" onclick="location.href='evaluate-paper.html'">
+
+            <i class="fa-solid fa-robot"></i>
+
+            <h3>AI Evaluation</h3>
+
+        </div>
+
+        <div class="card"
+     onclick="location.href='evaluation-list.html?role=teacher'">
+
+    <i class="fas fa-chart-line"></i>
+
+    <h3>Evaluation Reports</h3>
+
+</div>
+
+        <div class="card"
+     onclick="location.href='teacher-timetable.html'">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <h3>Time Table</h3>
+
+        </div>
+        <div class="card"
+     onclick="location.href='my-attendance.html'">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <h3>My Attendance</h3>
+
+
+
+        </div>
+
+    <div class="card" onclick="location.href='teacher-students.html'">
+        <i class="fa-solid fa-user-graduate"></i>
+        <h3>My Students</h3>
+    </div>
+
+    <div class="card" onclick="location.href='teacher-attendance.html'">
+        <i class="fa-solid fa-calendar-check"></i>
+        <h3>Student Attendance</h3>
+    </div>
+
+    <div class="card" onclick="location.href='teacher-marks.html'">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <h3>Marks Entry</h3>
+    </div>
+    <div class="card"
+     onclick="location.href='fees-management.html'">
+
+    <i class="fa-solid fa-money-bill-wave"></i>
+
+    <h3>Fee Collection</h3>
+
+</div>
+
+    <div class="card" onclick="location.href='results.html'">
+        <i class="fa-solid fa-square-poll-vertical"></i>
+        <h3>Results</h3>
+    </div>
+
+    <div class="card" onclick="location.href='class-performance.html'">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Class Performance</h3>
+    </div>
+
+    <div class="card" onclick="location.href='teacher-profile.html'">
+        <i class="fa-solid fa-id-card"></i>
+        <h3>My Profile</h3>
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+
+<script src="js/teacher-dashboard.js"></script>
+
+</body>
+
+</html>

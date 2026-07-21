@@ -1,0 +1,274 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:#f4f7fc;
+
+    padding:30px;
+
+}
+
+.container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+}
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.header h1{
+
+    font-size:30px;
+
+    color:#1f2937;
+
+}
+
+.header p{
+
+    margin-top:5px;
+
+    color:#6b7280;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.marks-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.top-bar{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:flex-end;
+
+    padding:25px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.field label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    color:#374151;
+
+}
+
+.field select,
+.field input{
+
+    width:220px;
+
+    padding:10px 15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+th{
+
+    padding:16px;
+
+    text-align:center;
+
+}
+
+td{
+
+    padding:14px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+
+}
+
+tbody tr:hover{
+
+    background:#f9fafb;
+
+}
+
+.student-name{
+
+    text-align:left;
+
+    font-weight:600;
+
+}
+
+.mark-input{
+
+    width:90px;
+
+    padding:8px;
+
+    text-align:center;
+
+    border:1px solid #d1d5db;
+
+    border-radius:6px;
+
+}
+
+.remark-input{
+
+    width:220px;
+
+    padding:8px 10px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:6px;
+
+}
+
+.footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    padding:25px;
+
+    border-top:1px solid #eee;
+
+}
+
+.save-btn{
+
+    background:#16a34a;
+
+    color:#fff;
+
+    border:none;
+
+    padding:12px 28px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.save-btn:hover{
+
+    background:#15803d;
+
+}
+
+@media(max-width:900px){
+
+.top-bar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.field select,
+.field input{
+
+    width:100%;
+
+}
+
+.marks-card{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:800px;
+
+}
+
+}

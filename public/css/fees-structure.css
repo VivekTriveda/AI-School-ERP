@@ -1,0 +1,861 @@
+/* ======================================
+   FEE STRUCTURE
+====================================== */
+
+.fee-form{
+
+background:#fff;
+
+padding:30px;
+
+border-radius:15px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+margin-top:20px;
+
+}
+
+/* ======================================
+ROWS
+====================================== */
+
+.form-row{
+
+display:flex;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+.form-row .form-group{
+
+flex:1;
+
+}
+
+/* ======================================
+GRID
+====================================== */
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:20px;
+
+margin-top:25px;
+
+}
+
+/* ======================================
+FORM GROUP
+====================================== */
+
+.form-group{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.form-group label{
+
+font-size:15px;
+
+font-weight:600;
+
+margin-bottom:8px;
+
+color:#333;
+
+}
+
+.form-group input,
+
+.form-group select{
+
+height:46px;
+
+padding:10px 14px;
+
+border:1px solid #d8d8d8;
+
+border-radius:10px;
+
+font-size:15px;
+
+transition:.3s;
+
+background:#fff;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus{
+
+outline:none;
+
+border-color:#2563eb;
+
+box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+/* ======================================
+TOTAL BOX
+====================================== */
+
+.total-box{
+
+margin-top:30px;
+
+background:linear-gradient(135deg,#2563eb,#0f4fc5);
+
+color:#fff;
+
+padding:22px;
+
+border-radius:15px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(37,99,235,.25);
+
+}
+
+.total-box h2{
+
+margin:0;
+
+font-size:28px;
+
+font-weight:700;
+
+}
+
+.total-box span{
+
+font-size:34px;
+
+margin-left:10px;
+
+}
+
+/* ======================================
+BUTTONS
+====================================== */
+
+.button-row{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+margin-top:30px;
+
+flex-wrap:wrap;
+
+}
+
+.button-row button{
+
+min-width:220px;
+
+height:50px;
+
+font-size:16px;
+
+font-weight:600;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.button-row button:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* ======================================
+TABLE
+====================================== */
+
+.table-responsive{
+
+overflow-x:auto;
+
+margin-top:20px;
+
+}
+
+.data-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:#fff;
+
+border-radius:12px;
+
+overflow:hidden;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.data-table thead{
+
+background:#2563eb;
+
+color:#fff;
+
+}
+
+.data-table th{
+
+padding:15px;
+
+font-size:15px;
+
+font-weight:600;
+
+text-align:center;
+
+}
+
+.data-table td{
+
+padding:15px;
+
+border-bottom:1px solid #eee;
+
+text-align:center;
+
+font-size:15px;
+
+}
+
+.data-table tbody tr:hover{
+
+background:#f8fbff;
+
+}
+
+/* ======================================
+ACTION BUTTONS
+====================================== */
+
+.edit-btn{
+
+background:#16a34a;
+
+color:#fff;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+background:#15803d;
+
+}
+
+.delete-btn{
+
+background:#dc2626;
+
+color:#fff;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+background:#b91c1c;
+
+}
+
+/* ======================================
+HR
+====================================== */
+
+.fee-form hr{
+
+margin:30px 0;
+
+border:none;
+
+border-top:1px solid #e5e5e5;
+
+}
+
+/* ======================================
+RESPONSIVE
+====================================== */
+
+@media(max-width:992px){
+
+.form-row{
+
+flex-direction:column;
+
+}
+
+.total-box h2{
+
+font-size:22px;
+
+}
+
+.total-box span{
+
+font-size:28px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.fee-form{
+
+padding:20px;
+
+}
+
+.button-row{
+
+flex-direction:column;
+
+}
+
+.button-row button{
+
+width:100%;
+
+}
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.data-table th,
+
+.data-table td{
+
+padding:12px;
+
+font-size:14px;
+
+}
+
+}
+
+/* =========================
+HEADER
+========================= */
+
+.page-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:#fff;
+
+padding:30px;
+
+border-radius:20px;
+
+margin-bottom:30px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.header-left{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.header-icon{
+
+width:80px;
+
+height:80px;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#fff;
+
+font-size:34px;
+
+}
+
+.header-left h1{
+
+font-size:38px;
+
+font-weight:700;
+
+margin:0;
+
+color:#1e293b;
+
+}
+
+.header-left p{
+
+margin-top:8px;
+
+font-size:17px;
+
+color:#64748b;
+
+}
+
+.dashboard-btn{
+
+background:#2563eb;
+
+color:#fff;
+
+border:none;
+
+padding:14px 28px;
+
+border-radius:12px;
+
+font-size:16px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.dashboard-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+/* =========================
+SUMMARY CARDS
+========================= */
+
+.summary-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+margin-bottom:35px;
+
+}
+
+.summary-card{
+
+background:#fff;
+
+border-radius:18px;
+
+padding:25px;
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.summary-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.summary-icon{
+
+width:65px;
+
+height:65px;
+
+border-radius:16px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:28px;
+
+color:#fff;
+
+}
+
+.summary-icon.blue{
+
+background:#2563eb;
+
+}
+
+.summary-icon.green{
+
+background:#16a34a;
+
+}
+
+.summary-icon.orange{
+
+background:#f59e0b;
+
+}
+
+.summary-icon.purple{
+
+background:#7c3aed;
+
+}
+
+.summary-content span{
+
+font-size:14px;
+
+color:#64748b;
+
+}
+
+.summary-content h2{
+
+margin:8px 0;
+
+font-size:32px;
+
+font-weight:700;
+
+color:#111827;
+
+}
+
+.summary-content small{
+
+color:#94a3b8;
+
+font-size:13px;
+
+}
+
+/*=====================================
+MODERN FORM
+=====================================*/
+
+.activity-section{
+
+background:#fff;
+
+border-radius:20px;
+
+padding:30px;
+
+margin-top:30px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+/*=====================================
+FORM HEADER
+=====================================*/
+
+.form-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding-bottom:18px;
+
+margin-bottom:25px;
+
+border-bottom:1px solid #e5e7eb;
+
+}
+
+.form-header h3{
+
+margin:0;
+
+font-size:28px;
+
+font-weight:700;
+
+color:#1e293b;
+
+}
+
+.form-header p{
+
+margin-top:6px;
+
+color:#64748b;
+
+font-size:15px;
+
+}
+
+.form-badge{
+
+background:#eff6ff;
+
+padding:12px 18px;
+
+border-radius:12px;
+
+text-align:center;
+
+color:#2563eb;
+
+font-weight:600;
+
+min-width:150px;
+
+}
+
+.form-badge strong{
+
+display:block;
+
+margin-top:6px;
+
+font-size:22px;
+
+}
+
+/*=====================================
+INPUTS
+=====================================*/
+
+.form-group{
+
+margin-bottom:18px;
+
+}
+
+.form-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+color:#334155;
+
+}
+
+.form-group input,
+.form-group select{
+
+width:100%;
+
+padding:14px 16px;
+
+border:1px solid #dbe2ea;
+
+border-radius:12px;
+
+font-size:15px;
+
+transition:.3s;
+
+background:#fff;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+outline:none;
+
+border-color:#2563eb;
+
+box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/*=====================================
+TOTAL CARD
+=====================================*/
+
+.total-fee-card{
+
+margin-top:30px;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+border-radius:18px;
+
+padding:28px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.total-fee-card span{
+
+font-size:16px;
+
+opacity:.9;
+
+}
+
+.total-fee-card h1{
+
+font-size:44px;
+
+margin:10px 0;
+
+font-weight:700;
+
+}
+
+.total-fee-card small{
+
+opacity:.85;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.button-group{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:15px;
+
+margin-top:30px;
+
+}
+
+.btn-save{
+
+background:#16a34a;
+
+color:white;
+
+border:none;
+
+padding:14px 28px;
+
+border-radius:12px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn-save:hover{
+
+background:#15803d;
+
+transform:translateY(-2px);
+
+}
+
+.btn-reset{
+
+background:#64748b;
+
+color:white;
+
+border:none;
+
+padding:14px 28px;
+
+border-radius:12px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn-reset:hover{
+
+background:#475569;
+
+transform:translateY(-2px);
+
+}

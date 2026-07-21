@@ -1,0 +1,956 @@
+/* =========================================================
+   ADMIN SCHOOL OVERVIEW
+   PART 3.1
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
+    background:#f4f7fb;
+
+    color:#222;
+
+}
+
+.overview-container{
+
+    width:100%;
+
+    max-width:1600px;
+
+    margin:auto;
+
+    padding:30px;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    background:#fff;
+
+    padding:25px 30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+}
+
+.school-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.school-logo{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:34px;
+
+    box-shadow:0 8px 18px rgba(37,99,235,.25);
+
+}
+
+.school-details h1{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+    color:#111827;
+
+}
+
+.school-details p{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn{
+
+    border:none;
+
+    outline:none;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+========================================================= */
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:28px 20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+
+}
+
+.dashboard-card i{
+
+    font-size:34px;
+
+    color:#2563eb;
+
+    margin-bottom:18px;
+
+}
+
+.dashboard-card h2{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    color:#111827;
+
+}
+
+.dashboard-card span{
+
+    display:block;
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+   FEE CARDS COLORS
+========================================================= */
+
+.dashboard-card:nth-child(1) i{
+
+    color:#2563eb;
+
+}
+
+.dashboard-card:nth-child(2) i{
+
+    color:#16a34a;
+
+}
+
+.dashboard-card:nth-child(3) i{
+
+    color:#d97706;
+
+}
+
+.dashboard-card:nth-child(4) i{
+
+    color:#dc2626;
+
+}
+
+.dashboard-card:nth-child(5) i{
+
+    color:#9333ea;
+
+}
+
+.dashboard-card:nth-child(6) i{
+
+    color:#0891b2;
+
+}
+
+
+/* =========================================================
+   FEE SECTION
+========================================================= */
+
+.dashboard-grid + .dashboard-grid{
+
+    margin-top:-5px;
+
+    margin-bottom:35px;
+
+}
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.details-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =========================================================
+   DETAILS CARD
+========================================================= */
+
+.details-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.details-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:18px 22px;
+
+}
+
+.section-title i{
+
+    font-size:22px;
+
+}
+
+.section-title h2{
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+   DETAILS TABLE
+========================================================= */
+
+.details-table{
+
+    padding:10px 20px 20px;
+
+}
+
+
+/* =========================================================
+   DETAILS ROW
+========================================================= */
+
+.details-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 5px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.details-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.details-row span{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.details-row strong{
+
+    color:#111827;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   PERFORMANCE SECTION
+========================================================= */
+
+.performance-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+   STATUS COLORS
+========================================================= */
+
+.status-active{
+
+    color:#16a34a;
+
+    font-weight:700;
+
+}
+
+.status-warning{
+
+    color:#d97706;
+
+    font-weight:700;
+
+}
+
+.status-danger{
+
+    color:#dc2626;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   PERFORMANCE HIGHLIGHT
+========================================================= */
+
+.details-row:hover{
+
+    background:#f8fbff;
+
+    border-radius:8px;
+
+    transition:.25s;
+
+}
+
+
+/* =========================================================
+   SMALL VALUE BADGES
+========================================================= */
+
+.value-badge{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+   CARD ANIMATION
+========================================================= */
+
+.details-card{
+
+    animation:fadeUp .45s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   INFORMATION SPACING
+========================================================= */
+
+.details-card + .details-card{
+
+    margin-top:0;
+
+}
+/* =========================================================
+   RECENT ACTIVITY
+========================================================= */
+
+.activity-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+}
+
+.activity-card .card-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+    color:#1e3a8a;
+
+}
+
+.activity-card .card-title i{
+
+    font-size:24px;
+
+    color:#2563eb;
+
+}
+
+.activity-card .card-title h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.activity-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px 18px;
+
+    margin-bottom:12px;
+
+    border-left:5px solid #2563eb;
+
+    background:#f8fbff;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+.activity-item:hover{
+
+    transform:translateX(6px);
+
+    background:#eef6ff;
+
+}
+
+
+/* =========================================================
+   TABLE (Future Ready)
+========================================================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:14px;
+
+    text-align:left;
+
+}
+
+table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+table tr:hover{
+
+    background:#f8fbff;
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#edf2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#3b82f6;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#2563eb;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button{
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+   ICON ANIMATION
+========================================================= */
+
+.dashboard-card:hover i{
+
+    transform:scale(1.15);
+
+    transition:.3s;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+.dashboard-grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+.details-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.overview-container{
+
+padding:20px;
+
+}
+
+.top-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.dashboard-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.school-details h1{
+
+font-size:26px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.school-info{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.school-logo{
+
+width:65px;
+
+height:65px;
+
+font-size:28px;
+
+}
+
+.school-details h1{
+
+font-size:22px;
+
+}
+
+.back-btn{
+
+width:100%;
+
+}
+
+.details-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.details-row{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:6px;
+
+}
+
+.activity-card{
+
+padding:18px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.overview-container{
+
+padding:15px;
+
+}
+
+.dashboard-card{
+
+padding:20px;
+
+}
+
+.dashboard-card h2{
+
+font-size:28px;
+
+}
+
+.section-title{
+
+padding:15px;
+
+}
+
+.section-title h2{
+
+font-size:18px;
+
+}
+
+.activity-item{
+
+padding:12px;
+
+font-size:14px;
+
+}
+
+}
+
+
+/* =========================================================
+   FADE ANIMATION
+========================================================= */
+
+.dashboard-card,
+.details-card,
+.activity-card{
+
+animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* =========================================================
+   SHADOW UTILITIES
+========================================================= */
+
+.shadow-light{
+
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+.shadow-medium{
+
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.shadow-heavy{
+
+box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+
+/* =========================================================
+   END
+========================================================= */

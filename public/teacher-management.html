@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Teacher Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/teacher-management.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    
+<main class="school-main">
+
+<div class="page-header">
+
+    <div class="header-left">
+
+        <h1>
+            <i class="fa-solid fa-chalkboard-user"></i>
+            Teacher Management
+        </h1>
+
+        <p id="schoolTitle"></p>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-search"></i>
+
+            <input
+                type="text"
+                id="searchTeacher"
+                placeholder="Search Teacher">
+
+        </div>
+         <button class="back-btn" id="backBtn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+       </button>
+
+        <button
+            class="add-btn"
+            id="addTeacherBtn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Add Teacher
+
+        </button>
+
+    </div>
+
+</div>
+<!-- ================= SUMMARY ================= -->
+
+<div class="summary-cards">
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <div>
+
+            <h2 id="totalTeachers">0</h2>
+
+            <p>Total Teachers</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-user-check"></i>
+
+        <div>
+
+            <h2 id="activeTeachers">0</h2>
+
+            <p>Active</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i class="fa-solid fa-book"></i>
+
+        <div>
+
+            <h2 id="totalSubjects">0</h2>
+
+            <p>Subjects</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="table-container">
+
+        <div
+        id="teacherCards"
+        class="teacher-cards">
+
+    </div>
+
+    </div>
+
+</main>
+
+<!-- ===========================
+     Add Teacher Modal
+============================ -->
+
+<div class="modal" id="teacherModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-user-plus"></i>
+                Add Teacher
+            </h2>
+
+            <span class="close-modal" id="closeModal">
+                &times;
+            </span>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label>Teacher Name</label>
+                <input type="text" id="teacherName">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="teacherEmail">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="teacherPassword">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile</label>
+                <input type="text" id="teacherMobile">
+            </div>
+
+
+           <div class="form-group">
+
+    <label>Teacher Type</label>
+
+    <select id="teacherType">
+
+        <option value="SUBJECT_TEACHER">
+            Subject Teacher
+        </option>
+
+        <option value="CLASS_TEACHER">
+            Class Teacher
+        </option>
+
+    </select>
+
+</div>
+
+<div class="form-group">
+
+    <label>Assigned Class</label>
+
+    <select id="classSelect"></select>
+
+</div>
+
+<div class="form-group" id="sectionGroup">
+
+    <label>Section</label>
+
+    <select id="sectionSelect">
+
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+
+    </select>
+
+</div>
+
+            <div class="form-group">
+
+                <label>Subject</label>
+
+                <select id="subjectSelect"></select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Assigned Book</label>
+
+                <input
+                    type="text"
+                    id="bookName"
+                    readonly>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="cancel-btn"
+                id="cancelBtn">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="save-btn"
+                id="saveTeacherBtn">
+
+                Save Teacher
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="js/teacher-management.js"></script>
+</body>
+
+</html>

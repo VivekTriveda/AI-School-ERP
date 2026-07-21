@@ -1,0 +1,39 @@
+.table-container{
+
+    margin-top:25px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.data-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.data-table th{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:14px;
+
+}
+
+.data-table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #eee;
+
+}

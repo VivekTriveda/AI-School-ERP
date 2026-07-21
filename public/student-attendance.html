@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My Attendance</title>
+
+<link rel="stylesheet"
+href="css/student-attendance.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                My Attendance
+
+            </h1>
+
+            <p id="studentName">
+                Loading...
+            </p>
+
+            <small id="schoolName">
+                Loading School...
+            </small>
+
+        </div>
+
+        <button
+        id="backBtn"
+        class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </div>
+
+    <!-- Month Filter -->
+
+    <div class="filter-bar">
+
+        <label>
+
+            Select Month
+
+        </label>
+
+        <input
+        type="month"
+        id="attendanceMonth">
+
+        <button
+        id="loadAttendance">
+
+            Load Attendance
+
+        </button>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-percent"></i>
+
+            <h2 id="attendancePercent">
+
+                0%
+
+            </h2>
+
+            <p>Attendance</p>
+
+        </div>
+
+        <div class="summary-card present">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2 id="presentDays">
+
+                0
+
+            </h2>
+
+            <p>Present</p>
+
+        </div>
+
+        <div class="summary-card absent">
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+            <h2 id="absentDays">
+
+                0
+
+            </h2>
+
+            <p>Absent</p>
+
+        </div>
+
+        <div class="summary-card leave">
+
+            <i class="fa-solid fa-calendar-xmark"></i>
+
+            <h2 id="leaveDays">
+
+                0
+
+            </h2>
+
+            <p>Leave</p>
+
+        </div>
+
+    </div>
+
+    <!-- Attendance Table -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Day</th>
+
+                    <th>Status</th>
+
+                    <th>Remarks</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="attendanceBody">
+
+                <tr>
+
+                    <td colspan="4"
+                    style="text-align:center">
+
+                        Loading...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/student-attendance.js"></script>
+
+</body>
+
+</html>

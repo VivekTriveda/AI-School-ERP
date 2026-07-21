@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>School Overview</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/admin-school-overview.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="overview-container">
+
+    <!-- ================= HEADER ================= -->
+<!-- ================= HEADER ================= -->
+
+<div class="top-header">
+
+    <div class="school-info">
+
+        <div class="school-logo">
+
+            <i class="fa-solid fa-school"></i>
+
+        </div>
+
+        <div class="school-details">
+
+            <h1 id="schoolName">Loading...</h1>
+
+            <p>
+
+                <span id="schoolBoard"></span>
+
+                •
+
+                <span id="schoolCity"></span>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <button class="back-btn"
+        onclick="window.location.href='schools.html'">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Schools
+
+    </button>
+
+</div>
+
+
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-user-graduate"></i>
+
+        <h2 id="studentCount">0</h2>
+
+        <span>Students</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-chalkboard-user"></i>
+
+        <h2 id="teacherCount">0</h2>
+
+        <span>Teachers</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-book"></i>
+
+        <h2 id="bookCount">0</h2>
+
+        <span>Books</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-circle-question"></i>
+
+        <h2 id="questionCount">0</h2>
+
+        <span>Question Bank</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <h2 id="paperCount">0</h2>
+
+        <span>Generated Papers</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-robot"></i>
+
+        <h2 id="evaluationCount">0</h2>
+
+        <span>AI Evaluation</span>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FEE DASHBOARD ================= -->
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+        <h2 id="totalCollection">₹0</h2>
+
+        <span>Total Collection</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-wallet"></i>
+
+        <h2 id="pendingAmount">₹0</h2>
+
+        <span>Pending Amount</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-percent"></i>
+
+        <h2 id="collectionPercent">0%</h2>
+
+        <span>Collection %</span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <i class="fa-solid fa-users"></i>
+
+        <h2 id="paidStudents">0</h2>
+
+        <span>Paid Students</span>
+
+    </div>
+
+</div>
+<!-- ===========================
+     SCHOOL INFORMATION
+============================ -->
+
+<div class="details-grid">
+
+    <!-- Principal Information -->
+
+    <div class="details-card">
+
+        <div class="section-title">
+
+            <i class="fa-solid fa-user-tie"></i>
+
+            <h2>Principal Information</h2>
+
+        </div>
+
+        <div class="details-table">
+
+            <div class="details-row">
+
+                <span>Principal Name</span>
+
+                <strong id="principalName">Loading...</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Email</span>
+
+                <strong id="principalEmail">Loading...</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Mobile</span>
+
+                <strong id="principalMobile">Loading...</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Username</span>
+
+                <strong id="principalUsername">Loading...</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- School Statistics -->
+
+    <div class="details-card">
+
+        <div class="section-title">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <h2>School Statistics</h2>
+
+        </div>
+
+        <div class="details-table">
+
+            <div class="details-row">
+
+                <span>Total Classes</span>
+
+                <strong id="totalClasses">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Total Subjects</span>
+
+                <strong id="totalSubjects">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Academic Session</span>
+
+                <strong id="academicSession">2026-27</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Status</span>
+
+                <strong style="color:#16a34a">
+
+                    Active
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    
+<!-- ===========================
+     PERFORMANCE
+============================ -->
+
+<div class="details-grid">
+
+    <!-- Teacher Performance -->
+
+    <div class="details-card">
+
+        <div class="section-title">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+            <h2>Teacher Performance</h2>
+
+        </div>
+
+        <div class="details-table">
+
+            <div class="details-row">
+
+                <span>Excellent</span>
+
+                <strong id="excellentTeachers">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Good</span>
+
+                <strong id="goodTeachers">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Average</span>
+
+                <strong id="averageTeachers">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Need Improvement</span>
+
+                <strong id="poorTeachers">0</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Student Performance -->
+
+    <div class="details-card">
+
+        <div class="section-title">
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            <h2>Student Performance</h2>
+
+        </div>
+
+        <div class="details-table">
+
+            <div class="details-row">
+
+                <span>Total Students</span>
+
+                <strong id="totalStudents">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Pass Percentage</span>
+
+                <strong id="passPercentage">0%</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Average Marks</span>
+
+                <strong id="averageMarks">0</strong>
+
+            </div>
+
+            <div class="details-row">
+
+                <span>Attendance</span>
+
+                <strong id="attendancePercentage">0%</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ===========================
+         Recent Activity
+    ============================ -->
+
+    <div class="activity-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <h2>Recent Activities</h2>
+
+        </div>
+
+        <div id="activityList">
+
+            <div class="activity-item">
+
+                ✅ School overview loaded successfully.
+
+            </div>
+
+            <div class="activity-item">
+
+                📚 Books imported by Principal will appear here.
+
+            </div>
+
+            <div class="activity-item">
+
+                📝 Generated papers summary will appear here.
+
+            </div>
+
+            <div class="activity-item">
+
+                🤖 AI evaluation reports will appear here.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/admin-school-overview.js"></script>
+
+</body>
+
+</html>
+
+
+</html>

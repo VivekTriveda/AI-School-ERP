@@ -1,0 +1,224 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+
+}
+
+.login-container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.login-box{
+
+    width:420px;
+
+    background:rgba(255,255,255,.96);
+
+    border-radius:18px;
+
+    padding:40px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    text-align:center;
+
+}
+
+.logo{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:38px;
+
+    margin-bottom:20px;
+
+}
+
+.login-box h2{
+
+    color:#1e3a8a;
+
+    margin-bottom:8px;
+
+}
+
+.login-box p{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+.input-group{
+
+    text-align:left;
+
+    margin-bottom:18px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#333;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.2);
+
+}
+
+#loginBtn{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#loginBtn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+#loginBtn i{
+
+    margin-right:8px;
+
+}
+
+#message{
+
+    margin-top:20px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    text-align:center;
+
+}
+
+.success{
+
+    color:#16a34a;
+
+}
+
+.error{
+
+    color:#dc2626;
+
+}
+
+@media(max-width:500px){
+
+.login-box{
+
+width:100%;
+
+padding:30px 20px;
+
+}
+
+.logo{
+
+width:75px;
+
+height:75px;
+
+font-size:30px;
+
+}
+
+}

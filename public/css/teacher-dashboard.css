@@ -146,3 +146,28 @@ text-align:center;
 }
 
 }
+/* =====================================================
+   SUBSCRIPTION LOCK
+===================================================== */
+
+.card.feature-locked {
+    opacity: 0.65;
+    position: relative;
+    cursor: pointer;
+}
+
+.card.feature-locked:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.subscription-lock {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 12px;
+    font-weight: 600;
+}

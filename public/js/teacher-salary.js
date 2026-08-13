@@ -158,29 +158,51 @@ function closeSalaryModal() {
 
 function calculateNetSalary() {
 
-    const basic =
-        Number(document.getElementById("basicSalary").value) || 0;
+    const basicInput = document.getElementById("basicSalary");
 
-    const hra =
-        Number(document.getElementById("hra").value) || 0;
+    const basic = Number(basicInput.value) || 0;
 
-    const da =
-        Number(document.getElementById("da").value) || 0;
+    // ==========================================
+    // AUTOMATIC SALARY CALCULATIONS
+    // ==========================================
 
-    const allowance =
-        Number(document.getElementById("allowance").value) || 0;
+    const hra = basic * 0.40;        // 40% of Basic
+    const da = basic * 0.12;         // 12% of Basic
+    const allowance = basic * 0.10;  // 10% of Basic
+    const pf = basic * 0.12;         // 12% of Basic
+
+    // ==========================================
+    // MANUAL FIELDS
+    // ==========================================
 
     const bonus =
         Number(document.getElementById("bonus").value) || 0;
-
-    const pf =
-        Number(document.getElementById("pf").value) || 0;
 
     const tax =
         Number(document.getElementById("tax").value) || 0;
 
     const deduction =
         Number(document.getElementById("deduction").value) || 0;
+
+    // ==========================================
+    // PUT AUTOMATIC VALUES INTO FORM
+    // ==========================================
+
+    document.getElementById("hra").value =
+        Math.round(hra);
+
+    document.getElementById("da").value =
+        Math.round(da);
+
+    document.getElementById("allowance").value =
+        Math.round(allowance);
+
+    document.getElementById("pf").value =
+        Math.round(pf);
+
+    // ==========================================
+    // NET SALARY
+    // ==========================================
 
     const total =
         basic +
@@ -193,8 +215,7 @@ function calculateNetSalary() {
         deduction;
 
     document.getElementById("netSalary").innerText =
-        total.toLocaleString();
-
+        Math.round(total).toLocaleString("en-IN");
 }
 
 /* =====================================
@@ -279,23 +300,22 @@ async function saveSalary() {
 loadSalaryHistory();
 
 }
+// Basic salary controls all automatic salary components
+document
+    .getElementById("basicSalary")
+    .addEventListener("input", calculateNetSalary);
+
+
+// Manual fields also recalculate Net Salary
 [
-"basicSalary",
-"hra",
-"da",
-"allowance",
-"bonus",
-"pf",
-"tax",
-"deduction"
-].forEach(id=>{
+    "bonus",
+    "tax",
+    "deduction"
+].forEach(id => {
 
     document
         .getElementById(id)
-        .addEventListener(
-            "input",
-            calculateNetSalary
-        );
+        .addEventListener("input", calculateNetSalary);
 
 });
 

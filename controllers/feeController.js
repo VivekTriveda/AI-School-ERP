@@ -1,6 +1,6 @@
 const Fee = require("../models/Fee");
 const Student = require("../models/Student");
-
+const FeeStructure = require("../models/FeeStructure");
 /* ================================
    Create Fee Payment
 ================================ */
@@ -396,7 +396,7 @@ exports.getAllFees = async (req, res) => {
 };
 
 /* =====================================
-FEE DASHBOARD
+   FEE DASHBOARD
 ===================================== */
 
 exports.getDashboard = async (req, res) => {
@@ -416,10 +416,17 @@ exports.getDashboard = async (req, res) => {
         const tomorrow = new Date(todayStart);
         tomorrow.setDate(tomorrow.getDate() + 1);
 
-        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const month = String(
+            today.getMonth() + 1
+        ).padStart(2, "0");
+
         const year = today.getFullYear();
 
-        // Today's Collection
+
+        /* =================================
+           TODAY'S COLLECTION
+        ================================= */
+
         const todayFees = await Fee.find({
             schoolId,
             paymentDate: {
@@ -430,36 +437,115 @@ exports.getDashboard = async (req, res) => {
 
         const todayCollection =
             todayFees.reduce(
-                (sum, f) => sum + (f.amountPaid || 0),
+                (sum, f) =>
+                    sum + Number(f.amountPaid || 0),
                 0
             );
 
-        // Monthly Collection
+
+        /* =================================
+           CURRENT MONTH FEES
+        ================================= */
+
         const monthFees = await Fee.find({
             schoolId,
             month,
             year
         });
-       
+
 
         const monthlyCollection =
             monthFees.reduce(
-                (sum, f) => sum + (f.amountPaid || 0),
+                (sum, f) =>
+                    sum + Number(f.amountPaid || 0),
                 0
             );
 
-        // Pending
-        const pendingFees =
-            monthFees.reduce(
-                (sum, f) => sum + (f.balance || 0),
-                0
+
+        /* =================================
+           GET ALL ACTIVE STUDENTS
+        ================================= */
+
+        const students = await Student.find({
+            schoolId,
+            status: "Active"
+        });
+
+
+        /* =================================
+           GET FEE STRUCTURES
+        ================================= */
+
+        const feeStructures =
+            await FeeStructure.find({
+                schoolId
+            });
+
+
+        /* =================================
+           CALCULATE PENDING AMOUNT
+        ================================= */
+
+        let pendingFees = 0;
+
+        let studentsPaid = 0;
+
+
+        for (const student of students) {
+
+            /* Find this student's current
+               month fee record */
+
+            const feeRecord = monthFees.find(
+                fee =>
+                    String(fee.studentId) ===
+                    String(student._id)
             );
 
-        // Paid Students
-        const studentsPaid =
-            monthFees.filter(
-                f => f.status === "Paid"
-            ).length;
+
+            /* ---------------------------------
+               STUDENT ALREADY HAS FEE RECORD
+            --------------------------------- */
+
+            if (feeRecord) {
+
+                pendingFees +=
+                    Number(feeRecord.balance || 0);
+
+                if (feeRecord.status === "Paid") {
+                    studentsPaid++;
+                }
+
+                continue;
+            }
+
+
+            /* ---------------------------------
+               NO FEE RECORD
+               Student has not paid yet
+            --------------------------------- */
+
+            const structure =
+                feeStructures.find(
+                    s =>
+                        String(s.className).trim() ===
+                        String(student.className).trim()
+                );
+
+
+            if (structure) {
+
+                pendingFees +=
+                    Number(structure.totalFee || 0);
+
+            }
+
+        }
+
+
+        /* =================================
+           RESPONSE
+        ================================= */
 
         res.json({
 
@@ -479,6 +565,8 @@ exports.getDashboard = async (req, res) => {
 
     catch (err) {
 
+        console.log(err);
+
         res.status(500).json({
 
             success: false,
@@ -490,6 +578,7 @@ exports.getDashboard = async (req, res) => {
     }
 
 };
+
 
 /* =====================================
 PRINCIPAL FEE DASHBOARD

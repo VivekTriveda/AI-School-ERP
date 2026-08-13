@@ -294,6 +294,62 @@ exports.deleteTeacher = async (req, res) => {
   }
 };
 
+// =======================
+// Update Teacher
+// =======================
+exports.updateTeacher = async (req, res) => {
+  try {
+    const {
+      teacherName,
+      email,
+      mobile,
+      subjects,
+      classes,
+      teacherType,
+      classTeacherOf,
+      status
+    } = req.body;
+
+    const teacher = await Teacher.findById(req.params.id);
+
+    if (!teacher) {
+      return res.status(404).json({
+        success: false,
+        message: "Teacher not found."
+      });
+    }
+
+    teacher.teacherName = teacherName;
+    teacher.email = email.toLowerCase();
+    teacher.mobile = mobile;
+    teacher.subjects = subjects;
+    teacher.classes = classes;
+    teacher.teacherType = teacherType;
+    teacher.classTeacherOf = classTeacherOf;
+    
+    if (status !== undefined) {
+      teacher.status = status;
+    }
+
+    await teacher.save();
+
+    res.json({
+      success: true,
+      message: "Teacher updated successfully.",
+      teacher
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+};
+
+
 exports.getTeacherById = async (req, res) => {
   try {
     const teacher = await Teacher.findById(req.params.id);

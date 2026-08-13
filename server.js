@@ -39,6 +39,8 @@ const portalRoutes = require("./routes/portalRoutes");
 const noticeRoutes = require("./routes/noticeRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const teacherSalaryRoutes = require("./routes/teacherSalaryRoutes");
+const subscriptionPaymentRoutes = require("./routes/subscriptionPaymentRoutes");
+
 
 connectDB();
 
@@ -84,6 +86,7 @@ app.use("/api/portal", portalRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/teacher-salary", teacherSalaryRoutes);
+app.use("/api/subscription-payment", subscriptionPaymentRoutes);
 
 
 const path = require("path");

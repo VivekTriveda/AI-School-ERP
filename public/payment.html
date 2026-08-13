@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>School ERP Payment</title>
+
+
+    <!-- Existing dashboard styling -->
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css">
+
+
+    <!-- Payment page styling -->
+
+    <link
+        rel="stylesheet"
+        href="css/payment.css">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<div class="payment-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="payment-header">
+
+        <div class="payment-header-left">
+
+            <button
+                type="button"
+                class="back-button"
+                onclick="goBackToPlans()">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </button>
+
+
+            <div>
+
+                <h1>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Secure Subscription
+
+                </h1>
+
+                <p>
+                    Complete your school ERP subscription
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="secure-payment-label">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Secure Checkout
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="payment-container">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <section class="payment-main">
+
+
+            <!-- SCHOOL INFORMATION -->
+
+            <div class="payment-card">
+
+                <div class="payment-card-header">
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-school"></i>
+
+                            School Information
+                        </h2>
+
+                        <p>
+                            Confirm your school details
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="school-information-grid">
+
+
+                    <div class="payment-field">
+
+                        <label>
+                            School Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="schoolName"
+                            readonly>
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label>
+                            Principal Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="principalName"
+                            readonly>
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="schoolEmail"
+                            placeholder="School email">
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label>
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="schoolMobile"
+                            placeholder="Mobile number">
+
+                    </div>
+
+
+                    <div class="payment-field full-width">
+
+                        <label>
+                            Number of Students
+                        </label>
+
+                        <input
+                            type="number"
+                            id="studentCount"
+                            min="1"
+                            placeholder="Enter student strength">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CUSTOM PLAN DETAILS -->
+
+            <div
+                class="payment-card custom-payment-card"
+                id="customPlanDetails"
+                style="display:none;">
+
+                <div class="payment-card-header">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-sliders"></i>
+
+                            Custom Plan
+
+                        </h2>
+
+                        <p>
+                            Features selected for your school
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="customFeaturesList"
+                    class="custom-payment-features">
+
+                    <!-- JavaScript will populate this -->
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PAYMENT METHOD -->
+
+            <div class="payment-card">
+
+                <div class="payment-card-header">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                            Payment Method
+
+                        </h2>
+
+                        <p>
+                            Choose how you want to pay
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="payment-methods">
+
+
+                    <!-- ONLINE PAYMENT -->
+
+                    <label
+                        class="payment-method active">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="online"
+                            checked>
+
+                        <div class="payment-method-icon">
+
+                            <i class="fa-solid fa-globe"></i>
+
+                        </div>
+
+
+                        <div class="payment-method-info">
+
+                            <strong>
+                                Online Payment
+                            </strong>
+
+                            <small>
+                                Secure payment using UPI, Card or Net Banking
+                            </small>
+
+                        </div>
+
+
+                        <i
+                            class="fa-solid fa-circle-check payment-selected-icon">
+                        </i>
+
+                    </label>
+
+
+
+                    <!-- UPI -->
+
+                    <label
+                        class="payment-method">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="upi">
+
+                        <div class="payment-method-icon">
+
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+
+                        </div>
+
+
+                        <div class="payment-method-info">
+
+                            <strong>
+                                UPI
+                            </strong>
+
+                            <small>
+                                Pay using UPI
+                            </small>
+
+                        </div>
+
+
+                        <i
+                            class="fa-solid fa-circle-check payment-selected-icon">
+                        </i>
+
+                    </label>
+
+
+
+                    <!-- CARD -->
+
+                    <label
+                        class="payment-method">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="card">
+
+                        <div class="payment-method-icon">
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                        </div>
+
+
+                        <div class="payment-method-info">
+
+                            <strong>
+                                Debit / Credit Card
+                            </strong>
+
+                            <small>
+                                Visa, Mastercard and other supported cards
+                            </small>
+
+                        </div>
+
+
+                        <i
+                            class="fa-solid fa-circle-check payment-selected-icon">
+                        </i>
+
+                    </label>
+
+
+
+                    <!-- NET BANKING -->
+
+                    <label
+                        class="payment-method">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="netbanking">
+
+                        <div class="payment-method-icon">
+
+                            <i class="fa-solid fa-building-columns"></i>
+
+                        </div>
+
+
+                        <div class="payment-method-info">
+
+                            <strong>
+                                Net Banking
+                            </strong>
+
+                            <small>
+                                Pay directly from your bank account
+                            </small>
+
+                        </div>
+
+
+                        <i
+                            class="fa-solid fa-circle-check payment-selected-icon">
+                        </i>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TERMS -->
+
+            <div class="payment-terms">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="acceptTerms">
+
+                    <span>
+
+                        I agree to the School ERP
+                        subscription terms and understand
+                        that the selected plan will be activated
+                        after successful payment verification.
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT SIDE — ORDER SUMMARY
+        ================================================== -->
+
+        <aside class="payment-sidebar">
+
+
+            <div class="order-summary-card">
+
+
+                <div class="order-summary-header">
+
+                    <h2>
+                        Order Summary
+                    </h2>
+
+                    <span
+                        id="planBadge"
+                        class="plan-badge">
+
+                        Loading...
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- PLAN -->
+
+                <div class="selected-plan-summary">
+
+                    <div
+                        id="planIcon"
+                        class="selected-plan-icon">
+
+                        <i class="fa-solid fa-crown"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong
+                            id="planName">
+
+                            Loading...
+
+                        </strong>
+
+                        <span>
+                            Annual Subscription
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PLAN PRICE -->
+
+                <div class="price-breakdown">
+
+
+                    <div class="price-row">
+
+                        <span>
+                            Plan Price
+                        </span>
+
+                        <strong id="planPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="price-row"
+                        id="studentAdjustmentRow"
+                        style="display:none;">
+
+                        <span>
+                            Student Strength Adjustment
+                        </span>
+
+                        <strong
+                            id="studentAdjustment">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="price-row"
+                        id="customFeaturesPriceRow"
+                        style="display:none;">
+
+                        <span>
+                            Selected Features
+                        </span>
+
+                        <strong
+                            id="customFeaturesPrice">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="total-price-section">
+
+                    <span>
+                        Total Payable
+                    </span>
+
+                    <strong
+                        id="totalPrice">
+
+                        ₹0
+
+                    </strong>
+
+                    <small>
+                        Per year
+                    </small>
+
+                </div>
+
+
+
+                <!-- PAYMENT BUTTON -->
+
+                <button
+                    type="button"
+                    id="proceedPaymentButton"
+                    class="proceed-payment-button">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Proceed to Payment
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <div class="secure-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Your payment information is protected
+                    with secure payment processing.
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SUPPORT -->
+
+            <div class="payment-support-card">
+
+                <i class="fa-solid fa-headset"></i>
+
+                <div>
+
+                    <strong>
+                        Need Help?
+                    </strong>
+
+                    <p>
+                        Contact our school ERP support team
+                        if you have questions about a plan
+                        or payment.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PAYMENT PROCESSING MODAL
+    ====================================================== -->
+
+    <div
+        id="paymentProcessingModal"
+        class="payment-processing-modal">
+
+        <div class="payment-processing-content">
+
+            <div class="payment-spinner">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+            </div>
+
+
+            <h2>
+                Preparing Secure Payment
+            </h2>
+
+
+            <p>
+                Please wait while we prepare your
+                subscription payment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PAYMENT SCRIPT
+    ====================================================== -->
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script src="js/payment.js"></script>
+
+
+</div>
+
+</body>
+
+</html>

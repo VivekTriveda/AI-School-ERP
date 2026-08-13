@@ -3,6 +3,263 @@
 =========================================================*/
 
 const school = JSON.parse(localStorage.getItem("currentSchool"));
+// ==========================================
+// PACKAGE FEATURE ACCESS
+// ==========================================
+
+const PACKAGE_FEATURES = {
+    basic: {
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: false,
+        timetable: false,
+        onlineTests: false,
+        questionBank: false,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: false
+    },
+
+    standard: {
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: false,
+        questionBank: false,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: false
+    },
+
+    premium: {
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: true,
+        questionBank: true,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: true
+    },
+
+    "ai-enterprise": {
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: true,
+        questionBank: true,
+        aiPaperGenerator: true,
+        aiEvaluation: true,
+        aiReports: true,
+        aiAssistant: true,
+        busTracking: true,
+        qrClassroom: true
+    }
+};
+
+
+// ==========================================
+// CHECK FEATURE
+// ==========================================
+
+function hasFeature(featureName) {
+
+    const packageName =
+        school.subscription?.package || "basic";
+
+    // Custom package
+    if (packageName === "custom") {
+
+        return school.subscription?.features?.[featureName] === true;
+    }
+
+    const packageFeatures =
+        PACKAGE_FEATURES[packageName];
+
+    if (!packageFeatures) {
+        return false;
+    }
+
+    return packageFeatures[featureName] === true;
+}
+
+// ==========================================
+// APPLY PACKAGE ACCESS
+// SHOW LOCKED FEATURES
+// ==========================================
+
+function applyPackageAccess() {
+
+    const packageElements =
+        document.querySelectorAll(".package-feature");
+
+
+    packageElements.forEach(element => {
+
+        const feature =
+            element.dataset.feature;
+
+        if (!feature) {
+            return;
+        }
+
+
+        const allowed =
+            hasFeature(feature);
+
+
+        // =====================================
+        // FEATURE AVAILABLE
+        // =====================================
+
+        if (allowed) {
+
+            element.classList.remove(
+                "package-locked"
+            );
+
+            element.dataset.locked =
+                "false";
+
+            return;
+        }
+
+
+        // =====================================
+        // FEATURE LOCKED
+        // =====================================
+
+        element.classList.add(
+            "package-locked"
+        );
+
+        element.dataset.locked =
+            "true";
+
+
+        // Change click to subscription page
+        element.setAttribute(
+            "onclick",
+            "openSubscriptionPage(event)"
+        );
+
+
+        // Add lock icon
+        if (
+            !element.querySelector(
+                ".package-lock-icon"
+            )
+        ) {
+
+            const lockIcon =
+                document.createElement("i");
+
+            lockIcon.className =
+                "fa-solid fa-lock package-lock-icon";
+
+            element.insertBefore(
+                lockIcon,
+                element.firstChild
+            );
+        }
+
+
+        // Add Upgrade text
+        if (
+            !element.querySelector(
+                ".package-upgrade-text"
+            )
+        ) {
+
+            const upgradeText =
+                document.createElement("small");
+
+            upgradeText.className =
+                "package-upgrade-text";
+
+            upgradeText.textContent =
+                " Upgrade";
+
+            element.appendChild(
+                upgradeText
+            );
+        }
+
+    });
+
+
+    // ==========================================
+    // HEADER IMPORT BOOK
+    // ==========================================
+
+    const importBookButton =
+        document.querySelector(
+            '.header-btn[onclick*="import-book.html"]'
+        );
+
+
+    if (
+        importBookButton &&
+        !hasFeature("questionBank")
+    ) {
+
+        importBookButton.setAttribute(
+            "onclick",
+            "openSubscriptionPage(event)"
+        );
+
+        importBookButton.classList.add(
+            "package-locked"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// OPEN SUBSCRIPTION PAGE
+// ==========================================
+
+function openSubscriptionPage(event) {
+
+    if (event) {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+    }
+
+    window.location.href =
+        "subscription.html";
+
+}
+
 
 if (!school) {
 
@@ -28,7 +285,8 @@ document.getElementById("schoolBoard").textContent =
 
 window.addEventListener("DOMContentLoaded", () => {
 
-    loadDashboard();
+  applyPackageAccess();
+loadDashboard();
 
 });
 
@@ -128,8 +386,22 @@ const feeData = await feeRes.json();
 if(feeData.success){
 
     document.getElementById("feeCollection").textContent =
+        "₹" + Number(
+            feeData.monthlyCollection || 0
+        ).toLocaleString();
 
-        "₹" + Number(feeData.monthlyCollection || 0).toLocaleString();
+
+    const pendingAmount =
+        document.getElementById("pendingAmount");
+
+    if(pendingAmount){
+
+        pendingAmount.textContent =
+            "₹" + Number(
+                feeData.pendingFees || 0
+            ).toLocaleString();
+
+    }
 
 }
 

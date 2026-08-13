@@ -24,6 +24,7 @@
     "multer": "^2.2.0",
     "pdf-parse": "^1.1.1",
     "pdf-poppler": "^0.2.3",
+    "razorpay": "^2.9.8",
     "sharp": "^0.35.2",
     "tesseract.js": "^7.0.0",
     "xlsx": "^0.18.5"

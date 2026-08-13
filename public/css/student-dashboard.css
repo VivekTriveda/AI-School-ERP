@@ -898,3 +898,24 @@ color:#555;
 color:#888;
 
 }
+
+/* =====================================================
+   SUBSCRIPTION LOCKED FEATURE
+===================================================== */
+
+.feature-locked {
+    opacity: 0.55 !important;
+    cursor: not-allowed !important;
+    position: relative;
+}
+
+
+.feature-locked:hover {
+    opacity: 0.7 !important;
+}
+
+
+.feature-locked .fa-lock {
+    font-size: 12px;
+    margin-left: 6px;
+}

@@ -7,6 +7,17 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
+    username: {
+    type: String,
+    required: function () {
+        return this.role === "principal";
+    },
+    unique: true,
+    sparse: true,
+    lowercase: true,
+    trim: true
+},
+
     email: {
         type: String,
         required: true,

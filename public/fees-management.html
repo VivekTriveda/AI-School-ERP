@@ -299,12 +299,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
             <div class="form-group">
 
-                <label>Parent Name</label>
+                <label>Father Name</label>
 
                 <input
-                    id="parentName"
+                    id="fatherName"
                     readonly>
-
+                
             </div>
 
             <div class="form-group">
@@ -346,7 +346,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                     id="feeMonth">
 
             </div>
-
+            <div id="previousPendingBox" class="previous-pending-box">
+    <div class="previous-pending-content">
+        <span>Previous Pending Fee</span>
+        <strong>₹0</strong>
+    </div>
+</div>
             <div class="form-group">
 
                 <label>Total Fee</label>
@@ -381,11 +386,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
             <div class="form-group">
 
-                <label>Amount Paid</label>
+                <label>Paid This Month</label>
+<input type="number" id="paidThisMonth" readonly>
 
-                <input
-                    id="amountPaid"
-                    type="number">
+<label>Amount to Collect</label>
+<input type="number" id="amountPaid" placeholder="Enter amount to collect">
 
             </div>
 

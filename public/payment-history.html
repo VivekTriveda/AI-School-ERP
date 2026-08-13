@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Payment History</title>
+
+    <link rel="stylesheet" href="css/payment-history.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="payment-page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>
+                <i class="fa-solid fa-money-check-dollar"></i>
+                Admin Payment History
+            </h1>
+
+            <p>
+                View all school subscription payments
+            </p>
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='schools.html'"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Schools
+        </button>
+
+    </div>
+
+
+    <div class="payment-summary">
+
+        <div class="summary-box">
+            <span>Total Payments</span>
+            <strong id="totalPayments">0</strong>
+        </div>
+
+        <div class="summary-box">
+            <span>Successful Payments</span>
+            <strong id="successfulPayments">0</strong>
+        </div>
+
+        <div class="summary-box revenue-box">
+            <span>Revenue Collected</span>
+            <strong id="totalRevenue">₹0</strong>
+        </div>
+
+    </div>
+
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>
+                Payment Transactions
+            </h2>
+
+            <button
+                class="refresh-btn"
+                onclick="loadPaymentHistory()"
+            >
+                <i class="fa-solid fa-rotate"></i>
+                Refresh
+            </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>School</th>
+                        <th>Package</th>
+                        <th>Amount</th>
+                        <th>Razorpay Payment ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="paymentTableBody">
+
+                    <tr>
+                        <td colspan="6">
+                            Loading payments...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/payment-history.js"></script>
+
+</body>
+</html>

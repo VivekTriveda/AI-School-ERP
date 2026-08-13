@@ -1,10 +1,21 @@
 const school = JSON.parse(localStorage.getItem("currentSchool"));
 
-const schoolId = school?._id || school?.schoolId;
+const schoolId =
+    school?._id ||
+    school?.schoolId ||
+    localStorage.getItem("schoolId");
+
+if (!schoolId) {
+    alert("School information not found. Please login again.");
+    throw new Error("School ID is missing");
+}
 
 let selectedStudent = null;
 
 let currentFeeStructure = null;
+
+let previousPending = 0;
+let currentMonthPaid = 0;
 
 const API = "/api";
 const monthInput = document.getElementById("feeMonth");
@@ -67,7 +78,7 @@ document.getElementById("className").value =student.className;
 
 document.getElementById("section").value =student.section;
 
-document.getElementById("parentName").value =student.parentName;
+document.getElementById("fatherName").value =student.fatherName;
 
 document.getElementById("mobile").value =student.mobile;
 
@@ -105,7 +116,7 @@ calculateBalance();
 }
 
 /* =====================================
-LOAD CURRENT MONTH FEE
+LOAD CURRENT MONTH FEE + PREVIOUS PENDING
 ===================================== */
 
 async function loadCurrentFee() {
@@ -113,73 +124,103 @@ async function loadCurrentFee() {
     if (!selectedStudent) return;
 
     const feeMonth = document.getElementById("feeMonth").value;
-
     const [year, month] = feeMonth.split("-");
 
-    const res = await fetch(
+    // Reset previous pending
+    previousPending = 0;
+    currentMonthPaid = 0;
 
-        "/api/fees/current?" +
+    try {
 
-        "studentId=" + selectedStudent._id +
+        // -----------------------------
+        // 1. Load current month fee
+        // -----------------------------
 
-        "&month=" + month +
+        const currentRes = await fetch(
+            "/api/fees/current?" +
+            "studentId=" + selectedStudent._id +
+            "&month=" + month +
+            "&year=" + year
+        );
 
-        "&year=" + year +
+        const currentData = await currentRes.json();
 
-        "&feeType=Tuition"
+        if (currentData.success && currentData.fee) {
 
-    );
+            document.getElementById("totalFee").value =
+                currentData.fee.totalFee || 0;
 
-    const data = await res.json();
+            document.getElementById("discount").value =
+                currentData.fee.discount || 0;
 
-    if (!data.success || !data.fee) {
+            document.getElementById("fine").value =
+                currentData.fee.fine || 0;
+
+            currentMonthPaid =
+                Number(currentData.fee.amountPaid || 0);
+                document.getElementById("paidThisMonth").value =
+    currentMonthPaid;
+
+        }
+
+        // -----------------------------
+        // 2. Load all fee records
+        // -----------------------------
+
+        const historyRes = await fetch(
+            "/api/fees/all?schoolId=" + schoolId
+        );
+
+        const historyData = await historyRes.json();
+
+        if (historyData.success && Array.isArray(historyData.fees)) {
+
+            const currentYear = Number(year);
+            const currentMonth = Number(month);
+
+            historyData.fees.forEach(fee => {
+
+                // Make sure this belongs to selected student
+                const feeStudentId =
+                    typeof fee.studentId === "object"
+                        ? fee.studentId?._id
+                        : fee.studentId;
+
+                if (String(feeStudentId) !== String(selectedStudent._id)) {
+                    return;
+                }
+
+                const feeYear = Number(fee.year);
+                const feeMonthNumber = Number(fee.month);
+
+                // Only previous months
+                const isPreviousMonth =
+                    feeYear < currentYear ||
+                    (
+                        feeYear === currentYear &&
+                        feeMonthNumber < currentMonth
+                    );
+
+                if (isPreviousMonth) {
+
+                    previousPending +=
+                        Number(fee.balance || 0);
+
+                }
+
+            });
+        }
 
         calculateBalance();
+        showPreviousPending();
 
-        return;
+    } catch (error) {
+
+        console.error("Fee loading error:", error);
+
+        alert("Unable to load fee details.");
 
     }
-
-    document.getElementById("totalFee").value = data.fee.totalFee;
-
-    document.getElementById("discount").value = data.fee.discount;
-
-    document.getElementById("fine").value = data.fee.fine;
-
-    document.getElementById("balance").value = data.fee.balance;
-
-    // Store previous paid amount for balance calculation
-    currentFeeStructure.previousPaid = data.fee.amountPaid;
-}
-
-async function loadCurrentFee() {
-
-    const feeMonth = document.getElementById("feeMonth").value;
-
-    const [year, month] = feeMonth.split("-");
-
-    const res = await fetch(
-
-        "/api/fees/current?" +
-
-        "studentId=" + selectedStudent._id +
-
-        "&month=" + month +
-
-        "&year=" + year
-
-    );
-
-    const data = await res.json();
-
-    if (!data.success || !data.fee)
-        return;
-
-    document.getElementById("totalFee").value =
-        data.fee.totalFee;
-
-    document.getElementById("balance").value =
-        data.fee.balance;
 }
 
 document.getElementById("discount").addEventListener("input",calculateBalance);
@@ -205,15 +246,16 @@ function calculateBalance() {
     const currentPayment =
         Number(document.getElementById("amountPaid").value) || 0;
 
-    const previousPaid =
-        Number(currentFeeStructure?.previousPaid || 0);
-
-    const balance =
+    const currentBalance =
         (total - discount + fine)
-        - (previousPaid + currentPayment);
+        - (currentMonthPaid + currentPayment);
+
+    const totalBalance =
+        previousPending +
+        (currentBalance > 0 ? currentBalance : 0);
 
     document.getElementById("balance").value =
-        balance > 0 ? balance : 0;
+        totalBalance > 0 ? totalBalance : 0;
 }
 
 /* =====================================
@@ -469,4 +511,18 @@ async function deleteFee(id){
 
     await loadFeeHistory();
 
+}
+
+function showPreviousPending() {
+
+    let pendingBox = document.getElementById("previousPendingBox");
+
+    if (!pendingBox) return;
+
+    pendingBox.innerHTML = `
+        <div class="previous-pending-content">
+            <span>Previous Pending Fee</span>
+            <strong>₹${previousPending.toLocaleString("en-IN")}</strong>
+        </div>
+    `;
 }

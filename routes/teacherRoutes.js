@@ -18,4 +18,7 @@ router.get("/:schoolId", teacherController.getTeachersBySchool);
 
 router.delete("/:id", teacherController.deleteTeacher);
 
+// Update Teacher
+router.put("/:id", teacherController.updateTeacher);
+
 module.exports = router;

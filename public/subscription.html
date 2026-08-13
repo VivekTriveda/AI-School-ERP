@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>School ERP Subscription Plans</title>
+
+    <link rel="stylesheet"
+        href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="css/subscription.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+<div class="subscription-page">
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="subscription-header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-crown"></i>
+                School ERP Plans
+            </h1>
+
+            <p>
+                Choose the right plan for your school's needs
+            </p>
+
+        </div>
+
+
+        <div class="school-info-header">
+
+            <span id="schoolName">
+                Loading...
+            </span>
+
+            <span class="current-plan">
+
+                Current Plan:
+
+                <strong id="currentPackage">
+                    Loading...
+                </strong>
+
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         BILLING NOTE
+    =========================================== -->
+
+    <div class="billing-note">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+            All plans are billed annually.
+            You can upgrade your plan whenever your school needs more features.
+        </span>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         PLAN CARDS
+    =========================================== -->
+
+    <section class="plans-section">
+
+
+        <!-- BASIC -->
+
+        <div class="plan-card">
+
+            <div class="plan-icon basic-icon">
+                <i class="fa-solid fa-school"></i>
+            </div>
+
+            <h2>Basic</h2>
+
+            <p class="plan-description">
+                Essential tools for small schools
+            </p>
+
+            <div class="plan-price">
+
+                <span class="currency">₹</span>
+
+                <span>19,999</span>
+
+                <small>/ year</small>
+
+            </div>
+
+            <p class="student-limit">
+                Up to 500 students
+            </p>
+
+
+            <ul class="plan-features">
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Principal Dashboard
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Teacher Dashboard
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Student Dashboard
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Attendance
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Fee Management
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Fee Reminders
+                </li>
+
+            </ul>
+
+
+            <button
+                class="plan-button"
+                data-package="basic">
+
+                Select Basic
+
+            </button>
+
+        </div>
+
+
+
+        <!-- STANDARD -->
+
+        <div class="plan-card popular-plan">
+
+            <div class="popular-badge">
+                MOST POPULAR
+            </div>
+
+
+            <div class="plan-icon standard-icon">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+
+            <h2>Standard</h2>
+
+            <p class="plan-description">
+                For growing schools
+            </p>
+
+            <div class="plan-price">
+
+                <span class="currency">₹</span>
+
+                <span>39,999</span>
+
+                <small>/ year</small>
+
+            </div>
+
+            <p class="student-limit">
+                Up to 500 students
+            </p>
+
+
+            <ul class="plan-features">
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Everything in Basic
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Teacher Salary
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Timetable
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Staff Management
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Advanced Attendance
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Performance Reports
+                </li>
+
+            </ul>
+
+
+            <button
+                class="plan-button primary-button"
+                data-package="standard">
+
+                Upgrade to Standard
+
+            </button>
+
+        </div>
+
+
+
+        <!-- PREMIUM -->
+
+        <div class="plan-card">
+
+            <div class="plan-icon premium-icon">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+
+            <h2>Premium</h2>
+
+            <p class="plan-description">
+                Advanced academic management
+            </p>
+
+            <div class="plan-price">
+
+                <span class="currency">₹</span>
+
+                <span>69,999</span>
+
+                <small>/ year</small>
+
+            </div>
+
+            <p class="student-limit">
+                Up to 500 students
+            </p>
+
+
+            <ul class="plan-features">
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Everything in Standard
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Question Bank
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Online Tests
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    QR Classroom
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Advanced Results
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Academic Analytics
+                </li>
+
+            </ul>
+
+
+            <button
+                class="plan-button"
+                data-package="premium">
+
+                Upgrade to Premium
+
+            </button>
+
+        </div>
+
+
+
+        <!-- AI ENTERPRISE -->
+
+        <div class="plan-card enterprise-plan">
+
+            <div class="enterprise-badge">
+                AI POWERED
+            </div>
+
+
+            <div class="plan-icon enterprise-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <h2>AI Enterprise</h2>
+
+            <p class="plan-description">
+                Complete AI-powered school ERP
+            </p>
+
+            <div class="plan-price">
+
+                <span class="currency">₹</span>
+
+                <span>1,29,999</span>
+
+                <small>/ year</small>
+
+            </div>
+
+            <p class="student-limit">
+                Up to 500 students
+            </p>
+
+
+            <ul class="plan-features">
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Everything in Premium
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    AI Paper Generator
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    AI Evaluation
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    AI Reports
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    AI Assistant
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-check"></i>
+                    Smart Bus Tracking
+                </li>
+
+            </ul>
+
+
+            <button
+                class="plan-button enterprise-button"
+                data-package="ai-enterprise">
+
+                Upgrade to AI Enterprise
+
+            </button>
+
+        </div>
+  <!-- CUSTOM PLAN -->
+
+<div class="plan-card custom-plan">
+
+    <div class="custom-badge">
+        CUSTOM
+    </div>
+
+    <div class="plan-icon custom-icon">
+        <i class="fa-solid fa-sliders"></i>
+    </div>
+
+    <h2>Custom</h2>
+
+    <p class="plan-description">
+        Choose only the features your school needs
+    </p>
+
+    <div class="plan-price custom-price">
+        <span>Build Your Plan</span>
+    </div>
+
+    <p class="student-limit">
+        Flexible pricing based on selected features
+    </p>
+
+    <ul class="plan-features">
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Select required modules
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Pay only for selected features
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Suitable for any school
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Custom annual pricing
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Upgrade anytime
+        </li>
+
+    </ul>
+
+    <button
+        class="plan-button custom-button"
+        data-package="custom">
+
+        Customize Your Plan
+
+    </button>
+
+</div>
+
+<!-- =====================================================
+     CUSTOM PLAN FEATURE SELECTOR
+====================================================== -->
+
+<div
+    id="customPlanModal"
+    class="custom-plan-modal">
+
+    <div class="custom-plan-modal-content">
+
+        <!-- HEADER -->
+
+        <div class="custom-modal-header">
+
+            <div>
+
+                <h2>
+                    <i class="fa-solid fa-sliders"></i>
+                    Customize Your School ERP
+                </h2>
+
+                <p>
+                    Select the features your school needs.
+                    Your custom annual price will be calculated automatically.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeCustomModal"
+                class="close-custom-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- FEATURE SELECTION -->
+
+        <div class="custom-feature-layout">
+
+
+            <!-- FEATURES -->
+
+            <div class="custom-features-panel">
+
+                <h3>
+                    Select Features
+                </h3>
+
+                <p class="custom-feature-note">
+                    Core dashboards are included automatically.
+                </p>
+
+
+                <div class="custom-feature-list">
+
+
+                    <!-- ATTENDANCE -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="attendance"
+                            data-price="5000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Attendance
+                            </strong>
+
+                            <small>
+                                Student and teacher attendance management
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹5,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- FEES -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="fees"
+                            data-price="8000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Fee Management
+                            </strong>
+
+                            <small>
+                                Fee collection, history and reminders
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹8,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- TEACHER SALARY -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="salary"
+                            data-price="8000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Teacher Salary
+                            </strong>
+
+                            <small>
+                                Salary management and payslips
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹8,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- TIMETABLE -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="timetable"
+                            data-price="5000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Timetable
+                            </strong>
+
+                            <small>
+                                School timetable and class scheduling
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹5,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- ONLINE TESTS -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="onlineTests"
+                            data-price="8000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Online Tests
+                            </strong>
+
+                            <small>
+                                Online examinations and assessments
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹8,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- QUESTION BANK -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="questionBank"
+                            data-price="10000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Question Bank
+                            </strong>
+
+                            <small>
+                                Manage and organize school questions
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹10,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- AI PAPER GENERATOR -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="aiPaperGenerator"
+                            data-price="15000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                AI Paper Generator
+                            </strong>
+
+                            <small>
+                                Generate question papers using AI
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹15,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- AI EVALUATION -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="aiEvaluation"
+                            data-price="20000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                AI Evaluation
+                            </strong>
+
+                            <small>
+                                AI-powered answer sheet evaluation
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹20,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- AI REPORTS -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="aiReports"
+                            data-price="10000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                AI Reports
+                            </strong>
+
+                            <small>
+                                AI-powered school and academic reports
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹10,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- AI ASSISTANT -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="aiAssistant"
+                            data-price="8000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                AI Assistant
+                            </strong>
+
+                            <small>
+                                AI chatbot for school users
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹8,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- QR CLASSROOM -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="qrClassroom"
+                            data-price="7000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                QR Classroom
+                            </strong>
+
+                            <small>
+                                QR-based classroom management
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹7,000/year
+                        </span>
+
+                    </label>
+
+
+                    <!-- BUS TRACKING -->
+
+                    <label class="custom-feature-item">
+
+                        <input
+                            type="checkbox"
+                            class="custom-feature-checkbox"
+                            data-feature="busTracking"
+                            data-price="20000">
+
+                        <span class="custom-feature-info">
+
+                            <strong>
+                                Smart Bus Tracking
+                            </strong>
+
+                            <small>
+                                School bus tracking and notifications
+                            </small>
+
+                        </span>
+
+                        <span class="custom-feature-price">
+                            ₹20,000/year
+                        </span>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- PRICE SUMMARY -->
+
+            <div class="custom-summary-panel">
+
+                <div class="custom-summary-card">
+
+                    <h3>
+                        Your Custom Plan
+                    </h3>
+
+
+                    <div class="selected-count">
+
+                        <span>
+                            Selected Features
+                        </span>
+
+                        <strong id="customFeatureCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="custom-selected-list"
+                         id="customSelectedList">
+
+                        <p>
+                            No additional features selected.
+                        </p>
+
+                    </div>
+
+
+                    <div class="custom-total">
+
+                        <span>
+                            Estimated Annual Price
+                        </span>
+
+                        <strong id="customTotalPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <p class="custom-price-note">
+
+                        Final pricing may be adjusted for
+                        student strength and special requirements.
+
+                    </p>
+
+
+                    <button
+                        type="button"
+                        id="continueCustomPlan"
+                        class="continue-custom-button">
+
+                        Continue
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FEATURE COMPARISON
+    =========================================== -->
+
+    <section class="comparison-section">
+
+        <div class="section-title">
+
+            <h2>
+                Compare All Features
+            </h2>
+
+            <p>
+                See exactly what is included in each plan.
+            </p>
+
+        </div>
+
+
+        <div class="comparison-table-wrapper">
+
+            <table class="comparison-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Feature
+                        </th>
+
+                        <th>
+                            Basic
+                        </th>
+
+                        <th>
+                            Standard
+                        </th>
+
+                        <th>
+                            Premium
+                        </th>
+
+                        <th>
+                            AI Enterprise
+                        </th>
+
+                        <th>
+                            Custom
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+                        <td>Principal Dashboard</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Teacher Dashboard</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Student Dashboard</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Attendance</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Fee Management</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Teacher Salary</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Timetable</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Question Bank</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Online Tests</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>QR Classroom</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>AI Paper Generator</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>AI Evaluation</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>AI Reports</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>AI Assistant</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Smart Bus Tracking</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer class="subscription-footer">
+
+        <p>
+            Need a plan for more than 500 students?
+            <strong>Contact us for a custom school plan.</strong>
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+<script src="js/subscription.js"></script>
+
+</body>
+
+</html>

@@ -1038,3 +1038,28 @@ grid-template-columns:1fr;
     font-size:34px;
 
 }
+
+.previous-pending-box {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+}
+
+.previous-pending-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.previous-pending-content span {
+    font-weight: 600;
+    color: #9a3412;
+}
+
+.previous-pending-content strong {
+    font-size: 20px;
+    color: #dc2626;
+}

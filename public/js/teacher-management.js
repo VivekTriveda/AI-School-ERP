@@ -223,10 +223,117 @@ document.addEventListener("DOMContentLoaded", () => {
 // Edit Teacher
 // ===============================
 
-function editTeacher(id) {
+// ===============================
+// Edit Teacher
+// ===============================
+let editingTeacherId = null;
 
-    alert("Edit Teacher : " + id);
+async function editTeacher(id) {
 
+    try {
+
+        const response = await fetch(`/api/teachers/teacher/${id}`);
+
+        const data = await response.json();
+
+        if (!data.success) {
+            alert(data.message || "Unable to load teacher.");
+            return;
+        }
+
+        const teacher = data.teacher;
+
+        // Store ID for update
+        editingTeacherId = teacher._id;
+
+        // Open modal
+        const modal = document.getElementById("teacherModal");
+        modal.style.display = "flex";
+
+        // Load teacher options first
+        await loadTeacherOptions();
+
+        // Fill basic information
+        document.getElementById("teacherName").value =
+            teacher.teacherName || "";
+
+        document.getElementById("teacherEmail").value =
+            teacher.email || "";
+
+        document.getElementById("teacherMobile").value =
+            teacher.mobile || "";
+
+        // Password should remain unchanged
+        document.getElementById("teacherPassword").value = "";
+
+        // Teacher type
+        document.getElementById("teacherType").value =
+            teacher.teacherType || "SUBJECT_TEACHER";
+
+        // Load class
+        const classSelect =
+            document.getElementById("classSelect");
+
+        if (teacher.classes && teacher.classes.length) {
+
+            const classValue = teacher.classes[0];
+
+            const classOption =
+                [...classSelect.options]
+                .find(option => option.value === classValue);
+
+            if (classOption) {
+                classSelect.value = classValue;
+            }
+        }
+
+        // Load subjects
+        loadSubjects();
+
+        const subjectSelect =
+            document.getElementById("subjectSelect");
+
+        if (teacher.subjects && teacher.subjects.length) {
+
+            const subjectValue = teacher.subjects[0];
+
+            const subjectOption =
+                [...subjectSelect.options]
+                .find(option => option.value === subjectValue);
+
+            if (subjectOption) {
+                subjectSelect.value = subjectValue;
+            }
+        }
+
+        // Class teacher section
+        if (teacher.teacherType === "CLASS_TEACHER") {
+
+            document.getElementById("sectionGroup").style.display =
+                "block";
+
+            if (teacher.classTeacherOf) {
+
+                document.getElementById("sectionSelect").value =
+                    teacher.classTeacherOf.section || "";
+            }
+
+        } else {
+
+            document.getElementById("sectionGroup").style.display =
+                "none";
+        }
+
+        // Change button text
+        document.getElementById("saveTeacherBtn").innerText =
+            "Update Teacher";
+
+    } catch (error) {
+
+        console.error("Edit teacher error:", error);
+
+        alert("Unable to load teacher details.");
+    }
 }
 
 

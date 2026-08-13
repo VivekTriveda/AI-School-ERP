@@ -23,6 +23,166 @@ let editMode = false;
 
 let editingSchoolId = null;
 
+// ==========================================
+// SUBSCRIPTION PRICES
+// ==========================================
+
+const PACKAGE_PRICES = {
+
+    basic: 19999,
+
+    standard: 39999,
+
+    premium: 69999,
+
+    "ai-enterprise": 129999
+
+};
+
+let collectedRevenue = 0;
+
+let successfulPayments = 0;
+
+
+// ==========================================
+// LOAD ACTUAL RAZORPAY REVENUE
+// ==========================================
+
+async function loadCollectedRevenue() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/subscription-payment/revenue"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Revenue API error: ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Revenue loading failed"
+            );
+
+        }
+
+
+        collectedRevenue =
+            Number(
+                data.totalRevenue || 0
+            );
+
+
+        successfulPayments =
+            Number(
+                data.successfulPayments || 0
+            );
+
+            const paymentText =
+    document.getElementById(
+        "successfulPaymentsText"
+    );
+
+
+if (paymentText) {
+
+    paymentText.innerText =
+        successfulPayments +
+        (
+            successfulPayments === 1
+                ? " successful payment"
+                : " successful payments"
+        );
+
+}
+
+
+        // Update revenue card
+
+        const revenueElement =
+            document.getElementById(
+                "totalRevenue"
+            );
+
+
+        if (revenueElement) {
+
+            revenueElement.innerText =
+                "₹" +
+                collectedRevenue.toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+        // Optional payment count
+
+        const paymentCountElement =
+            document.getElementById(
+                "successfulPayments"
+            );
+
+
+        if (paymentCountElement) {
+
+            paymentCountElement.innerText =
+                successfulPayments;
+
+        }
+
+
+        console.log(
+            "Revenue Collected:",
+            collectedRevenue
+        );
+
+
+        console.log(
+            "Successful Payments:",
+            successfulPayments
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "Revenue loading error:",
+            error
+        );
+
+
+        const revenueElement =
+            document.getElementById(
+                "totalRevenue"
+            );
+
+
+        if (revenueElement) {
+
+            revenueElement.innerText =
+                "₹0";
+
+        }
+
+    }
+
+}
+
 async function loadSchools() {
 
     try {
@@ -33,7 +193,11 @@ async function loadSchools() {
 
         schools = data.schools || [];
 
+        updateSubscriptionSummary(schools);
+
         displaySchools(schools);
+
+        loadCollectedRevenue();
 
     } catch (err) {
 
@@ -45,6 +209,150 @@ async function loadSchools() {
             </h2>
         `;
     }
+}
+
+// ==========================================
+// UPDATE SUBSCRIPTION SUMMARY
+// ==========================================
+
+function updateSubscriptionSummary(list) {
+
+    let basic = 0;
+    let standard = 0;
+    let premium = 0;
+    let enterprise = 0;
+    let custom = 0;
+
+    let totalValue = 0;
+
+
+    list.forEach(school => {
+
+        const packageName =
+            String(
+                school.subscription?.package ||
+                "basic"
+            )
+            .toLowerCase()
+            .trim();
+
+
+        // Count packages
+
+        if (packageName === "basic") {
+
+            basic++;
+
+        }
+        else if (packageName === "standard") {
+
+            standard++;
+
+        }
+        else if (packageName === "premium") {
+
+            premium++;
+
+        }
+        else if (
+            packageName === "ai-enterprise"
+        ) {
+
+            enterprise++;
+
+        }
+        else if (packageName === "custom") {
+
+            custom++;
+
+        }
+
+
+        // Calculate annual subscription value
+
+        if (
+            PACKAGE_PRICES[
+                packageName
+            ]
+        ) {
+
+            totalValue +=
+                PACKAGE_PRICES[
+                    packageName
+                ];
+
+        }
+
+
+        // Custom package
+        // uses saved custom price if available
+
+        if (
+            packageName === "custom"
+        ) {
+
+            const customPrice =
+                Number(
+                    school.subscription?.price ||
+                    school.subscription?.amount ||
+                    0
+                );
+
+            totalValue += customPrice;
+
+        }
+
+    });
+
+
+    // Update UI
+
+    document.getElementById(
+        "totalSchools"
+    ).innerText = list.length;
+
+
+    document.getElementById(
+        "basicSchools"
+    ).innerText = basic;
+
+
+    document.getElementById(
+        "standardSchools"
+    ).innerText = standard;
+
+
+    document.getElementById(
+        "premiumSchools"
+    ).innerText = premium;
+
+
+    document.getElementById(
+        "enterpriseSchools"
+    ).innerText = enterprise;
+
+
+    document.getElementById(
+        "customSchools"
+    ).innerText = custom;
+
+
+   const annualValueElement =
+    document.getElementById(
+        "annualSubscriptionValue"
+    );
+
+
+if (annualValueElement) {
+
+    annualValueElement.innerText =
+        "₹" +
+        totalValue.toLocaleString(
+            "en-IN"
+        );
+
+}
+
 }
 
 function displaySchools(list) {
@@ -82,18 +390,81 @@ function displaySchools(list) {
                 ${school.schoolName}
 
             </div>
+<div class="school-info">
 
-            <div class="school-info">
+    <p>
+        <b>Board :</b>
+        ${school.board}
+    </p>
 
-                <p><b>Board :</b> ${school.board}</p>
+    <p>
+        <b>Principal :</b>
+        ${school.principal || "-"}
+    </p>
 
-                <p><b>Principal :</b> ${school.principal || "-"}</p>
+    <p>
+        <b>Phone :</b>
+        ${school.phone || "-"}
+    </p>
 
-                <p><b>Phone :</b> ${school.phone || "-"}</p>
+    <p>
+        <b>City :</b>
+        ${school.city || "-"}
+    </p>
 
-                <p><b>City :</b> ${school.city || "-"}</p>
+   <p class="package-info">
 
-            </div>
+    <b>Package :</b>
+
+    <span class="package-badge">
+
+        ${
+            school.subscription?.package
+                ? school.subscription.package
+                    .replace("-", " ")
+                    .replace(/\b\w/g, c => c.toUpperCase())
+                : "Basic"
+        }
+
+    </span>
+
+</p>
+
+
+<p class="package-price-info">
+
+    <b>Annual Price :</b>
+
+    <span class="package-price">
+
+        ₹${
+            PACKAGE_PRICES[
+                String(
+                    school.subscription?.package ||
+                    "basic"
+                ).toLowerCase()
+            ]
+            ? PACKAGE_PRICES[
+                String(
+                    school.subscription?.package ||
+                    "basic"
+                ).toLowerCase()
+            ].toLocaleString("en-IN")
+
+            : Number(
+                school.subscription?.price ||
+                school.subscription?.amount ||
+                0
+            ).toLocaleString("en-IN")
+        }
+
+        <small>/ year</small>
+
+    </span>
+
+</p>
+
+</div>
 
             <div class="card-buttons">
 
@@ -101,6 +472,11 @@ function displaySchools(list) {
 
                   Open
 
+                 </button>
+                  <button
+                 class="package-btn" onclick="managePackage('${school._id}')">
+                 <i class="fa-solid fa-box"></i>
+                 Package
                  </button>
 
                 <button class="edit-btn" onclick="editSchool('${school._id}')">
@@ -264,6 +640,8 @@ async function saveSchool() {
 
     board: document.getElementById("board").value,
 
+    package: document.getElementById("schoolPackage").value,
+
     city: document.getElementById("city").value.trim(),
 
     state: document.getElementById("state").value.trim(),
@@ -340,6 +718,7 @@ if (!school.password) {
             document.getElementById("state").value = "";
             document.getElementById("address").value = "";
             document.getElementById("board").selectedIndex = 0;
+            document.getElementById("schoolPackage").value = "basic";
 
             // Reload school list
             loadSchools();
@@ -416,5 +795,380 @@ logoutBtn.addEventListener("click", () => {
     }
 
 });
+
+// ==========================================
+// PACKAGE MANAGEMENT
+// ==========================================
+
+const packageModal =
+    document.getElementById("packageModal");
+
+const packageSelect =
+    document.getElementById("packageSelect");
+
+const packageSchoolName =
+    document.getElementById("packageSchoolName");
+
+const featureList =
+    document.getElementById("featureList");
+
+let packageSchoolId = null;
+
+
+// ==========================================
+// FEATURE NAMES
+// ==========================================
+
+const FEATURE_NAMES = {
+
+    principalDashboard: "Principal Dashboard",
+
+    teacherDashboard: "Teacher Dashboard",
+
+    studentDashboard: "Student Dashboard",
+
+    attendance: "Attendance",
+
+    fees: "Fee Collection",
+
+    salary: "Teacher Salary",
+
+    timetable: "Timetable",
+
+    onlineTests: "Online Tests",
+
+    questionBank: "Question Bank",
+
+    aiPaperGenerator: "AI Paper Generator",
+
+    aiEvaluation: "AI Evaluation",
+
+    aiReports: "AI Reports",
+
+    aiAssistant: "AI Assistant",
+
+    busTracking: "Smart Bus Tracking",
+
+    qrClassroom: "QR Classroom"
+};
+
+
+// ==========================================
+// PACKAGE PREVIEW
+// ==========================================
+
+const PACKAGE_FEATURES_PREVIEW = {
+
+    basic: {
+
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: false,
+        timetable: false,
+        onlineTests: false,
+        questionBank: false,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: false
+
+    },
+
+
+    standard: {
+
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: false,
+        questionBank: false,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: false
+
+    },
+
+
+    premium: {
+
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: true,
+        questionBank: true,
+        aiPaperGenerator: false,
+        aiEvaluation: false,
+        aiReports: false,
+        aiAssistant: true,
+        busTracking: false,
+        qrClassroom: true
+
+    },
+
+
+    "ai-enterprise": {
+
+        principalDashboard: true,
+        teacherDashboard: true,
+        studentDashboard: true,
+        attendance: true,
+        fees: true,
+        salary: true,
+        timetable: true,
+        onlineTests: true,
+        questionBank: true,
+        aiPaperGenerator: true,
+        aiEvaluation: true,
+        aiReports: true,
+        aiAssistant: true,
+        busTracking: true,
+        qrClassroom: true
+
+    }
+
+};
+
+// ==========================================
+// OPEN PACKAGE MODAL
+// ==========================================
+
+function managePackage(id) {
+
+    const school = schools.find(
+        s => s._id === id
+    );
+
+    if (!school) return;
+
+    packageSchoolId = id;
+
+    packageSchoolName.innerHTML = `
+        <i class="fa-solid fa-school"></i>
+        ${school.schoolName}
+    `;
+
+
+    const currentPackage =
+        school.subscription?.package || "basic";
+
+
+    packageSelect.value = currentPackage;
+
+
+    renderPackageFeatures(
+        currentPackage,
+        school.subscription?.features || {}
+    );
+
+
+    packageModal.style.display = "flex";
+}
+
+// ==========================================
+// RENDER FEATURES
+// ==========================================
+
+function renderPackageFeatures(packageName, currentFeatures = {}) {
+
+    let features = {};
+
+    if (packageName === "custom") {
+
+        features = currentFeatures;
+
+    } else {
+
+        features =
+            PACKAGE_FEATURES_PREVIEW[packageName] || {};
+
+    }
+
+
+    featureList.innerHTML = "";
+
+
+    Object.keys(FEATURE_NAMES).forEach(key => {
+
+        const enabled =
+            features[key] === true;
+
+
+        const item = document.createElement("label");
+
+item.className = "package-feature-row";
+
+item.innerHTML = `
+    <input
+        type="checkbox"
+        class="package-feature"
+        data-feature="${key}"
+        ${enabled ? "checked" : ""}
+        ${packageName !== "custom" ? "disabled" : ""}
+    >
+
+    <span class="package-feature-name">
+        ${FEATURE_NAMES[key]}
+    </span>
+`;
+
+
+        featureList.appendChild(item);
+
+    });
+
+}
+packageSelect.addEventListener(
+    "change",
+    function () {
+
+        const selected =
+            this.value;
+
+        renderPackageFeatures(
+            selected,
+            {}
+        );
+
+    }
+);
+
+document
+    .getElementById("savePackageBtn")
+    .addEventListener("click", savePackage);
+
+
+async function savePackage() {
+
+    if (!packageSchoolId) return;
+
+
+    const packageName =
+        packageSelect.value;
+
+
+    let features = {};
+
+
+    if (packageName === "custom") {
+
+        document
+            .querySelectorAll(".package-feature")
+            .forEach(input => {
+
+                features[input.dataset.feature] =
+                    input.checked;
+
+            });
+
+    }
+
+
+    try {
+
+        const response = await fetch(
+            `/api/schools/${packageSchoolId}/package`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    packageName,
+
+                    features
+
+                })
+            }
+        );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            alert(result.message ||
+                "Unable to update package");
+
+            return;
+        }
+
+
+        alert(
+            "School package updated successfully."
+        );
+
+
+        packageModal.style.display = "none";
+
+
+        loadSchools();
+
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert(
+            "Unable to update school package."
+        );
+
+    }
+
+}
+
+document
+    .getElementById("closePackageModal")
+    .onclick = () => {
+
+        packageModal.style.display = "none";
+
+    };
+
+
+document
+    .getElementById("cancelPackageBtn")
+    .onclick = () => {
+
+        packageModal.style.display = "none";
+
+    };
+
+    window.onclick = function(e) {
+
+    if (e.target === modal) {
+
+        modal.style.display = "none";
+
+    }
+
+    if (e.target === packageModal) {
+
+        packageModal.style.display = "none";
+
+    }
+
+};
 
 loadSchools();

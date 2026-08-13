@@ -170,3 +170,24 @@ th,td{
     font-size:13px;
 
 }
+.salary-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.salary-field input {
+    width: 100%;
+}
+
+.salary-field small {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    padding-left: 2px;
+}
+
+.salary-field input[readonly] {
+    background: #f8fafc;
+    cursor: not-allowed;
+}

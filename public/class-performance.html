@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Class Performance</title>
+
+    <link rel="stylesheet" href="css/class-performance.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+    <header class="page-header">
+
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div>
+                <h1>
+                    <i class="fa-solid fa-chart-line"></i>
+                    Class Performance
+                </h1>
+
+                <p id="schoolName">
+                    School
+                </p>
+            </div>
+        </div>
+
+        <div class="header-right">
+
+            <div class="teacher-info">
+                <strong id="teacherName">
+                    Teacher
+                </strong>
+
+                <span id="teacherSubject">
+                    Subject
+                </span>
+
+                <span id="teacherClass">
+                    Class
+                </span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CLASS INFORMATION -->
+    <section class="class-info-card">
+
+        <div class="class-info">
+
+            <div class="info-item">
+                <i class="fa-solid fa-school"></i>
+
+                <div>
+                    <span>Class</span>
+                    <strong id="className">-</strong>
+                </div>
+            </div>
+
+
+            <div class="info-item">
+
+                <i class="fa-solid fa-book"></i>
+
+                <div>
+                    <span>Subject</span>
+                    <strong id="subjectName">-</strong>
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <i class="fa-solid fa-users"></i>
+
+                <div>
+                    <span>Total Students</span>
+                    <strong id="totalStudents">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                <div>
+                    <span>Academic Year</span>
+                    <strong id="academicYear">-</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERFORMANCE SUMMARY -->
+    <section class="summary-section">
+
+        <h2>
+            <i class="fa-solid fa-chart-column"></i>
+            Performance Summary
+        </h2>
+
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+                    <span>Class Average</span>
+
+                    <strong id="classAverage">
+                        0%
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Pass Percentage</span>
+
+                    <strong id="passPercentage">
+                        0%
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+
+                <div>
+                    <span>Highest Score</span>
+
+                    <strong id="highestScore">
+                        0
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <div>
+                    <span>Top Students</span>
+
+                    <strong id="topStudentsCount">
+                        0
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERFORMANCE TABLE -->
+    <section class="performance-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Student Performance
+                </h2>
+
+                <p>
+                    Performance of students in your class and subject
+                </p>
+            </div>
+
+
+            <div class="table-actions">
+
+                <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Search student..."
+                    oninput="filterStudents()"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Rank</th>
+
+                        <th>Student</th>
+
+                        <th>Roll No</th>
+
+                        <th>Exam</th>
+
+                        <th>Marks</th>
+
+                        <th>Percentage</th>
+
+                        <th>Grade</th>
+
+                        <th>Performance</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="performanceTableBody">
+
+                    <tr>
+
+                        <td colspan="8" class="loading">
+                            Loading performance...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOP STUDENTS -->
+    <section class="top-students-section">
+
+        <h2>
+            <i class="fa-solid fa-medal"></i>
+            Top Performing Students
+        </h2>
+
+        <div
+            id="topStudentsList"
+            class="top-students-grid"
+        >
+
+            <div class="empty-state">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENTS NEEDING IMPROVEMENT -->
+    <section class="improvement-section">
+
+        <h2>
+            <i class="fa-solid fa-arrow-trend-down"></i>
+            Students Needing Improvement
+        </h2>
+
+        <div
+            id="improvementList"
+            class="improvement-grid"
+        >
+
+            <div class="empty-state">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOADING OVERLAY -->
+    <div
+        id="loadingOverlay"
+        class="loading-overlay"
+    >
+
+        <div class="loader"></div>
+
+        <p>
+            Loading class performance...
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<script src="js/class-performance.js"></script>
+
+</body>
+</html>

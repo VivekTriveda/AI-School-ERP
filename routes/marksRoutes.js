@@ -10,6 +10,11 @@ router.get(
 );
 
 router.get(
+    "/exams",
+    marksController.getExams
+);
+
+router.get(
     "/",
     marksController.getMarks
 );

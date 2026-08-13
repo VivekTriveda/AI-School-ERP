@@ -176,3 +176,48 @@ exports.getMarks = async (req, res) => {
     }
 
 };
+
+/* ==========================================
+   Get Exams
+========================================== */
+
+exports.getExams = async (req, res) => {
+    try {
+
+        const {
+            schoolId,
+            className,
+            subject
+        } = req.query;
+
+        if (!schoolId || !className || !subject) {
+            return res.json({
+                success: false,
+                message: "schoolId, className and subject are required"
+            });
+        }
+
+        const exams = await Marks.distinct("exam", {
+            schoolId,
+            className,
+            subject
+        });
+
+        res.json({
+            success: true,
+            exams: exams.filter(Boolean)
+        });
+
+    } catch (err) {
+
+        console.error(
+            "Get Exams Error:",
+            err
+        );
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+    }
+};

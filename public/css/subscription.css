@@ -1,0 +1,1435 @@
+/* =========================================================
+   SCHOOL ERP SUBSCRIPTION PAGE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.subscription-page {
+    min-height: 100vh;
+    padding: 35px 45px 60px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.subscription-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.subscription-header h1 {
+    margin: 0;
+
+    color: #1557d6;
+
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.subscription-header h1 i {
+    margin-right: 8px;
+}
+
+.subscription-header p {
+    margin: 10px 0 0;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SCHOOL HEADER INFO
+========================================================= */
+
+.school-info-header {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    font-size: 15px;
+
+    color: #475569;
+}
+
+.school-info-header > span:first-child {
+    color: #111827;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.current-plan {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    background: #eef4ff;
+
+    color: #475569;
+}
+
+.current-plan strong {
+    color: #2563eb;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================================
+   BILLING NOTE
+========================================================= */
+
+.billing-note {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 15px 18px;
+
+    margin-bottom: 30px;
+
+    background: #eef4ff;
+
+    border: 1px solid #d7e5ff;
+
+    border-radius: 11px;
+
+    color: #475569;
+
+    font-size: 14px;
+}
+
+.billing-note i {
+    color: #2563eb;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PLANS SECTION
+========================================================= */
+
+.plans-section {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    align-items: stretch;
+
+    margin-bottom: 55px;
+}
+
+
+/* =========================================================
+   PLAN CARD
+========================================================= */
+
+.plan-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 17px;
+
+    padding: 30px 25px 25px;
+
+    min-height: 610px;
+
+    box-shadow:
+        0 7px 24px rgba(15, 23, 42, 0.07);
+
+    transition: all 0.25s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================================================
+   POPULAR PLAN
+========================================================= */
+
+.popular-plan {
+    border: 2px solid #2563eb;
+
+    padding-top: 42px;
+}
+
+.popular-badge {
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    padding: 8px;
+
+    border-radius: 14px 14px 0 0;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   ENTERPRISE
+========================================================= */
+
+.enterprise-plan {
+    border: 2px solid #7c3aed;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #faf7ff 100%
+        );
+}
+
+.enterprise-badge {
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: #f3e8ff;
+
+    color: #7c3aed;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   PLAN ICON
+========================================================= */
+
+.plan-icon {
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    font-size: 23px;
+}
+
+.basic-icon {
+    background: #eaf2ff;
+
+    color: #2563eb;
+}
+
+.standard-icon {
+    background: #e8f7ef;
+
+    color: #16a34a;
+}
+
+.premium-icon {
+    background: #fff4df;
+
+    color: #d97706;
+}
+
+.enterprise-icon {
+    background: #f3e8ff;
+
+    color: #7c3aed;
+}
+
+
+/* =========================================================
+   PLAN TITLE
+========================================================= */
+
+.plan-card h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+.plan-description {
+    min-height: 40px;
+
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.plan-price {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 3px;
+
+    margin-top: 20px;
+
+    color: #111827;
+
+    font-size: 34px;
+
+    font-weight: 800;
+}
+
+.plan-price .currency {
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+.plan-price small {
+    margin-left: 4px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+.student-limit {
+    margin: 8px 0 22px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FEATURE LIST
+========================================================= */
+
+.plan-features {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    padding: 0;
+
+    margin: 0 0 25px;
+
+    list-style: none;
+}
+
+.plan-features li {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    line-height: 1.35;
+}
+
+.plan-features li i {
+    margin-top: 2px;
+
+    color: #16a34a;
+
+    font-size: 13px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PLAN BUTTON
+========================================================= */
+
+.plan-button {
+    width: 100%;
+
+    min-height: 46px;
+
+    margin-top: auto;
+
+    border: 1.5px solid #2563eb;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.plan-button:hover {
+    background: #eff6ff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-button {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border-color: #2563eb;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================================
+   ENTERPRISE BUTTON
+========================================================= */
+
+.enterprise-button {
+    background: #7c3aed;
+
+    color: #ffffff;
+
+    border-color: #7c3aed;
+}
+
+.enterprise-button:hover {
+    background: #6d28d9;
+
+    border-color: #6d28d9;
+}
+
+
+/* =========================================================
+   CURRENT PLAN BUTTON
+========================================================= */
+
+.plan-button.current-plan-button {
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    border-color: #cbd5e1;
+
+    cursor: default;
+}
+
+.plan-button.current-plan-button:hover {
+    background: #f1f5f9;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   COMPARISON SECTION
+========================================================= */
+
+.comparison-section {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 17px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 7px 24px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    margin-bottom: 24px;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 25px;
+}
+
+.section-title p {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.comparison-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   COMPARISON TABLE
+========================================================= */
+
+.comparison-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+.comparison-table th {
+    padding: 16px 14px;
+
+    background: #f5f8fc;
+
+    border-bottom: 1px solid #dfe6ee;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.comparison-table th:first-child {
+    text-align: left;
+}
+
+.comparison-table td {
+    padding: 15px 14px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+.comparison-table td:first-child {
+    color: #1e293b;
+
+    font-weight: 600;
+
+    text-align: left;
+}
+
+.comparison-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.comparison-table td:not(:first-child) {
+    color: #16a34a;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.subscription-footer {
+    padding: 25px 10px 0;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.subscription-footer strong {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1300px
+========================================================= */
+
+@media (max-width: 1300px) {
+
+    .subscription-page {
+        padding: 30px;
+    }
+
+    .plans-section {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .plan-card {
+        min-height: 570px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 800px
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .subscription-page {
+        padding: 22px 18px 40px;
+    }
+
+    .subscription-header {
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .subscription-header h1 {
+        font-size: 30px;
+    }
+
+    .school-info-header {
+        align-items: flex-start;
+    }
+
+    .plans-section {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .plan-card {
+        min-height: auto;
+    }
+
+    .comparison-section {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .subscription-page {
+        padding: 18px 12px 35px;
+    }
+
+    .subscription-header h1 {
+        font-size: 26px;
+    }
+
+    .subscription-header p {
+        font-size: 14px;
+    }
+
+    .billing-note {
+        align-items: flex-start;
+
+        padding: 13px;
+    }
+
+    .plan-card {
+        padding: 25px 20px;
+    }
+
+    .popular-plan {
+        padding-top: 40px;
+    }
+
+    .comparison-section {
+        border-radius: 12px;
+
+        padding: 15px;
+    }
+}
+
+/* =========================================================
+   CUSTOM PLAN
+========================================================= */
+
+.custom-plan {
+    position: relative;
+
+    border: 2px solid #0f766e;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f0fdfa 100%
+        );
+}
+
+.custom-badge {
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    background: #ccfbf1;
+
+    color: #0f766e;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+}
+
+.custom-icon {
+    background: #ccfbf1;
+
+    color: #0f766e;
+}
+
+.custom-price {
+    min-height: 45px;
+
+    color: #0f766e;
+
+    font-size: 25px;
+}
+
+.custom-price span {
+    font-weight: 800;
+}
+
+.custom-button {
+    border-color: #0f766e;
+
+    background: #0f766e;
+
+    color: #ffffff;
+}
+
+.custom-button:hover {
+    background: #115e59;
+
+    border-color: #115e59;
+}
+
+
+/* =========================================================
+   CUSTOM PLAN MODAL
+========================================================= */
+
+.custom-plan-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(15, 23, 42, 0.62);
+
+    backdrop-filter: blur(4px);
+}
+
+.custom-plan-modal.show {
+    display: flex;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.custom-plan-modal-content {
+    width: min(1100px, 100%);
+
+    max-height: 90vh;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.25);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.custom-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    background: #ffffff;
+}
+
+.custom-modal-header h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+.custom-modal-header h2 i {
+    margin-right: 8px;
+
+    color: #0f766e;
+}
+
+.custom-modal-header p {
+    margin: 7px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-custom-modal {
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.close-custom-modal:hover {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   FEATURE LAYOUT
+========================================================= */
+
+.custom-feature-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.65fr)
+        minmax(300px, .75fr);
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   FEATURES PANEL
+========================================================= */
+
+.custom-features-panel {
+    padding: 25px 28px;
+
+    overflow-y: auto;
+}
+
+.custom-features-panel h3 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 18px;
+}
+
+.custom-feature-note {
+    margin: 6px 0 18px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FEATURE LIST
+========================================================= */
+
+.custom-feature-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   FEATURE ITEM
+========================================================= */
+
+.custom-feature-item {
+    display: grid;
+
+    grid-template-columns: 22px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 68px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.custom-feature-item:hover {
+    border-color: #99f6e4;
+
+    background: #f0fdfa;
+}
+
+.custom-feature-item:has(
+    .custom-feature-checkbox:checked
+) {
+    border-color: #5eead4;
+
+    background: #f0fdfa;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.custom-feature-checkbox {
+    width: 18px;
+
+    height: 18px;
+
+    margin: 0;
+
+    accent-color: #0f766e;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FEATURE INFO
+========================================================= */
+
+.custom-feature-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.custom-feature-info strong {
+    color: #1e293b;
+
+    font-size: 14px;
+}
+
+.custom-feature-info small {
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   FEATURE PRICE
+========================================================= */
+
+.custom-feature-price {
+    white-space: nowrap;
+
+    color: #0f766e;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SUMMARY PANEL
+========================================================= */
+
+.custom-summary-panel {
+    padding: 25px;
+
+    background: #f8fafc;
+
+    border-left: 1px solid #e2e8f0;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+========================================================= */
+
+.custom-summary-card {
+    position: sticky;
+
+    top: 0;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+.custom-summary-card h3 {
+    margin: 0 0 20px;
+
+    color: #111827;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   SELECTED COUNT
+========================================================= */
+
+.selected-count {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.selected-count strong {
+    min-width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ccfbf1;
+
+    color: #0f766e;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SELECTED FEATURE LIST
+========================================================= */
+
+.custom-selected-list {
+    min-height: 110px;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+
+    padding: 14px 0;
+}
+
+.custom-selected-list p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+.selected-feature-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 7px 0;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.selected-feature-row:last-child {
+    border-bottom: none;
+}
+
+.selected-feature-price {
+    color: #0f766e;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CUSTOM TOTAL
+========================================================= */
+
+.custom-total {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 18px 0;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.custom-total span {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.custom-total strong {
+    color: #0f766e;
+
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   PRICE NOTE
+========================================================= */
+
+.custom-price-note {
+    margin: 0 0 17px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.continue-custom-button {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #0f766e;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.continue-custom-button:hover {
+    background: #115e59;
+
+    transform: translateY(-1px);
+}
+
+.continue-custom-button:disabled {
+    background: #cbd5e1;
+
+    color: #64748b;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .custom-feature-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-summary-panel {
+        border-left: none;
+
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .custom-summary-card {
+        position: static;
+    }
+
+    .custom-plan-modal-content {
+        max-height: 94vh;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .custom-plan-modal {
+        padding: 10px;
+    }
+
+    .custom-modal-header {
+        padding: 18px;
+    }
+
+    .custom-modal-header h2 {
+        font-size: 19px;
+    }
+
+    .custom-features-panel {
+        padding: 18px;
+    }
+
+    .custom-summary-panel {
+        padding: 18px;
+    }
+
+    .custom-feature-item {
+        grid-template-columns:
+            22px minmax(0, 1fr);
+
+        align-items: start;
+    }
+
+    .custom-feature-price {
+        grid-column: 2;
+
+        margin-top: -3px;
+    }
+}

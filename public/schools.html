@@ -41,6 +41,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         <i class="fa-solid fa-plus"></i>
         Add School
     </button>
+
+    <button
+    class="payment-history-btn"
+    onclick="window.location.href='payment-history.html'"
+>
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    Payment History
+</button>
+
     <button id="logoutBtn" class="logout-btn">
     <i class="fa-solid fa-right-from-bracket"></i>
     Logout
@@ -53,6 +62,145 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 type="text"
 id="searchSchool"
 placeholder="Search School...">
+
+</div>
+
+<!-- ==============================
+     SUBSCRIPTION SUMMARY
+============================== -->
+
+<div class="subscription-summary">
+
+    <div class="summary-card total">
+        <div class="summary-icon">
+            <i class="fa-solid fa-school"></i>
+        </div>
+
+        <div>
+            <span>Total Schools</span>
+            <strong id="totalSchools">0</strong>
+        </div>
+    </div>
+
+
+    <div class="summary-card basic">
+        <div class="summary-icon">
+            <i class="fa-solid fa-school"></i>
+        </div>
+
+        <div>
+            <span>Basic</span>
+            <strong id="basicSchools">0</strong>
+        </div>
+    </div>
+
+
+    <div class="summary-card standard">
+        <div class="summary-icon">
+            <i class="fa-solid fa-building"></i>
+        </div>
+
+        <div>
+            <span>Standard</span>
+            <strong id="standardSchools">0</strong>
+        </div>
+    </div>
+
+
+    <div class="summary-card premium">
+        <div class="summary-icon">
+            <i class="fa-solid fa-gem"></i>
+        </div>
+
+        <div>
+            <span>Premium</span>
+            <strong id="premiumSchools">0</strong>
+        </div>
+    </div>
+
+
+    <div class="summary-card enterprise">
+        <div class="summary-icon">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <div>
+            <span>AI Enterprise</span>
+            <strong id="enterpriseSchools">0</strong>
+        </div>
+    </div>
+
+
+    <div class="summary-card custom">
+        <div class="summary-icon">
+            <i class="fa-solid fa-sliders"></i>
+        </div>
+
+        <div>
+            <span>Custom</span>
+            <strong id="customSchools">0</strong>
+        </div>
+    </div>
+
+
+    <!-- Annual Value -->
+
+   <!-- Annual Subscription Value -->
+
+<div class="summary-card revenue">
+
+    <div class="summary-icon">
+
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Annual Subscription Value
+        </span>
+
+        <strong id="annualSubscriptionValue">
+            ₹0
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- Actual Revenue Collected -->
+
+<div class="summary-card collected-revenue">
+
+    <div class="summary-icon">
+
+        <i class="fa-solid fa-money-bill-transfer"></i>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Revenue Collected
+        </span>
+
+        <strong id="totalRevenue">
+            ₹0
+        </strong>
+
+        <small
+            id="successfulPaymentsText"
+        >
+            0 successful payments
+        </small>
+
+    </div>
+
+</div>
 
 </div>
 
@@ -97,6 +245,15 @@ placeholder="Search School...">
                 <option>State Board</option>
 
             </select>
+            <label for="schoolPackage">Package</label>
+
+<select id="schoolPackage">
+    <option value="basic">Basic — ₹19,999 / year</option>
+    <option value="standard">Standard — ₹39,999 / year</option>
+    <option value="premium">Premium — ₹69,999 / year</option>
+    <option value="ai-enterprise">AI Enterprise — ₹1,29,999 / year</option>
+    <option value="custom">Custom Package</option>
+</select>
 
             <input id="city" placeholder="City">
 
@@ -121,6 +278,100 @@ placeholder="Search School...">
             <button id="saveSchoolBtn" class="save-btn">
                    Save School
               </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     PACKAGE MANAGEMENT MODAL
+========================================== -->
+
+<div id="packageModal" class="modal">
+
+    <div class="modal-content package-modal">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-box"></i>
+                Manage School Package
+            </h2>
+
+            <span id="closePackageModal">&times;</span>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div id="packageSchoolName"
+                 style="
+                    font-size:20px;
+                    font-weight:700;
+                    margin-bottom:20px;
+                 ">
+            </div>
+
+
+            <label>
+                Select Package
+            </label>
+
+            <select id="packageSelect">
+
+                <option value="basic">
+                    Basic
+                </option>
+
+                <option value="standard">
+                    Standard
+                </option>
+
+                <option value="premium">
+                    Premium
+                </option>
+
+                <option value="ai-enterprise">
+                    AI Enterprise
+                </option>
+
+                <option value="custom">
+                    Custom
+                </option>
+
+            </select>
+
+
+            <h3 style="margin-top:25px;">
+                Package Features
+            </h3>
+
+
+            <div id="featureList">
+
+                <!-- Features generated by JS -->
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                id="cancelPackageBtn"
+                class="cancel-btn">
+                Cancel
+            </button>
+
+            <button
+                id="savePackageBtn"
+                class="save-btn">
+                Save Package
+            </button>
 
         </div>
 

@@ -193,6 +193,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                 </div>
 
             </div>
+            <!-- Pending Amount -->
+<div class="overview-card">
+
+    <div class="overview-icon fees">
+        <i class="fa-solid fa-clock"></i>
+    </div>
+
+    <div>
+        <h3 id="pendingAmount">
+            ₹0
+        </h3>
+
+        <p>Pending Amount</p>
+    </div>
+
+</div>
 
         </div>
 
@@ -315,94 +331,134 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     <div class="action-grid">
 
-        <button onclick="location.href='teacher-management.html'">
+    <button
+        class="package-feature"
+        data-feature="teacherDashboard"
+        onclick="location.href='teacher-management.html'">
 
-            <i class="fa-solid fa-chalkboard-user"></i>
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <span>Teachers</span>
 
-            <span>Teachers</span>
+    </button>
 
-        </button>
-        
-        <button onclick="location.href='teacher-attendance-report.html'">
-           <i class="fa-solid fa-user-check"></i>
-           <span>Teacher Leave</span>
-        </button>
 
-        <button onclick="location.href='student-management.html'">
+    <button
+        class="package-feature"
+        data-feature="attendance"
+        onclick="location.href='teacher-attendance-report.html'">
 
-            <i class="fa-solid fa-user-graduate"></i>
+        <i class="fa-solid fa-user-check"></i>
+        <span>Teacher Leave</span>
 
-            <span>Students</span>
+    </button>
 
-        </button>
 
-        <button onclick="location.href='manage-books.html'">
+    <button
+        class="package-feature"
+        data-feature="studentDashboard"
+        onclick="location.href='student-management.html'">
 
-            <i class="fa-solid fa-book"></i>
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
 
-            <span>Books</span>
+    </button>
 
-        </button>
-        
-        <button onclick="location.href='import-book.html'">
-           <i class="fa-solid fa-file-arrow-up"></i>
-           <span>Import Book</span>
-        </button>
 
-        <button onclick="location.href='manage-timetable.html'">
+    <button
+        class="package-feature"
+        data-feature="questionBank"
+        onclick="location.href='manage-books.html'">
 
-            <i class="fa-solid fa-calendar-days"></i>
+        <i class="fa-solid fa-book"></i>
+        <span>Books</span>
 
-            <span>Timetable</span>
+    </button>
 
-        </button>
 
-        <button onclick="location.href='principal-fees.html'">
+    <button
+        class="package-feature"
+        data-feature="questionBank"
+        onclick="location.href='import-book.html'">
 
-            <i class="fa-solid fa-money-bill-wave"></i>
+        <i class="fa-solid fa-file-arrow-up"></i>
+        <span>Import Book</span>
 
-            <span>Fees</span>
+    </button>
 
-        </button>
-        <button onclick="location.href='teacher-salary.html'">
 
-    <i class="fa-solid fa-wallet"></i>
+    <button
+        class="package-feature"
+        data-feature="timetable"
+        onclick="location.href='manage-timetable.html'">
 
-    <span>Teacher Salary</span>
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Timetable</span>
 
-</button>
-        <button onclick="location.href='fee-reminders.html'">
+    </button>
 
-    <i class="fa-solid fa-bell"></i>
 
-    <span>Fee Reminders</span>
+    <button
+        class="package-feature"
+        data-feature="fees"
+        onclick="location.href='principal-fees.html'">
 
-</button>
+        <i class="fa-solid fa-money-bill-wave"></i>
+        <span>Fees</span>
 
-        <button onclick="location.href='teacher-performance.html'">
+    </button>
 
-            <i class="fa-solid fa-chart-column"></i>
 
-            <span>Performance</span>
+    <button
+        class="package-feature"
+        data-feature="salary"
+        onclick="location.href='teacher-salary.html'">
 
-        </button>
-        <button onclick="location.href='website-management.html'">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Teacher Salary</span>
 
-    <i class="fa-solid fa-globe"></i>
+    </button>
 
-    <span>Website</span>
 
-</button>
+    <button
+        class="package-feature"
+        data-feature="fees"
+        onclick="location.href='fee-reminders.html'">
 
-        <button onclick="location.href='settings.html'">
+        <i class="fa-solid fa-bell"></i>
+        <span>Fee Reminders</span>
 
-            <i class="fa-solid fa-gear"></i>
+    </button>
 
-            <span>Settings</span>
 
-        </button>
+    <button
+        class="package-feature"
+        data-feature="aiReports"
+        onclick="location.href='teacher-performance.html'">
 
-    </div>
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Performance</span>
+
+    </button>
+
+
+    <!-- ALWAYS AVAILABLE -->
+    <button onclick="location.href='website-management.html'">
+
+        <i class="fa-solid fa-globe"></i>
+        <span>Website</span>
+
+    </button>
+
+
+    <!-- ALWAYS AVAILABLE -->
+    <button onclick="location.href='settings.html'">
+
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+
+    </button>
+
+</div>
 
 </section>
 

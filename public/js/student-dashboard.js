@@ -3,6 +3,12 @@
 ===================================================== */
 
 const API_BASE = "/api";
+// =====================================================
+// SCHOOL SUBSCRIPTION
+// =====================================================
+
+let studentPlan = "basic";
+let studentFeatures = {};
 
 /* =====================================================
    Check Login
@@ -48,6 +54,302 @@ function loadStudentInfo(){
     if(document.getElementById("profileRoll"))
         document.getElementById("profileRoll").innerHTML =
             student.rollNo;
+
+}
+// =====================================================
+// LOAD SCHOOL SUBSCRIPTION
+// =====================================================
+
+async function loadStudentSubscription() {
+
+    try {
+
+        if (!student.schoolId) {
+
+            console.error(
+                "Student schoolId not found"
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "Loading subscription for school:",
+            student.schoolId
+        );
+
+
+        const response = await fetch(
+            `/api/schools/${student.schoolId}`
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `School API error: ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success || !data.school) {
+
+            console.error(
+                "School data not found",
+                data
+            );
+
+            return;
+        }
+
+
+        const school =
+            data.school;
+
+
+        // Get actual school package
+
+        studentPlan =
+            String(
+                school.subscription?.package ||
+                "basic"
+            )
+            .toLowerCase()
+            .trim();
+
+
+        // Get custom features
+
+        studentFeatures =
+            school.subscription?.features ||
+            {};
+
+
+        console.log(
+            "Student School:",
+            school.schoolName
+        );
+
+
+        console.log(
+            "Student Package:",
+            studentPlan
+        );
+
+
+        console.log(
+            "Student Features:",
+            studentFeatures
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Student subscription error:",
+            error
+        );
+
+    }
+
+}
+
+// =====================================================
+// CHECK STUDENT FEATURE
+// =====================================================
+
+function studentHasFeature(feature) {
+
+    // -----------------------------------------
+    // CUSTOM PACKAGE
+    // -----------------------------------------
+
+    if (studentPlan === "custom") {
+
+        return studentFeatures[feature] === true;
+
+    }
+
+
+    // -----------------------------------------
+    // PACKAGE FEATURES
+    // -----------------------------------------
+
+    const PACKAGE_FEATURES = {
+
+        basic: [
+
+            "profile",
+            "attendance",
+            "fees",
+            "results"
+
+        ],
+
+
+        standard: [
+
+            "profile",
+            "attendance",
+            "fees",
+            "results",
+
+            "onlineTests",
+            "timetable"
+
+        ],
+
+
+        premium: [
+
+            "profile",
+            "attendance",
+            "fees",
+            "results",
+
+            "onlineTests",
+            "timetable",
+
+            "academicAnalytics",
+            "qrClassroom"
+
+        ],
+
+
+        "ai-enterprise": [
+
+            "profile",
+            "attendance",
+            "fees",
+            "results",
+
+            "onlineTests",
+            "timetable",
+
+            "academicAnalytics",
+            "qrClassroom",
+
+            "aiAssistant",
+            "aiReports"
+
+        ]
+
+    };
+
+
+    const features =
+        PACKAGE_FEATURES[studentPlan] || [];
+
+
+    return features.includes(feature);
+
+}
+
+// =====================================================
+// APPLY STUDENT FEATURE ACCESS
+// =====================================================
+
+function setupStudentFeatureAccess() {
+
+    const featureElements =
+        document.querySelectorAll(
+            "[data-feature]"
+        );
+
+
+    featureElements.forEach(element => {
+
+        const feature =
+            element.getAttribute(
+                "data-feature"
+            );
+
+
+        const allowed =
+            studentHasFeature(feature);
+
+
+        if (allowed) {
+
+            // Feature is available
+
+            element.classList.remove(
+                "feature-locked"
+            );
+
+            element.removeAttribute(
+                "data-locked"
+            );
+
+
+            return;
+
+        }
+
+
+        // -----------------------------------------
+        // FEATURE LOCKED
+        // -----------------------------------------
+
+        element.classList.add(
+            "feature-locked"
+        );
+
+        element.setAttribute(
+            "data-locked",
+            "true"
+        );
+
+
+        // Prevent normal link
+
+        element.onclick =
+            function(event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                alert(
+                    "This feature is not available in your school's current subscription.\n\nPlease contact your Principal or School Administrator."
+                );
+
+
+                return false;
+
+            };
+
+
+        // Add lock icon if it is a link
+
+        if (
+            element.tagName === "A"
+        ) {
+
+            const lock =
+                document.createElement(
+                    "i"
+                );
+
+
+            lock.className =
+                "fa-solid fa-lock ms-2";
+
+
+            element.appendChild(
+                lock
+            );
+
+        }
+
+    });
 
 }
 
@@ -141,6 +443,57 @@ async function getJSON(url){
 ===================================================== */
 
 async function loadTests() {
+
+    // Don't load online tests
+    // if the school's package doesn't allow them
+
+    if (
+        typeof studentHasFeature === "function" &&
+        !studentHasFeature("onlineTests")
+    ) {
+
+        const tbody =
+            document.getElementById(
+                "upcomingTests"
+            );
+
+
+        if (tbody) {
+
+            tbody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="5"
+                        class="text-center"
+                    >
+                        🔒 Online Tests are not
+                        available in your school's
+                        current subscription.
+                    </td>
+                </tr>
+            `;
+
+        }
+
+
+        document.getElementById(
+            "totalTests"
+        ).innerHTML = "0";
+
+
+        document.getElementById(
+            "pendingTests"
+        ).innerHTML = "0";
+
+
+        document.getElementById(
+            "completedTests"
+        ).innerHTML = "0";
+
+
+        return;
+
+    }
 
     try {
 
@@ -269,11 +622,26 @@ No Online Test Available
    Start Online Test
 ===================================================== */
 
-function startTest(testId){
+function startTest(testId) {
+
+    if (
+        !studentHasFeature(
+            "onlineTests"
+        )
+    ) {
+
+        alert(
+            "Online Tests are not available in your school's current subscription.\n\nPlease contact your Principal or School Administrator."
+        );
+
+        return;
+
+    }
+
 
     window.location.href =
-
-    "student-test.html?testId=" + testId;
+        "student-test.html?testId=" +
+        testId;
 
 }
 
@@ -506,11 +874,22 @@ setInterval(()=>{
    Page Ready
 ===================================================== */
 
-window.onload=()=>{
+window.onload = async () => {
 
-     loadStudentInfo();
+    loadStudentInfo();
 
     updateClock();
+
+    // IMPORTANT:
+    // Load school's subscription first
+
+    await loadStudentSubscription();
+
+    // Then apply feature permissions
+
+    setupStudentFeatureAccess();
+
+    // Existing dashboard functions
 
     loadDashboard();
 
@@ -518,9 +897,12 @@ window.onload=()=>{
 
     loadResults();
 
-    loadNotifications();  
+    loadNotifications();
 
-    setInterval(updateClock,1000);
+    setInterval(
+        updateClock,
+        1000
+    );
 
 };
 /* =====================================================

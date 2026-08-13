@@ -7,19 +7,33 @@ const {
     getSchools,
     getSchoolById,
     updateSchool,
-    deleteSchool
+    deleteSchool,
+    updateSchoolPackage
 } = require("../controllers/schoolController");
 
+
+// Add School
 router.post("/", addSchool);
 
+
+// Get All Schools
 router.get("/", getSchools);
 
+
+// Get Single School
 router.get("/:id", getSchoolById);
 
+
+// Update Package
+router.put("/:id/package", updateSchoolPackage);
+
+
+// Update School
 router.put("/:id", updateSchool);
 
-router.delete("/:id", deleteSchool);
 
+// Delete School
+router.delete("/:id", deleteSchool);
 
 
 module.exports = router;

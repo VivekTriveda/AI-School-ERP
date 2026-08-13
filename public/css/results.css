@@ -1,0 +1,104 @@
+body{
+
+    margin:0;
+
+    font-family:Arial;
+
+    background:#f4f6fb;
+
+}
+
+.container{
+
+    width:95%;
+
+    margin:30px auto;
+
+}
+
+h2{
+
+    color:#0d47a1;
+
+}
+
+.filters{
+
+    display:flex;
+
+    gap:10px;
+
+    margin:20px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.filters select,
+.filters input{
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:5px;
+
+}
+
+button{
+
+    padding:10px 20px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:5px;
+
+    background:#1565c0;
+
+    color:#fff;
+
+}
+
+.actions{
+
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+}
+
+table th{
+
+    background:#1565c0;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+table td{
+
+    padding:10px;
+
+    border:1px solid #ddd;
+
+    text-align:center;
+
+}
+
+tr:nth-child(even){
+
+    background:#f7f7f7;
+
+}

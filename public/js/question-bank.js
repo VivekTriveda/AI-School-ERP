@@ -5,16 +5,22 @@ let chapterFilter = "";
 
 const API = "/api/questions";
 
-const role = localStorage.getItem("role");
+const currentUser =
+    JSON.parse(localStorage.getItem("currentUser")) || {};
 
-const teacher = JSON.parse(localStorage.getItem("teacher"));
+const teacher =
+    JSON.parse(localStorage.getItem("teacher")) || currentUser;
 
-const school = role === "teacher"
-    ? {
-        _id: teacher.schoolId,
-        schoolName: teacher.schoolName
-    }
-    : JSON.parse(localStorage.getItem("currentSchool"));
+const role =
+    currentUser.role || "admin";
+
+const school =
+    role === "teacher"
+        ? {
+            _id: teacher.schoolId,
+            schoolName: teacher.schoolName
+        }
+        : JSON.parse(localStorage.getItem("currentSchool"));
 
 if (!school) {
     alert("Please select a school.");
@@ -30,24 +36,24 @@ document.getElementById("schoolName").innerText =
 
 if (role === "teacher") {
 
-    // Automatically apply teacher's class and subject
-    classFilter = teacher.classes[0];
-    subjectFilter = teacher.subjects[0];
+    classFilter =
+        teacher.className || teacher.classes?.[0] || "";
 
-    // Hide filter dropdowns
+    subjectFilter =
+        teacher.subject || teacher.subjects?.[0] || "";
+
     document.getElementById("classFilter").style.display = "none";
     document.getElementById("subjectFilter").style.display = "none";
     document.getElementById("chapterFilter").style.display = "none";
 
-    // Hide Add Question button
-    document.getElementById("addQuestionBtn").style.display = "none";
+    const addBtn = document.getElementById("addQuestionBtn");
+    if (addBtn) addBtn.style.display = "none";
 
-    // Teacher dashboard back button
     document.getElementById("backBtn").onclick = () => {
         window.location.href = "teacher-dashboard.html";
     };
 
-}   
+} 
 
 // ===============================
 // Variables
@@ -73,7 +79,7 @@ async function loadCounts() {
 
 const url =
     role === "teacher"
-        ? `/api/dashboard/${schoolId}?className=${teacher.classes[0]}&subject=${encodeURIComponent(teacher.subjects[0])}`
+        ? `/api/dashboard/${schoolId}?className=${teacher.className || teacher.classes?.[0]}&subject=${encodeURIComponent(teacher.subject || teacher.subjects?.[0])}`
         : `/api/dashboard/${schoolId}`;
 
 const res = await fetch(url);
@@ -282,9 +288,23 @@ document.getElementById("refreshBtn")
     searchText = "";
 
     
+   if (role === "teacher") {
+
+    classFilter =
+        teacher.className || teacher.classes?.[0] || "";
+
+    subjectFilter =
+        teacher.subject || teacher.subjects?.[0] || "";
+
+    chapterFilter = "";
+
+} else {
+
     classFilter = "";
     subjectFilter = "";
     chapterFilter = "";
+
+}
 
     document.getElementById("search").value = "";
     document.getElementById("classFilter").value = "";

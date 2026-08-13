@@ -27,7 +27,10 @@ async function loadStudents() {
         const schoolId = localStorage.getItem("schoolId");
         const teacherData = JSON.parse(localStorage.getItem("teacher")) || {};
 
-        const className = teacherData.className || "";
+const className =
+    teacherData.classes && teacherData.classes.length
+        ? teacherData.classes[0]
+        : "";
 
         const response = await fetch(
             `/api/students?schoolId=${schoolId}&className=${className}`

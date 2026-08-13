@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Management</title>
+
+<link rel="stylesheet" href="css/student-management.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ===========================
+            PAGE HEADER
+    ============================ -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-user-graduate"></i>
+                Student Management
+            </h1>
+
+            <p id="schoolName">
+                Loading School...
+            </p>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="location.href='school-dashboard.html'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+            SUMMARY CARDS
+    ============================ -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h2 id="totalStudents">0</h2>
+
+            <p>Total Students</p>
+
+        </div>
+
+        <div class="summary-card boys">
+
+            <i class="fa-solid fa-person"></i>
+
+            <h2 id="boysCount">0</h2>
+
+            <p>Boys</p>
+
+        </div>
+
+        <div class="summary-card girls">
+
+            <i class="fa-solid fa-person-dress"></i>
+
+            <h2 id="girlsCount">0</h2>
+
+            <p>Girls</p>
+
+        </div>
+
+        <div class="summary-card classes">
+
+            <i class="fa-solid fa-school"></i>
+
+            <h2 id="classCount">0</h2>
+
+            <p>Classes</p>
+
+        </div>
+
+    </div>
+
+    <!-- ===========================
+            ACTION BAR
+    ============================ -->
+
+    <div class="action-bar">
+
+        <button id="importExcelBtn">
+
+            <i class="fa-solid fa-file-import"></i>
+
+            Import Excel
+
+        </button>
+
+        <button id="downloadTemplate">
+
+            <i class="fa-solid fa-file-excel"></i>
+
+            Download Template
+
+        </button>
+
+        <button id="exportExcel">
+
+            <i class="fa-solid fa-file-export"></i>
+
+            Export Excel
+
+        </button>
+
+        <button id="refreshBtn">
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            Refresh
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+            FILTER
+    ============================ -->
+
+    <div class="filter-bar">
+
+        <select id="filterClass">
+
+            <option value="">All Classes</option>
+
+        </select>
+
+        <select id="filterSection">
+
+            <option value="">All Sections</option>
+
+        </select>
+
+        <input
+            type="text"
+            id="searchStudent"
+            placeholder="Search Student...">
+
+    </div>
+
+    <!-- ===========================
+            TABLE
+    ============================ -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Admission No</th>
+
+                    <th>Roll No</th>
+
+                    <th>Student Name</th>
+
+                    <th>Father Name</th>
+
+                    <th>Gender</th>
+
+                    <th>Class</th>
+
+                    <th>Section</th>
+
+                    <th>Mobile</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTableBody">
+
+                <tr>
+
+                    <td colspan="9" style="text-align:center">
+
+                        No Students Found
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+<!-- ======================================
+        IMPORT STUDENT MODAL
+======================================= -->
+
+<div id="importModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-file-import"></i>
+                Import Students
+            </h2>
+
+            <span id="closeModal">&times;</span>
+
+        </div>
+
+        <div class="modal-body">
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="importMode"
+                    value="school"
+                    checked>
+
+                Whole School Import
+
+            </label>
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="importMode"
+                    value="class">
+
+                Single Class Import
+
+            </label>
+
+            <div
+                id="classSelection"
+                style="display:none;margin-top:20px;">
+
+                <select id="importClass">
+
+                    <option value="">Select Class</option>
+
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+
+                </select>
+
+                <select id="importSection">
+
+                    <option value="">Section</option>
+
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <input
+                type="file"
+                id="excelFile"
+                accept=".xlsx,.xls">
+
+            <br><br>
+
+            <button id="startImport">
+
+                Import Students
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+        EDIT STUDENT MODAL
+=========================================== -->
+
+<div id="editStudentModal" class="modal">
+
+    <div class="modal-content" style="max-width:700px;">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-user-pen"></i>
+                Edit Student
+            </h2>
+
+            <span id="closeEditModal">&times;</span>
+
+        </div>
+
+        <div class="modal-body">
+
+            <input type="hidden" id="editStudentId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Admission No</label>
+
+                    <input
+                        type="text"
+                        id="editAdmissionNo">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Roll No</label>
+
+                    <input
+                        type="number"
+                        id="editRollNo">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Student Name</label>
+
+                    <input
+                        type="text"
+                        id="editStudentName">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Father Name</label>
+
+                    <input
+                        type="text"
+                        id="editFatherName">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Mother Name</label>
+
+                    <input
+                        type="text"
+                        id="editMotherName">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Gender</label>
+
+                    <select id="editGender">
+
+                        <option>Male</option>
+
+                        <option>Female</option>
+
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Class</label>
+
+                    <select id="editClass">
+
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Section</label>
+
+                    <select id="editSection">
+
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Mobile</label>
+
+                    <input
+                        type="text"
+                        id="editMobile">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Date of Birth</label>
+
+                    <input
+                        type="date"
+                        id="editDOB">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Address</label>
+
+                <textarea
+                    id="editAddress"
+                    rows="3"></textarea>
+
+            </div>
+
+            <br>
+
+            <button
+                class="save-btn"
+                id="saveStudentBtn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="js/student-management.js"></script>
+
+</body>
+
+</html>

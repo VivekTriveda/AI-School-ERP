@@ -6,43 +6,32 @@ const Student = require("../models/Student");
 ========================================== */
 
 exports.getStudents = async (req, res) => {
-
     try {
+        const { schoolId, className } = req.query;
 
-        const { schoolId, className, section } = req.query;
+       
 
         const students = await Student.find({
-
             schoolId,
-            className,
-            section
-
+            className
         }).sort({ rollNo: 1 });
 
+       
+
         res.json({
-
             success: true,
-
             students
-
         });
 
     } catch (err) {
-
         console.error(err);
 
         res.status(500).json({
-
             success: false,
-
             message: err.message
-
         });
-
     }
-
 };
-
 
 /* ==========================================
    Save Attendance

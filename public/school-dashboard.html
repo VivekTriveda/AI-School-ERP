@@ -22,328 +22,435 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 
 <body>
+<div class="dashboard-container">
 
-<div class="dashboard">
+    <!-- =========================================
+                HEADER
+    ========================================== -->
 
-<!-- ===========================
-HEADER
-============================ -->
+    <header class="dashboard-header">
 
-<header class="top-header">
+        <div class="school-header">
 
-<div class="school-info">
+            <div class="school-logo">
 
-<div class="school-logo">
+                <i class="fa-solid fa-school"></i>
 
-<i class="fa-solid fa-school"></i>
+            </div>
 
-</div>
+            <div>
 
-<div>
+                <h1 id="schoolName">
+                    Loading...
+                </h1>
 
-<h1 id="schoolName">
+                <p>
 
-Loading...
+                    <span id="schoolBoard"></span>
 
-</h1>
+                </p>
 
-<p>
+                <small>
 
-<span id="schoolBoard"></span>
+                    Principal :
+                    <span id="principalName">
+                        Loading...
+                    </span>
 
-•
+                </small>
 
-<span id="schoolCity"></span>
+            </div>
 
-</p>
+        </div>
 
-</div>
+        <div class="header-buttons">
 
-</div>
+            <button class="logout-btn"
+                onclick="logoutPrincipal()">
 
-<div class="header-actions">
+                <i class="fa-solid fa-right-from-bracket"></i>
 
-    <button
-class="header-btn"
-onclick="location.href='teacher-management.html'">
+                Logout
 
-<i class="fa-solid fa-user-plus"></i>
+            </button>
 
-Teachers
+        </div>
 
-</button>
+    </header>
 
-<button
-class="header-btn"
-onclick="location.href='manage-books.html'">
+    <!-- =========================================
+                SCHOOL OVERVIEW
+    ========================================== -->
 
-<i class="fa-solid fa-book"></i>
+    <section class="overview-section">
 
-Books
+        <div class="section-header">
 
-</button>
+            <h2>
 
-<button
-class="back-btn"
-onclick="logoutPrincipal()">
+                <i class="fa-solid fa-chart-pie"></i>
 
-<i class="fa-solid fa-right-from-bracket"></i>
+                School Overview
 
-Logout
+            </h2>
 
-</button>
+        </div>
 
-</div>
+        <div class="overview-grid">
 
-</header>
-<!-- ===========================
-Dashboard Cards
-============================ -->
+            <!-- Students -->
 
-<section class="dashboard-grid">
+            <div class="overview-card">
 
-<!-- Principal -->
+                <div class="overview-icon students">
 
-<div class="card principal-card">
+                    <i class="fa-solid fa-user-graduate"></i>
 
-<div class="card-icon">
+                </div>
 
-<i class="fa-solid fa-user-tie"></i>
+                <div>
 
-</div>
+                    <h3 id="studentCount">
 
-<h2>Principal</h2>
+                        0
 
-<h3 id="principalName">
+                    </h3>
 
-Loading...
+                    <p>Total Students</p>
 
-</h3>
+                </div>
 
-<p id="principalEmail">
+            </div>
 
-Loading...
+            <!-- Teachers -->
 
-</p>
+            <div class="overview-card">
 
+                <div class="overview-icon teachers">
 
-</div>
+                    <i class="fa-solid fa-chalkboard-user"></i>
 
-<!-- ===========================
-Teachers
-============================ -->
+                </div>
 
-<div class="card" onclick="location.href='teacher-management.html'">
+                <div>
 
-    <div class="card-icon">
-        <i class="fa-solid fa-chalkboard-user"></i>
-    </div>
+                    <h3 id="teacherCount">
 
-    <h2>Teachers</h2>
+                        0
 
-    <h1 id="teacherCount">0</h1>
+                    </h3>
 
-    <p>Add / Manage Teachers</p>
+                    <p>Total Teachers</p>
 
-</div>
+                </div>
 
-<!-- ===========================
-Students
-============================ -->
+            </div>
 
-<div class="card" onclick="location.href='student-management.html'">
+            <!-- Books -->
 
-    <div class="card-icon">
-        <i class="fa-solid fa-user-graduate"></i>
-    </div>
+            <div class="overview-card">
 
-    <h2>Students</h2>
+                <div class="overview-icon books">
 
-    <h1 id="studentCount">0</h1>
+                    <i class="fa-solid fa-book"></i>
 
-    <p>Manage Students</p>
+                </div>
 
-</div>
+                <div>
 
-<!-- ===========================
-Books
-============================ -->
+                    <h3 id="bookCount">
 
-<div class="card" onclick="location.href='manage-books.html'">
+                        0
 
-    <div class="card-icon">
-        <i class="fa-solid fa-book"></i>
-    </div>
+                    </h3>
 
-    <h2>Books</h2>
+                    <p>Books</p>
 
-    <h1 id="bookCount">0</h1>
+                </div>
 
-    <p>Import / Manage Books</p>
+            </div>
 
-</div>
+            <!-- Fees -->
 
+            <div class="overview-card">
 
-<!-- ===========================
-Student Results
-============================ -->
+                <div class="overview-icon fees">
 
-<div class="card" onclick="location.href='student-results.html'">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
 
-    <div class="card-icon">
-        <i class="fa-solid fa-square-poll-vertical"></i>
-    </div>
+                </div>
 
-    <h2>Results</h2>
+                <div>
 
-    <h1>
-        <i class="fa-solid fa-arrow-right"></i>
-    </h1>
+                    <h3 id="feeCollection">
 
-    <p>View Student Results</p>
+                        ₹0
 
-</div>
+                    </h3>
 
-<!-- ===========================
-Timetable
-============================ -->
+                    <p>Fee Collection</p>
 
-<div class="card" onclick="location.href='manage-timetable.html'">
+                </div>
 
-    <div class="card-icon">
-        <i class="fa-solid fa-calendar-days"></i>
-    </div>
+            </div>
 
-    <h2>Timetable</h2>
+        </div>
 
-    <h1>
-        <i class="fa-solid fa-arrow-right"></i>
-    </h1>
+    </section>
 
-    <p>Create / Manage Timetable</p>
 
-</div>
+    <!-- =========================================
+        RESULT ANALYTICS
+========================================= -->
 
-<!-- ===========================
-Teacher Performance
-============================ -->
+<section class="analytics-section">
 
-<div class="card" onclick="location.href='teacher-performance.html'">
-
-    <div class="card-icon">
-        <i class="fa-solid fa-chart-line"></i>
-    </div>
-
-    <h2>Teacher Performance</h2>
-
-    <h1>
-        <i class="fa-solid fa-arrow-right"></i>
-    </h1>
-
-    <p>Review Teacher Performance</p>
-
-</div>
-<!-- ===========================
-Teacher Attendance Report
-============================ -->
-
-<div class="card" onclick="location.href='teacher-attendance-report.html'">
-
-    <div class="card-icon">
-        <i class="fa-solid fa-chart-line"></i>
-    </div>
-
-    <h2>Teacher Attendance Report</h2>
-
-    <h1>
-        <i class="fa-solid fa-arrow-right"></i>
-    </h1>
-
-    <p>Review Teacher Attendance</p>
-
-</div>
-<!-- ===========================
-Fees Management
-============================ -->
-
-<div class="card" onclick="location.href='principal-fees.html'">
-
-    <div class="card-icon">
-        <i class="fa-solid fa-chart-column"></i>
-    </div>
-
-    <h2>Fee Monitoring</h2>
-
-    <h1>
-        <i class="fa-solid fa-eye"></i>
-    </h1>
-
-    <p>Monitor Collection & Defaulters</p>
-
-</div>
-
-<!-- ===========================
-Settings
-============================ -->
-
-<div class="card" onclick="location.href='settings.html'">
-
-    <div class="card-icon">
-        <i class="fa-solid fa-gear"></i>
-    </div>
-
-    <h2>Settings</h2>
-
-    <h1>
-        <i class="fa-solid fa-sliders"></i>
-    </h1>
-
-    <p>School Settings</p>
-
-</div>
-
-</section>
-<!-- ===========================
-Recent Activity
-============================ -->
-
-<section class="activity-section">
-
-    <div class="activity-header">
+    <div class="section-header">
 
         <h2>
 
-            <i class="fa-solid fa-clock-rotate-left"></i>
+            <i class="fa-solid fa-chart-line"></i>
 
-            Recent Activity
+            School Result Analytics
 
         </h2>
 
     </div>
 
-    <div id="activityList" class="activity-list">
+    <div class="overview-grid">
 
-        <div class="activity-item">
+        <div class="overview-card">
 
-            Dashboard is ready.
+            <div class="overview-icon students">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3 id="publishedExamCount">0</h3>
+
+                <p>Published Result</p>
+
+            </div>
 
         </div>
 
-        <div class="activity-item">
+        <div class="overview-card">
 
-            Teacher activities will appear here.
+            <div class="overview-icon teachers">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3 id="passPercentage">0%</h3>
+
+                <p>Pass Percentage</p>
+
+            </div>
 
         </div>
 
-        <div class="activity-item">
+        <div class="overview-card">
 
-            Generated papers will appear here.
+            <div class="overview-icon books">
+
+                <i class="fa-solid fa-chart-simple"></i>
+
+            </div>
+
+            <div>
+
+                <h3 id="averagePercentage">0%</h3>
+
+                <p>Average %</p>
+
+            </div>
 
         </div>
 
-        <div class="activity-item">
+        <div class="overview-card">
 
-            AI evaluation history will appear here.
+            <div class="overview-icon fees">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+            </div>
+
+            <div>
+
+                <h3 id="failedStudents">0</h3>
+
+                <p>Failed Students</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+        QUICK ACTIONS
+========================================= -->
+
+<section class="quick-actions">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-bolt"></i>
+
+            Quick Actions
+
+        </h2>
+
+    </div>
+
+    <div class="action-grid">
+
+        <button onclick="location.href='teacher-management.html'">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+            <span>Teachers</span>
+
+        </button>
+        
+        <button onclick="location.href='teacher-attendance-report.html'">
+           <i class="fa-solid fa-user-check"></i>
+           <span>Teacher Leave</span>
+        </button>
+
+        <button onclick="location.href='student-management.html'">
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            <span>Students</span>
+
+        </button>
+
+        <button onclick="location.href='manage-books.html'">
+
+            <i class="fa-solid fa-book"></i>
+
+            <span>Books</span>
+
+        </button>
+        
+        <button onclick="location.href='import-book.html'">
+           <i class="fa-solid fa-file-arrow-up"></i>
+           <span>Import Book</span>
+        </button>
+
+        <button onclick="location.href='manage-timetable.html'">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <span>Timetable</span>
+
+        </button>
+
+        <button onclick="location.href='principal-fees.html'">
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            <span>Fees</span>
+
+        </button>
+        <button onclick="location.href='teacher-salary.html'">
+
+    <i class="fa-solid fa-wallet"></i>
+
+    <span>Teacher Salary</span>
+
+</button>
+        <button onclick="location.href='fee-reminders.html'">
+
+    <i class="fa-solid fa-bell"></i>
+
+    <span>Fee Reminders</span>
+
+</button>
+
+        <button onclick="location.href='teacher-performance.html'">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <span>Performance</span>
+
+        </button>
+        <button onclick="location.href='website-management.html'">
+
+    <i class="fa-solid fa-globe"></i>
+
+    <span>Website</span>
+
+</button>
+
+        <button onclick="location.href='settings.html'">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+        TWO COLUMN SECTION
+========================================= -->
+
+<section class="dashboard-panels">
+
+    <!-- Top Students -->
+
+    <div class="panel">
+
+        <h2>
+
+            🏆 Top Students
+
+        </h2>
+
+        <div id="topStudents">
+
+            <div class="empty-panel">
+
+                Top student list will appear here
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Class Performance -->
+
+    <div class="panel">
+
+        <h2>
+
+            📚 Class Performance
+
+        </h2>
+
+        <div id="classPerformance">
+
+            <div class="empty-panel">
+
+                Class performance will appear here
+
+            </div>
 
         </div>
 
@@ -352,6 +459,12 @@ Recent Activity
 </section>
 
 </div>
+
+<link rel="stylesheet" href="css/chatbot.css">
+
+<div id="chatbot-container"></div>
+
+<script src="js/chatbot.js"></script>
 
 <script src="js/school-dashboard.js"></script>
 

@@ -281,6 +281,7 @@ async function loadFeeHistory() {
 <td>${fee.className}</td>
 
 <td>${fee.month}-${fee.year}</td>
+<td>₹${fee.totalFee}</td>
 
 <td>₹${fee.amountPaid}</td>
 
@@ -441,7 +442,9 @@ document.getElementById("remarks").value="";
 
 }
 
+loadDashboard();
 loadFeeHistory();
+
 
 async function deleteFee(id){
 
@@ -464,6 +467,6 @@ async function deleteFee(id){
 
     await loadDashboard();
 
-await loadFeeHistory();
+    await loadFeeHistory();
 
 }

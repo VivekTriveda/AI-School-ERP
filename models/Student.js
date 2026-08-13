@@ -42,10 +42,15 @@ const studentSchema = new mongoose.Schema(
         default: "A"
     },
 
-    parentName: {
-        type: String,
-        required: true
-    },
+    fatherName: {
+    type: String,
+    required: true
+},
+
+motherName: {
+    type: String,
+    default: ""
+},
 
     mobile: {
         type: String,

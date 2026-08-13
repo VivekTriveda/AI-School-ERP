@@ -1,3 +1,4 @@
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const parseGeminiJSON = require("../utils/jsonParser");
 
@@ -89,6 +90,8 @@ const cleanedAnswer = studentAnswers;
 console.log("===== CLEAN OCR TEXT =====");
 console.log(cleanedAnswer);
 console.log("==========================");
+
+
 
     const prompt = `
 You are an experienced CBSE examiner.

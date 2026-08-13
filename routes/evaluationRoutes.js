@@ -98,6 +98,7 @@ router.get(
     evaluationController.getAllEvaluations
 );
 
+
 // Get report by Paper ID
 router.get(
     "/paper/:paperId",
@@ -111,8 +112,23 @@ router.get("/subjects", evaluationController.getSubjects);
 router.get("/filter", evaluationController.filterReports);
 
 router.get(
+    "/teacher-results",
+    evaluationController.teacherResults
+);
+
+router.get(
     "/student/:studentId",
     evaluationController.getStudentResults
+);
+
+router.get(
+    "/exam-names",
+    evaluationController.getExamNames
+);
+
+router.put(
+    "/publish",
+    evaluationController.publishResults
 );
 
 // Get report by MongoDB ID

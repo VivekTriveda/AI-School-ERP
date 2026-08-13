@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fee Reminder</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/school-dashboard.css">
+    <link rel="stylesheet" href="css/fee-reminders.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ============================
+            PAGE HEADER
+    ============================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <div class="header-icon">
+
+                <i class="fa-solid fa-envelope-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h1>Fee Reminder</h1>
+
+                <p>
+                    Send monthly fee reminders to students and parents
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="location.href='school-dashboard.html'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </header>
+
+    <!-- ============================
+            SUMMARY
+    ============================== -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon pending">
+
+                <i class="fa-solid fa-user-clock"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="pendingStudents">
+                    0
+                </h2>
+
+                <p>
+                    Pending Students
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon month">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="pendingAmount">
+                    ₹0
+                </h2>
+
+                <p>
+                    Pending Amount
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon today">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="reminderSent">
+                    0
+                </h2>
+
+                <p>
+                    Reminder Sent Today
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon students">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="paidStudents">
+                    0
+                </h2>
+
+                <p>
+                    Fully Paid Students
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ============================
+            FILTERS
+    ============================== -->
+
+    <section class="search-panel">
+
+        <h2>
+
+            <i class="fa-solid fa-filter"></i>
+
+            Filter Pending Fees
+
+        </h2>
+
+        <div class="filter-grid">
+
+            <select id="classFilter">
+                <option value="">All Classes</option>
+            </select>
+
+            <select id="sectionFilter">
+                <option value="">All Sections</option>
+            </select>
+
+            <input
+                type="month"
+                id="monthFilter">
+
+            <select id="statusFilter">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="Partial">
+                    Partial
+                </option>
+
+                <option value="Unpaid">
+                    Unpaid
+                </option>
+
+            </select>
+
+            <button id="searchBtn">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ============================
+            ACTION BUTTONS
+    ============================== -->
+
+    <div class="button-bar">
+
+        <button
+            class="send-all-btn"
+            id="sendAllBtn">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Send Reminder To All Pending
+
+        </button>
+
+        <button
+            class="download-btn"
+            id="downloadBtn">
+
+            <i class="fa-solid fa-file-arrow-down"></i>
+
+            Download Report
+
+        </button>
+
+    </div>
+
+    <!-- ============================
+            TABLE
+    ============================== -->
+
+    <section class="table-panel">
+
+        <div class="section-title">
+
+            <i class="fa-solid fa-list-check"></i>
+
+            Pending Fee List
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student</th>
+
+                        <th>Admission No</th>
+
+                        <th>Class</th>
+
+                        
+
+                        <th>Mobile</th>
+
+                        <th>Month</th>
+
+                        <th>Total Fee</th>
+
+                        <th>Paid</th>
+
+                        <th>Balance</th>
+
+                        <th>Status</th>
+
+                        <th>Reminder</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="reminderTable">
+
+                    <tr>
+
+                        <td colspan="11" class="empty-table">
+
+                            <i class="fa-solid fa-envelope-open-text"
+                               style="font-size:45px;margin-bottom:15px;display:block;color:#cbd5e1;"></i>
+
+                            No pending fee records found.
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="js/fee-reminders.js"></script>
+
+</body>
+
+</html>

@@ -276,11 +276,7 @@ return;
 
 }
 
-document.getElementById(
-"classCount"
-).innerHTML=
-
-data.structures.length;
+document.getElementById("totalClasses").innerHTML = data.structures.length;
 
 let highest=0;
 
@@ -332,6 +328,8 @@ ${item.academicYear}
 
 <td>
 
+<div class="action-buttons">
+
 <button
 class="edit-btn"
 onclick="editStructure('${item._id}')">
@@ -347,6 +345,8 @@ onclick="deleteStructure('${item._id}')">
 <i class="fa-solid fa-trash"></i>
 
 </button>
+
+</div>
 
 </td>
 

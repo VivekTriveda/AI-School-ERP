@@ -1,6 +1,9 @@
-const params = new URLSearchParams(window.location.search);
+const student = JSON.parse(localStorage.getItem("student"));
 
-const id = params.get("id");
+const id =
+    student?._id ||
+    student?.id ||
+    localStorage.getItem("studentId");
 
 loadStudent();
 
@@ -50,8 +53,11 @@ async function loadStudent(){
         document.getElementById("section").innerText =
             s.section;
 
-        document.getElementById("parentName").innerText =
-            s.parentName;
+        document.getElementById("fatherName").innerText =
+    s.fatherName || "-";
+
+document.getElementById("motherName").innerText =
+    s.motherName || "-";
 
         document.getElementById("mobile").innerText =
             s.mobile;
@@ -61,6 +67,21 @@ async function loadStudent(){
 
         document.getElementById("address").innerText =
             s.address || "-";
+
+            document.getElementById("studentName2").innerText =
+    s.studentName;
+
+document.getElementById("admissionNo2").innerText =
+    s.admissionNo;
+
+document.getElementById("rollNo2").innerText =
+    s.rollNo;
+
+document.getElementById("className2").innerText =
+    s.className;
+
+document.getElementById("section2").innerText =
+    s.section;
 
     }
 

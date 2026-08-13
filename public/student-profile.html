@@ -28,105 +28,178 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
         <div class="profile-body">
 
-            <div class="photo-section">
+    <!-- Left Profile Card -->
+    <div class="profile-left">
 
-                <img
-                id="studentPhoto"
-                src="uploads/students/images/default-student.png">
+        <img id="studentPhoto"
+             src="/images/default-student.png"
+             class="profile-photo">
 
-                <h2 id="studentName"></h2>
+        <h2 id="studentName"></h2>
 
-            </div>
+        <p class="student-class">
+            Class <span id="className"></span> -
+            <span id="section"></span>
+        </p>
 
-            <div class="details">
+        <div class="profile-badge">
+            Admission No :
+            <span id="admissionNo"></span>
+        </div>
 
-                <table>
+        <div class="profile-badge">
+            Roll No :
+            <span id="rollNo"></span>
+        </div>
 
-                    <tr>
+    </div>
 
-                        <td>Admission No</td>
+    <!-- Right Side -->
+    <div class="profile-right">
 
-                        <td id="admissionNo"></td>
+        <!-- Personal Information -->
+        <div class="profile-section">
 
-                    </tr>
+            <h3>
+                <i class="fa-solid fa-user"></i>
+                Personal Information
+            </h3>
 
-                    <tr>
+            <div class="info-grid">
 
-                        <td>Roll No</td>
+                <div class="info-item">
+                    <label>Student Name</label>
+                    <span id="studentName2"></span>
+                </div>
 
-                        <td id="rollNo"></td>
+                <div class="info-item">
+                    <label>Gender</label>
+                    <span id="gender"></span>
+                </div>
 
-                    </tr>
-
-                    <tr>
-
-                        <td>Gender</td>
-
-                        <td id="gender"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Date of Birth</td>
-
-                        <td id="dob"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Class</td>
-
-                        <td id="className"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Section</td>
-
-                        <td id="section"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Parent Name</td>
-
-                        <td id="parentName"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Mobile</td>
-
-                        <td id="mobile"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Email</td>
-
-                        <td id="email"></td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Address</td>
-
-                        <td id="address"></td>
-
-                    </tr>
-
-                </table>
+                <div class="info-item">
+                    <label>Date of Birth</label>
+                    <span id="dob"></span>
+                </div>
 
             </div>
 
         </div>
+
+        <!-- Academic Information -->
+
+        <div class="profile-section">
+
+            <h3>
+                <i class="fa-solid fa-graduation-cap"></i>
+                Academic Information
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <label>Admission No</label>
+                    <span id="admissionNo2"></span>
+                </div>
+
+                <div class="info-item">
+                    <label>Roll No</label>
+                    <span id="rollNo2"></span>
+                </div>
+
+                <div class="info-item">
+                    <label>Class</label>
+                    <span id="className2"></span>
+                </div>
+
+                <div class="info-item">
+                    <label>Section</label>
+                    <span id="section2"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Parent Information -->
+
+        <div class="profile-section">
+
+            <h3>
+                <i class="fa-solid fa-users"></i>
+                Parent Information
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <label>Father Name</label>
+                    <span id="fatherName"></span>
+                </div>
+
+                <div class="info-item">
+                    <label>Mother Name</label>
+                    <span id="motherName"></span>
+                </div>
+
+                <div class="info-item">
+                    <label>Parent Mobile</label>
+                    <span id="mobile"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contact Information -->
+
+        <div class="profile-section">
+
+            <h3>
+                <i class="fa-solid fa-location-dot"></i>
+                Contact Information
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <label>Email</label>
+                    <span id="email"></span>
+                </div>
+
+                <div class="info-item full-width">
+                    <label>Address</label>
+                    <span id="address"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="quick-actions">
+
+            <button onclick="location.href='student-dashboard.html'">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </button>
+
+            <button onclick="location.href='student-results-list.html'">
+                <i class="fa-solid fa-chart-column"></i>
+                Results
+            </button>
+
+            <button onclick="location.href='student-fees.html'">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                Fees
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 

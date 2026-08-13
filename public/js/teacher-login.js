@@ -84,12 +84,29 @@ async function loginTeacher() {
             "teacher",
             JSON.stringify(data.teacher)
         );
-        localStorage.setItem("schoolId", data.teacher.schoolId);
-        localStorage.setItem("schoolName", data.teacher.schoolName || "");
-        localStorage.setItem(
-            "role",
-            "teacher"
-        );
+
+        localStorage.setItem("role", "teacher");
+localStorage.setItem("schoolId", data.teacher.schoolId);
+localStorage.setItem("schoolName", data.teacher.schoolName);
+
+
+        localStorage.setItem("currentUser", JSON.stringify({
+
+    _id: data.teacher._id,
+
+    role: "teacher",
+
+    schoolId: data.teacher.schoolId,
+
+    name: data.teacher.teacherName,
+
+    className: data.teacher.className,
+
+    section: data.teacher.section,
+
+    teacherId: data.teacher.teacherId
+
+}));
 
         message.className = "success";
         message.innerHTML = "Login Successful...";

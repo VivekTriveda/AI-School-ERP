@@ -54,6 +54,28 @@ async function loadResults(){
         }
 
         allResults = data.results || [];
+        if (allResults.length === 0) {
+
+    document.getElementById("resultsTable").innerHTML = `
+        <tr>
+            <td colspan="8" style="text-align:center;padding:40px;">
+                <h4 style="color:#dc3545;">
+                    Result Not Published Yet
+                </h4>
+                <p>
+                    Your class teacher has not published your result yet.
+                </p>
+            </td>
+        </tr>
+    `;
+
+    document.getElementById("totalExam").innerHTML = 0;
+    document.getElementById("averagePercentage").innerHTML = "0%";
+    document.getElementById("highestMarks").innerHTML = 0;
+    document.getElementById("passCount").innerHTML = 0;
+
+    return;
+}
 
         fillSubjectFilter();
 

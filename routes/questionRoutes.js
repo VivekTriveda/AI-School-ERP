@@ -75,6 +75,9 @@ if (search) {
 }  console.log("Question Filter:", filter);
 
         const total = await Question.countDocuments(filter);
+        const totalSubjects = ( await Question.distinct("subject", filter)).length;
+
+const totalChapters = ( await Question.distinct("chapter", filter)).length;
 
         const questions = await Question.find(filter)
             .select("subject chapter question marks")
@@ -87,6 +90,8 @@ if (search) {
             page,
             limit,
             total,
+            totalSubjects,
+            totalChapters,
             totalPages: Math.ceil(total / limit),
             questions
         });

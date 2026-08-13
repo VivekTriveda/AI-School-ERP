@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Website Management</title>
+
+    <link rel="stylesheet"
+          href="css/website-management.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-globe"></i>
+
+                Website Management
+
+            </h1>
+
+            <p>
+
+                Publish notices, admissions, tenders and events for your school website.
+
+            </p>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="history.back()">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </button>
+
+    </div>
+
+    <!-- Form Card -->
+
+    <div class="card">
+
+        <h2>
+
+            Publish New Post
+
+        </h2>
+
+        <form id="websiteForm">
+
+            <div class="grid">
+
+                <div>
+
+                    <label>
+
+                        Category
+
+                    </label>
+
+                    <select id="category">
+
+                        <option value="notice">
+
+                            Notice
+
+                        </option>
+
+                        <option value="admission">
+
+                            Admission
+
+                        </option>
+
+                        <option value="tender">
+
+                            Tender
+
+                        </option>
+
+                        <option value="event">
+
+                            Event
+
+                        </option>
+
+                        <option value="holiday">
+
+                            Holiday
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label>
+
+                        Priority
+
+                    </label>
+
+                    <select id="priority">
+
+                        <option value="normal">
+
+                            Normal
+
+                        </option>
+
+                        <option value="important">
+
+                            Important
+
+                        </option>
+
+                        <option value="urgent">
+
+                            Urgent
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <label>
+
+                Title
+
+            </label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Enter title">
+
+            <label>
+
+                Description
+
+            </label>
+
+            <textarea
+                id="description"
+                rows="6"
+                placeholder="Enter description"></textarea>
+
+            <div class="grid">
+
+                <div>
+
+                    <label>
+
+                        Attachment
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="attachment">
+
+                </div>
+
+                <div>
+
+                    <label>
+
+                        Expiry Date
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="expiryDate">
+
+                </div>
+
+            </div>
+
+            <div class="check-row">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="isTicker"
+                        checked>
+
+                    Show In Live Ticker
+
+                </label>
+
+            </div>
+
+            <button
+                type="submit"
+                class="publish-btn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Publish
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Published Posts -->
+
+    <div class="card">
+
+        <div class="title-row">
+
+            <h2>
+
+                Published Posts
+
+            </h2>
+
+            <button
+                class="refresh-btn"
+                onclick="loadPosts()">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>Category</th>
+
+                <th>Title</th>
+
+                <th>Priority</th>
+
+                <th>Date</th>
+
+                <th>Status</th>
+                <th>Attachment</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="postTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/website-management.js"></script>
+
+</body>
+
+</html>

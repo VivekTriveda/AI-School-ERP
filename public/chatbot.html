@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI School Portal</title>
+
+</head>
+<body>
+<!-- ==========================================
+     AI SCHOOL ERP CHATBOT
+========================================== -->
+
+<div id="aiChatbot">
+
+    <!-- Floating Chat Button -->
+    <button id="chatToggleBtn" class="chat-toggle-btn" title="AI Assistant">
+        <span class="chat-icon">🤖</span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chatWindow" class="chat-window">
+
+        <!-- Header -->
+        <div class="chat-header">
+
+            <div class="chat-header-left">
+
+                <div class="bot-avatar">
+                    🤖
+                </div>
+
+                <div class="bot-details">
+                    <h3>AI School Assistant</h3>
+                    <p id="botStatus">
+                        <span class="status-dot"></span>
+                        Online
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="chat-header-right">
+
+                <button id="minimizeChat" title="Minimize">
+                    &minus;
+                </button>
+
+                <button id="closeChat" title="Close">
+                    &times;
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Body -->
+        <div class="chat-body" id="chatMessages">
+
+            <!-- Welcome Message -->
+            <div class="message bot">
+
+                <div class="message-avatar">
+                    🤖
+                </div>
+
+                <div class="message-content">
+
+                    <strong>Welcome!</strong>
+
+                    <p>
+                        I'm your AI School Assistant.
+                    </p>
+
+                    <p>
+                        I can help you with:
+                    </p>
+
+                    <ul>
+                        <li>📚 Exams & Question Papers</li>
+                        <li>📖 Results</li>
+                        <li>🎓 Attendance</li>
+                        <li>💰 Fees</li>
+                        <li>👨‍🏫 Teachers</li>
+                        <li>📝 Homework</li>
+                        <li>📅 Timetable</li>
+                    </ul>
+
+                    <p>
+                        Ask me anything!
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="typingIndicator" class="typing-indicator">
+
+            <div class="message bot">
+
+                <div class="message-avatar">
+                    🤖
+                </div>
+
+                <div class="typing">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Suggested Questions -->
+        <div class="quick-questions">
+
+            <button class="quick-btn">
+                My Attendance
+            </button>
+
+            <button class="quick-btn">
+                Pending Fees
+            </button>
+
+            <button class="quick-btn">
+                Exam Result
+            </button>
+
+            <button class="quick-btn">
+                Timetable
+            </button>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="chat-footer">
+
+            <button id="voiceBtn" title="Voice">
+                🎤
+            </button>
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Ask anything..."
+                autocomplete="off"
+            >
+
+            <button id="sendBtn" title="Send">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</body>  
+</html>

@@ -31,11 +31,20 @@ const studentTestRoutes = require("./routes/studentTestRoutes");
 const studentAuthRoutes = require("./routes/studentAuthRoutes");
 const feeRoutes = require("./routes/feeRoutes");
 const feeStructureRoutes = require("./routes/feeStructureRoutes");
+const teacherPerformanceRoutes = require("./routes/teacherPerformanceRoutes");
+const studentImportRoutes = require("./routes/studentImportRoutes");
+const feeReminderRoutes = require("./routes/feeReminderRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
+const portalRoutes = require("./routes/portalRoutes");
+const noticeRoutes = require("./routes/noticeRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const teacherSalaryRoutes = require("./routes/teacherSalaryRoutes");
 
 connectDB();
 
 app.use(cors());
 app.use(express.json());
+
 
 
 app.use(express.static("public"));
@@ -67,6 +76,19 @@ app.use("/api/student-auth", studentAuthRoutes);
 app.use("/api/student-response",require("./routes/studentResponseRoutes"));
 app.use("/api/fees", feeRoutes);
 app.use( "/api/fee-structure", feeStructureRoutes );
+app.use( "/api/teacher-performance", teacherPerformanceRoutes);
+app.use("/api/students", studentImportRoutes);
+app.use("/api/fee-reminders", feeReminderRoutes);
+app.use("/api/notifications",notificationRoutes);
+app.use("/api/portal", portalRoutes);
+app.use("/api/notices", noticeRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/teacher-salary", teacherSalaryRoutes);
+
+
+const path = require("path");
+
+app.use( "/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req,res)=>{
     res.redirect("/schools.html");
@@ -78,6 +100,8 @@ app.get("/check", (req, res) => {
     });
 });
 const PORT = process.env.PORT || 5000;
+
+
 
 app.listen(PORT, () => {
   console.log(`Server Running On Port ${PORT}`);

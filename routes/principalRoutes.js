@@ -4,8 +4,14 @@ const router = express.Router();
 
 const {
     registerPrincipal,
-    loginPrincipal
+    loginPrincipal,
+    dashboardAnalytics
 } = require("../controllers/principalController");
+
+router.get(
+    "/dashboard/:schoolId",
+    dashboardAnalytics
+);
 
 // Register Principal
 router.post("/register", registerPrincipal);

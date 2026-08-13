@@ -825,3 +825,76 @@ background:linear-gradient(
 color:white;
 
 }
+/* Notification Panel */
+
+.notification-panel{
+
+position:fixed;
+
+top:70px;
+
+right:20px;
+
+width:380px;
+
+background:#fff;
+
+border-radius:12px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+display:none;
+
+z-index:9999;
+
+overflow:hidden;
+
+max-height:500px;
+
+overflow-y:auto;
+
+}
+
+.notification-header{
+
+padding:15px;
+
+background:#2563eb;
+
+color:#fff;
+
+font-weight:bold;
+
+}
+
+.notification-item{
+
+padding:15px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.notification-item h5{
+
+margin-bottom:6px;
+
+font-size:16px;
+
+}
+
+.notification-item p{
+
+margin-bottom:6px;
+
+font-size:14px;
+
+color:#555;
+
+}
+
+.notification-item small{
+
+color:#888;
+
+}

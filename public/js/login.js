@@ -1,3 +1,4 @@
+
 const adminTab = document.getElementById("adminTab");
 const principalTab = document.getElementById("principalTab");
 
@@ -99,6 +100,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         });
 
         const result = await response.json();
+       
 
         if(result.success){
 
@@ -107,6 +109,13 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     if(loginRole === "admin"){
 
         localStorage.setItem("role","admin");
+
+        localStorage.setItem("currentUser", JSON.stringify({
+    _id: result.admin._id,
+    role: "admin",
+    name: result.admin.name,
+    username: result.admin.username
+}));
 
         window.location.href = "schools.html";
 
@@ -128,6 +137,13 @@ localStorage.setItem(
     "principal",
     JSON.stringify(result.principal)
 );
+localStorage.setItem("currentUser", JSON.stringify({
+    _id: result.principal._id,
+    role: result.role,
+    schoolId: result.principal.schoolId,
+    name: result.principal.principalName,
+    username: result.principal.username
+}));
 
 window.location.href = "school-dashboard.html";
 

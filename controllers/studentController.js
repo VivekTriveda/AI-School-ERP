@@ -71,7 +71,25 @@ exports.getStudentById = async (req, res) => {
 
 };
 
+exports.getStudentsBySchool = async (req, res) => {
+    try {
+        const students = await Student.find({
+            schoolId: req.params.schoolId
+        }).sort({ rollNo: 1 });
 
+        res.json({
+            success: true,
+            students
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Error fetching students"
+        });
+    }
+};
 /* =====================================================
    Add Student
 ===================================================== */
@@ -143,8 +161,9 @@ exports.updateStudent = async (req, res) => {
 
             return res.status(404).json({
 
-                success: false,
-                message: "Student not found."
+                success:false,
+
+                message:"Student not found"
 
             });
 
@@ -153,42 +172,52 @@ exports.updateStudent = async (req, res) => {
         student.admissionNo = req.body.admissionNo;
         student.rollNo = req.body.rollNo;
         student.studentName = req.body.studentName;
+
+        student.fatherName = req.body.fatherName;
+        student.motherName = req.body.motherName;
+
         student.gender = req.body.gender;
-        student.dob = req.body.dob;
+        student.className = req.body.className;
         student.section = req.body.section;
-        student.parentName = req.body.parentName;
+
         student.mobile = req.body.mobile;
-        student.email = req.body.email;
+       
+        if (req.body.dob) {
+
+            student.dob = new Date(req.body.dob);
+
+        }
         student.address = req.body.address;
 
         await student.save();
 
         res.json({
 
-            success: true,
+            success:true,
 
-            message: "Student updated successfully.",
+            message:"Student updated successfully",
 
             student
 
         });
 
-    } catch (err) {
+    }
+
+    catch(err){
 
         console.error(err);
 
         res.status(500).json({
 
-            success: false,
+            success:false,
 
-            message: err.message
+            message:err.message
 
         });
 
     }
 
 };
-
 /* =====================================================
    Delete Student
 ===================================================== */

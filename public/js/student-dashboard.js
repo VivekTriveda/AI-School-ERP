@@ -17,21 +17,6 @@ if (!token || !student) {
 
 }
 
-/* =====================================================
-   Load Dashboard
-===================================================== */
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    loadStudentInfo();
-
-    updateClock();
-
-    setInterval(updateClock,1000);
-
-    loadDashboard();
-
-});
 
 /* =====================================================
    Student Details
@@ -124,7 +109,8 @@ async function loadDashboard(){
 
     loadTests(),
 
-    loadResults()
+    loadResults(),
+    loadFees()
 
 ]);
 
@@ -522,7 +508,7 @@ setInterval(()=>{
 
 window.onload=()=>{
 
-    loadStudentInfo();
+     loadStudentInfo();
 
     updateClock();
 
@@ -532,4 +518,147 @@ window.onload=()=>{
 
     loadResults();
 
+    loadNotifications();  
+
+    setInterval(updateClock,1000);
+
 };
+/* =====================================================
+   Load Student Fees
+===================================================== */
+
+async function loadFees() {
+
+    try {
+
+        const data = await getJSON(
+
+            API_BASE +
+            "/fees/student/" +
+            student.id
+
+        );
+
+        if (!data.success || !data.fees.length) {
+
+            document.getElementById("pendingFees").innerHTML = "₹0";
+            return;
+
+        }
+
+        let pending = 0;
+
+        data.fees.forEach(fee => {
+
+            pending += Number(fee.balance || 0);
+
+        });
+
+        document.getElementById("pendingFees").innerHTML =
+
+            "₹" + pending.toLocaleString();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+/* =====================================
+   LOAD NOTIFICATIONS
+===================================== */
+
+async function loadNotifications() {
+
+    try {
+
+        const res = await fetch(
+
+            "/api/notifications/student/" +
+
+            student.id
+
+        );
+
+        const data = await res.json();
+
+        if (!data.success) return;
+
+        document.getElementById("notificationCount").innerHTML =
+            data.notifications.filter(n => !n.isRead).length;
+
+        const list =
+            document.getElementById("notificationList");
+
+        list.innerHTML = "";
+
+        if (data.notifications.length === 0) {
+
+            list.innerHTML =
+                "<div style='padding:20px'>No Notifications</div>";
+
+            return;
+
+        }
+
+        data.notifications.forEach(n => {
+
+            list.innerHTML += `
+
+<div class="notification-item">
+
+<h5>${n.title}</h5>
+
+<p>${n.message}</p>
+
+<small>
+
+${new Date(n.createdAt).toLocaleString()}
+
+</small>
+
+</div>
+
+`;
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
+
+/* =====================================
+   NOTIFICATION PANEL
+===================================== */
+
+const bell =
+document.getElementById("notificationBell");
+
+const panel =
+document.getElementById("notificationPanel");
+
+if (bell) {
+
+    bell.onclick = () => {
+
+        panel.style.display =
+
+            panel.style.display === "block"
+
+                ? "none"
+
+                : "block";
+
+    };
+
+}

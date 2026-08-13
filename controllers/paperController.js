@@ -5,111 +5,124 @@ const Paper = require("../models/Paper");
  * Shuffle Array
  */
 function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+  return array.sort(() => Math.random() - 0.5);
 }
 
 /**
  * Select questions until required marks are reached
  */
 function selectQuestions(questions, targetMarks, usedIds) {
+  let selected = [];
+  let marks = 0;
 
-    let selected = [];
-    let marks = 0;
+  const shuffled = shuffle([...questions]);
 
-    const shuffled = shuffle([...questions]);
+  for (const q of shuffled) {
+    if (usedIds.has(q._id.toString())) continue;
 
-    for (const q of shuffled) {
+    if (marks + q.marks <= targetMarks) {
+      selected.push(q);
 
-        if (usedIds.has(q._id.toString())) continue;
+      marks += q.marks;
 
-        if (marks + q.marks <= targetMarks) {
-
-            selected.push(q);
-
-            marks += q.marks;
-
-            usedIds.add(q._id.toString());
-
-        }
-
-        if (marks === targetMarks) break;
+      usedIds.add(q._id.toString());
     }
 
-    return {
-        selected,
-        marks
-    };
+    if (marks === targetMarks) break;
+  }
+
+  return {
+    selected,
+    marks,
+  };
 }
 
 /**
  * Blueprint Generator
  */
 exports.generateBlueprint = async (req, res) => {
+  try {
+    const {
+      schoolId,
+      schoolName,
+      board,
+      className,
+      subject,
+      chapters,
+      blueprint,
+      difficulty,
+    } = req.body;
 
-    try {
+    const used = new Set();
 
-       const {
-    schoolId,
-    schoolName,
-    board,
-    className,
-    subject,
-    chapters,
-    blueprint,
-    difficulty
-} = req.body;
+    let finalQuestions = [];
 
-        const used = new Set();
+    let totalMarks = 0;
 
-        let finalQuestions = [];
+    for (const section of blueprint) {
+      let sectionQuestions = [];
 
-        let totalMarks = 0;
+      let filter = {
+        schoolId: new mongoose.Types.ObjectId(schoolId),
+        schoolName,
+        board,
+        className,
+        subject,
+        type: section.type,
+      };
 
-        for (const section of blueprint) {
+      if (chapters && chapters.length > 0) {
+        filter.chapter = { $in: chapters };
+      }
 
-            let sectionQuestions = [];
+      let questions = await Question.find(filter).lean();
 
+      questions = questions.filter((q) => !used.has(q._id.toString()));
 
-let filter = {
-    schoolId: new mongoose.Types.ObjectId(schoolId),
-    schoolName,
-    board,
-    className,
-    subject,
-    type: section.type
-};
+      questions.sort(() => Math.random() - 0.5);
 
-if (chapters && chapters.length > 0) {
-    filter.chapter = { $in: chapters };
-}
+      const easyQuestions = questions.filter((q) => q.difficulty === "Easy");
+      const mediumQuestions = questions.filter(
+        (q) => q.difficulty === "Medium",
+      );
+      const hardQuestions = questions.filter((q) => q.difficulty === "Hard");
 
-let questions = await Question.find(filter).lean();
+      const easyMarks = Math.round((section.marks * difficulty.easy) / 100);
+      const mediumMarks = Math.round((section.marks * difficulty.medium) / 100);
+      const hardMarks = section.marks - easyMarks - mediumMarks;
 
-questions = questions.filter(q => !used.has(q._id.toString()));
+      let marks = 0;
 
-questions.sort(() => Math.random() - 0.5);
+      function pick(list, targetMarks) {
+        let current = 0;
 
-const easyQuestions = questions.filter(q => q.difficulty === "Easy");
-const mediumQuestions = questions.filter(q => q.difficulty === "Medium");
-const hardQuestions = questions.filter(q => q.difficulty === "Hard");
+        for (const q of list) {
+          if (used.has(q._id.toString())) continue;
 
-const easyMarks = Math.round(section.marks * difficulty.easy / 100);
-const mediumMarks = Math.round(section.marks * difficulty.medium / 100);
-const hardMarks = section.marks - easyMarks - mediumMarks;
+          if (current + q.marks > targetMarks) continue;
 
-let marks = 0;
+          q.section = section.title;
 
-function pick(list, targetMarks) {
+          sectionQuestions.push(q);
 
-    let current = 0;
+          used.add(q._id.toString());
 
-    for (const q of list) {
+          current += q.marks;
 
-        if (used.has(q._id.toString()))
-            continue;
+          marks += q.marks;
+        }
+      }
 
-        if (current + q.marks > targetMarks)
-            continue;
+      pick(easyQuestions, easyMarks);
+      pick(mediumQuestions, mediumMarks);
+      pick(hardQuestions, hardMarks);
+
+      const remainingQuestions = questions.filter(
+        (q) => !used.has(q._id.toString()),
+      );
+
+      for (const q of remainingQuestions) {
+        if (marks + q.marks > section.marks) continue;
 
         q.section = section.title;
 
@@ -117,76 +130,43 @@ function pick(list, targetMarks) {
 
         used.add(q._id.toString());
 
-        current += q.marks;
-
         marks += q.marks;
+
+        if (marks >= section.marks) break;
+      }
+
+      totalMarks += sectionQuestions.reduce(
+        (a, b) => a + b.marks,
+
+        0,
+      );
+
+      finalQuestions.push(...sectionQuestions);
     }
-}
+    const paperId = "QP-" + Date.now();
 
-pick(easyQuestions, easyMarks);
-pick(mediumQuestions, mediumMarks);
-pick(hardQuestions, hardMarks);
+    await Paper.create({
+      paperId,
 
-const remainingQuestions = questions.filter(
-    q => !used.has(q._id.toString())
-);
+      schoolId,
 
-for (const q of remainingQuestions) {
+      schoolName,
 
-    if (marks + q.marks > section.marks)
-        continue;
+      board,
 
-    q.section = section.title;
+      className,
 
-    sectionQuestions.push(q);
+      subject,
 
-    used.add(q._id.toString());
+      examName: (req.body.examName || "").trim(),
 
-    marks += q.marks;
+      section: req.body.section || "A",
 
-    if (marks >= section.marks)
-        break;
-}
+      duration: req.body.duration,
 
+      totalMarks,
 
-            totalMarks += sectionQuestions.reduce(
-
-                (a, b) => a + b.marks,
-
-                0
-
-            );
-
-            finalQuestions.push(...sectionQuestions);
-
-        }
-        const paperId ="QP-" + Date.now();
-
-        await Paper.create({
-
-    paperId,
-
-    schoolId,
-
-    schoolName,
-
-    board,
-
-    className,
-
-
-    subject,
-
-    examName: (req.body.examName || "").trim(),
-
-section: req.body.section || "A",
-
-    duration: req.body.duration,
-
-    totalMarks,
-
-    questions: finalQuestions.map(q => ({
-
+      questions: finalQuestions.map((q) => ({
         questionId: q._id,
 
         question: q.question,
@@ -203,53 +183,37 @@ section: req.body.section || "A",
 
         chapter: q.chapter,
 
-        section: q.section
+        section: q.section,
+      })),
+    });
+    res.json({
+      success: true,
 
-    }))
+      paperId,
 
-});
-       res.json({
+      totalMarks,
 
-    success: true,
+      totalQuestions: finalQuestions.length,
 
-    paperId,
-
-    totalMarks,
-
-    totalQuestions: finalQuestions.length,
-
-    questions: finalQuestions
-
-});
-
-    }
-
-    catch (err) {
-
+      questions: finalQuestions,
+    });
+  } catch (err) {
     console.log("========== PAPER ERROR ==========");
 
     console.log(err.message);
 
     if (err.errors) {
-
-        Object.keys(err.errors).forEach(key => {
-
-            console.log(key, "=>", err.errors[key].message);
-
-        });
-
+      Object.keys(err.errors).forEach((key) => {
+        console.log(key, "=>", err.errors[key].message);
+      });
     }
 
     res.status(500).json({
+      success: false,
 
-        success: false,
-
-        message: err.message
-
+      message: err.message,
     });
-
-}
-
+  }
 };
 
 /* ==========================================
@@ -257,106 +221,107 @@ section: req.body.section || "A",
 ========================================== */
 
 exports.getPaperList = async (req, res) => {
+  try {
+    const { schoolId } = req.query;
 
-    try {
+    const papers = await Paper.find({
+      schoolId,
+    })
+      .select("paperId examName subject className section board createdAt")
+      .sort({
+        createdAt: -1,
+      });
 
-        const { schoolId } = req.query;
+    res.json({
+      success: true,
 
-        const papers = await Paper.find({
+      papers,
+    });
+  } catch (err) {
+    console.error(err);
 
-            schoolId
+    res.status(500).json({
+      success: false,
 
-        })
-        .select(
-            "paperId examName subject className section board createdAt"
-        )
-        .sort({
-            createdAt: -1
-        });
-
-        res.json({
-
-            success: true,
-
-            papers
-
-        });
-
-    } catch (err) {
-
-        console.error(err);
-
-        res.status(500).json({
-
-            success: false,
-
-            message: err.message
-
-        });
-
-    }
-
+      message: err.message,
+    });
+  }
 };
 /* ==========================================
    Get Paper Filters
 ========================================== */
 
 exports.getPaperFilters = async (req, res) => {
+  try {
+    const { schoolId } = req.query;
 
-    try {
+    const papers = await Paper.find({ schoolId });
 
-        const { schoolId } = req.query;
+    const boards = [...new Set(papers.map((p) => p.board))];
 
-        const papers = await Paper.find({ schoolId });
+    const classes = [...new Set(papers.map((p) => p.className))];
 
-        const boards = [...new Set(papers.map(p => p.board))];
+    const sections = [...new Set(papers.map((p) => p.section || "A"))];
 
-        const classes = [...new Set(papers.map(p => p.className))];
+    const subjects = [...new Set(papers.map((p) => p.subject))];
 
-        const sections = [...new Set(
-            papers.map(p => p.section || "A")
-        )];
+    const exams = [
+      ...new Set(
+        papers
+          .map((p) => (p.examName || "").trim())
+          .filter((name) => name !== ""),
+      ),
+    ];
 
-        const subjects = [...new Set(
-            papers.map(p => p.subject)
-        )];
+    res.json({
+      success: true,
 
-       const exams = [...new Set(
+      boards,
 
-    papers
-        .map(p => (p.examName || "").trim())
-        .filter(name => name !== "")
+      classes,
 
-)];
+      sections,
 
-        res.json({
+      subjects,
 
-            success: true,
+      exams,
+    });
+  } catch (err) {
+    console.error(err);
 
-            boards,
+    res.status(500).json({
+      success: false,
 
-            classes,
+      message: err.message,
+    });
+  }
+};
 
-            sections,
+/* ==========================================
+   Get Single Paper
+========================================== */
 
-            subjects,
+exports.getPaperById = async (req, res) => {
+  try {
+    const { paperId } = req.params;
 
-            exams
+    const paper = await Paper.findOne({ paperId });
 
-        });
-
-    } catch (err) {
-
-        console.error(err);
-
-        res.status(500).json({
-
-            success: false,
-
-            message: err.message
-
-        });
-
+    if (!paper) {
+      return res.status(404).json({
+        success: false,
+        message: "Paper not found",
+      });
     }
 
+    res.json({
+      success: true,
+      paper,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
 };

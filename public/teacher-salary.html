@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Salary</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/teacher-salary.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <h2>
+        <i class="fa-solid fa-money-bill-wave"></i>
+        Teacher Salary Management
+    </h2>
+
+    <!-- Dashboard Cards -->
+
+    <div class="salary-dashboard">
+
+        <div class="salary-card">
+            <h3 id="totalTeachers">0</h3>
+            <p>Total Teachers</p>
+        </div>
+
+        <div class="salary-card green">
+            <h3 id="totalSalary">₹0</h3>
+            <p>Total Salary Paid</p>
+        </div>
+
+        <div class="salary-card red">
+            <h3 id="pendingSalary">0</h3>
+            <p>Pending Salary</p>
+        </div>
+
+    </div>
+
+    <!-- Teacher List -->
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Class</th>
+
+                    <th>Subject</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="teacherSalaryList">
+
+                <tr>
+
+                    <td colspan="4">
+
+                        Loading...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- Salary Modal -->
+
+<div id="salaryModal" class="salary-modal">
+
+    <div class="salary-content">
+
+        <span class="close" onclick="closeSalaryModal()">&times;</span>
+
+        <h2>Pay Teacher Salary</h2>
+
+        <div class="salary-grid">
+
+            <input id="basicSalary" type="number" placeholder="Basic Salary">
+
+            <input id="hra" type="number" placeholder="HRA">
+
+            <input id="da" type="number" placeholder="DA">
+
+            <input id="allowance" type="number" placeholder="Allowance">
+
+            <input id="bonus" type="number" placeholder="Bonus">
+
+            <input id="pf" type="number" placeholder="PF">
+
+            <input id="tax" type="number" placeholder="Tax">
+
+            <input id="deduction" type="number" placeholder="Other Deduction">
+
+        </div>
+
+        <h3>
+
+            Net Salary :
+            ₹<span id="netSalary">0</span>
+
+        </h3>
+
+        <select id="paymentMode">
+
+            <option>Cash</option>
+
+            <option>UPI</option>
+
+            <option>Bank Transfer</option>
+
+            <option>Cheque</option>
+
+        </select>
+
+        <textarea
+            id="remarks"
+            placeholder="Remarks"
+        ></textarea>
+
+        <button
+            class="saveSalaryBtn"
+            onclick="saveSalary()">
+
+            Pay Salary
+
+        </button>
+
+    </div>
+
+</div>
+
+<hr style="margin:35px 0;">
+
+<h2>
+    <i class="fa fa-history"></i>
+    Salary History
+</h2>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Teacher</th>
+
+<th>Month</th>
+
+<th>Net Salary</th>
+
+<th>Payment Mode</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="salaryHistory">
+
+<tr>
+
+<td colspan="6">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="js/teacher-salary.js"></script>
+
+</body>
+
+</html>

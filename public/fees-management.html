@@ -25,492 +25,584 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 
 <body>
+<div class="container">
 
-<div class="dashboard">
+    <!-- ==========================================
+            PAGE HEADER
+    =========================================== -->
 
-<!-- =========================
-HEADER
-========================= -->
+    <header class="page-header">
 
-<header class="top-header">
+        <div class="header-left">
 
-<div class="school-info">
+            <div class="header-icon">
 
-<div class="school-logo">
+                <i class="fa-solid fa-money-bill-wave"></i>
 
-<i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+
+            <div>
+
+                <h1>Fee Collection</h1>
+
+                <p>
+
+                    Collect Student Fees & Generate Receipts
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+
+            class="back-btn"
+
+            onclick="location.href='teacher-dashboard.html'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </button>
+
+    </header>
+
+    <!-- ==========================================
+            SUMMARY
+    =========================================== -->
+
+    <h2 class="section-title">
+
+        <i class="fa-solid fa-chart-column"></i>
+
+        Fee Overview
+
+    </h2>
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon today">
+
+                <i class="fa-solid fa-calendar-day"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="todayCollection">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Today's Collection
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon month">
+
+                <i class="fa-solid fa-calendar"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="monthlyCollection">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Monthly Collection
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon pending">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="pendingFees">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Pending Fees
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-icon students">
+
+                <i class="fa-solid fa-user-check"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="studentsPaid">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Students Paid Today
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+            SEARCH
+    =========================================== -->
+
+    <section class="search-panel">
+
+        <h2>
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Search Student
+
+        </h2>
+
+        <div class="fee-search">
+
+            <input
+
+                id="searchStudent"
+
+                type="text"
+
+                placeholder="Admission No / Roll No / Student Name">
+
+            <button id="searchBtn">
+
+                <i class="fa-solid fa-search"></i>
+
+                Search
+
+            </button>
+
+        </div>
+
+    </section>
+
+   <!-- ==========================================
+        STUDENT + PAYMENT
+=========================================== -->
+
+<div class="payment-layout">
+
+    <!-- ==========================
+            STUDENT DETAILS
+    =========================== -->
+
+    <section class="payment-form">
+
+        <h2>
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            Student Information
+
+        </h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Student Name</label>
+
+                <input
+                    id="studentName"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Admission No</label>
+
+                <input
+                    id="admissionNo"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Roll No</label>
+
+                <input
+                    id="rollNo"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Class</label>
+
+                <input
+                    id="className"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Section</label>
+
+                <input
+                    id="section"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Parent Name</label>
+
+                <input
+                    id="parentName"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Mobile</label>
+
+                <input
+                    id="mobile"
+                    readonly>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+            PAYMENT DETAILS
+    =========================== -->
+
+    <section class="payment-form">
+
+        <h2>
+
+            <i class="fa-solid fa-credit-card"></i>
+
+            Payment Details
+
+        </h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Fee Month</label>
+
+                <input
+                    type="month"
+                    id="feeMonth">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Total Fee</label>
+
+                <input
+                    id="totalFee"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Discount</label>
+
+                <input
+                    id="discount"
+                    type="number"
+                    value="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Fine</label>
+
+                <input
+                    id="fine"
+                    type="number"
+                    value="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Amount Paid</label>
+
+                <input
+                    id="amountPaid"
+                    type="number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Balance</label>
+
+                <input
+                    id="balance"
+                    readonly>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Payment Mode</label>
+
+                <select id="paymentMode">
+
+                    <option>Cash</option>
+
+                    <option>UPI</option>
+
+                    <option>Card</option>
+
+                    <option>Bank Transfer</option>
+
+                    <option>Cheque</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Transaction ID</label>
+
+                <input
+                    id="transactionId">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Remarks</label>
+
+                <input
+                    id="remarks">
+
+            </div>
+
+        </div>
+
+        <div class="button-row">
+
+            <button
+
+                class="save-btn"
+
+                id="collectBtn">
+
+                <i class="fa-solid fa-money-check-dollar"></i>
+
+                Collect Fee
+
+            </button>
+
+            <button
+
+                class="print-btn"
+
+                id="printBtn">
+
+                <i class="fa-solid fa-print"></i>
+
+                Print Receipt
+
+            </button>
+
+            <button
+
+                class="reset-btn"
+
+                id="resetBtn">
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </section>
 
 </div>
+<!-- ==========================================
+        PAYMENT HISTORY
+========================================== -->
 
-<div>
+<section class="table-panel">
 
-<h1>Fee Collection</h1>
+    <div class="section-title">
 
-<p>Collect Student Fees</p>
+        <i class="fa-solid fa-clock-rotate-left"></i>
 
-</div>
+        <span>Recent Fee Collection</span>
 
-</div>
+    </div>
 
-<div class="header-actions">
+    <div class="table-responsive">
 
-<button
-class="header-btn"
-onclick="location.href='fees-structure.html'">
+        <table class="data-table">
 
-<i class="fa-solid fa-sliders"></i>
+            <thead>
 
-Fee Structure
+                <tr>
 
-</button>
+                    <th>Receipt No</th>
 
-<button
-class="back-btn"
-onclick="location.href='school-dashboard.html'">
+                    <th>Student</th>
 
-<i class="fa-solid fa-arrow-left"></i>
+                    <th>Class</th>
 
-Dashboard
+                    <th>Month</th>
 
-</button>
+                    <th>Total Fee</th>
 
-</div>
+                    <th>Paid</th>
 
-</header>
+                    <th>Balance</th>
 
-<!-- =========================
-SUMMARY CARDS
-========================= -->
+                    <th>Status</th>
 
-<section class="dashboard-grid">
+                    <th>Receipt</th>
 
-<div class="card">
+                    <th>Delete</th>
 
-<div class="card-icon">
+                </tr>
 
-<i class="fa-solid fa-calendar-day"></i>
+            </thead>
 
-</div>
+            <tbody id="feeHistory">
 
-<h2>Today's Collection</h2>
+                <tr>
 
-<h1 id="todayCollection">₹0</h1>
+                    <td colspan="10" class="empty-table">
 
-<p>Today's Fees</p>
+                        <i class="fa-solid fa-file-circle-xmark"
+                           style="font-size:40px;color:#cbd5e1;margin-bottom:15px;display:block;"></i>
 
-</div>
+                        No fee records found.
 
-<div class="card">
+                    </td>
 
-<div class="card-icon">
+                </tr>
 
-<i class="fa-solid fa-calendar"></i>
+            </tbody>
 
-</div>
+        </table>
 
-<h2>Monthly Collection</h2>
-
-<h1 id="monthlyCollection">₹0</h1>
-
-<p>This Month</p>
-
-</div>
-
-<div class="card">
-
-<div class="card-icon">
-
-<i class="fa-solid fa-wallet"></i>
-
-</div>
-
-<h2>Pending Fees</h2>
-
-<h1 id="pendingFees">₹0</h1>
-
-<p>Outstanding Amount</p>
-
-</div>
-
-<div class="card">
-
-<div class="card-icon">
-
-<i class="fa-solid fa-user-check"></i>
-
-</div>
-
-<h2>Students Paid</h2>
-
-<h1 id="studentsPaid">0</h1>
-
-<p>Today</p>
-
-</div>
+    </div>
 
 </section>
 
-<!-- =========================
-SEARCH STUDENT
-========================= -->
+<!-- ==========================================
+        QUICK ACTIONS
+========================================== -->
 
-<section class="activity-section">
+<section class="table-panel">
 
-<div class="activity-header">
+    <div class="section-title">
 
-<h2>
+        <i class="fa-solid fa-bolt"></i>
 
-<i class="fa-solid fa-magnifying-glass"></i>
+        <span>Quick Actions</span>
 
-Search Student
+    </div>
 
-</h2>
+    <div class="action-grid">
 
-</div>
+        <button onclick="location.href='fees-structure.html'">
 
-<div class="fee-search">
+            <i class="fa-solid fa-sliders"></i>
 
-<input
-type="text"
-id="searchStudent"
-placeholder="Admission No / Roll No / Student Name">
+            <span>Fee Structure</span>
 
-<button
-id="searchBtn">
+        </button>
 
-<i class="fa-solid fa-search"></i>
+        <button onclick="location.href='student-management.html'">
 
-Search
+            <i class="fa-solid fa-user-graduate"></i>
 
-</button>
+            <span>Students</span>
 
-</div>
+        </button>
 
-</section>
+        <button onclick="location.href='school-dashboard.html'">
 
-<!-- =========================
-STUDENT DETAILS
-========================= -->
+            <i class="fa-solid fa-chart-line"></i>
 
-<section class="activity-section">
+            <span>Dashboard</span>
 
-<div class="activity-header">
+        </button>
 
-<h2>
+        <button onclick="location.href='reports.html'">
 
-<i class="fa-solid fa-user-graduate"></i>
+            <i class="fa-solid fa-file-lines"></i>
 
-Student Details
+            <span>Reports</span>
 
-</h2>
+        </button>
 
-</div>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Student Name</label>
-
-<input type="text"
-id="studentName"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Admission No</label>
-
-<input type="text"
-id="admissionNo"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Roll No</label>
-
-<input type="text"
-id="rollNo"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Class</label>
-
-<input type="text"
-id="className"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Section</label>
-
-<input type="text"
-id="section"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Parent</label>
-
-<input type="text"
-id="parentName"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Mobile</label>
-
-<input type="text"
-id="mobile"
-readonly>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<!-- =========================
-PAYMENT DETAILS
-========================= -->
-
-<section class="activity-section">
-
-<div class="activity-header">
-
-<h2>
-
-<i class="fa-solid fa-indian-rupee-sign"></i>
-
-Payment Details
-
-</h2>
-
 </div>
 
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Month</label>
-
-<input
-type="month"
-id="feeMonth">
-
-</div>
-
-<div class="form-group">
-
-<label>Total Fee</label>
-
-<input
-type="number"
-id="totalFee"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Discount</label>
-
-<input
-type="number"
-id="discount"
-value="0">
-
-</div>
-
-<div class="form-group">
-
-<label>Fine</label>
-
-<input
-type="number"
-id="fine"
-value="0">
-
-</div>
-
-<div class="form-group">
-
-<label>Amount Paid</label>
-
-<input
-type="number"
-id="amountPaid">
-
-</div>
-
-<div class="form-group">
-
-<label>Balance</label>
-
-<input
-type="number"
-id="balance"
-readonly>
-
-</div>
-
-<div class="form-group">
-
-<label>Payment Mode</label>
-
-<select id="paymentMode">
-
-<option>Cash</option>
-
-<option>UPI</option>
-
-<option>Card</option>
-
-<option>Bank Transfer</option>
-
-<option>Cheque</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Transaction ID</label>
-
-<input
-type="text"
-id="transactionId">
-
-</div>
-
-<div class="form-group">
-
-<label>Remarks</label>
-
-<input
-type="text"
-id="remarks">
-
-</div>
-
-</div>
-
-<div class="button-row">
-
-<button
-class="header-btn"
-id="collectBtn">
-
-<i class="fa-solid fa-money-check-dollar"></i>
-
-Collect Fee
-
-</button>
-
-<button
-class="header-btn"
-id="printBtn">
-
-<i class="fa-solid fa-print"></i>
-
-Print Receipt
-
-</button>
-
-<button
-class="back-btn"
-id="resetBtn">
-
-Reset
-
-</button>
-
-</div>
-
-</section>
-
-<!-- =========================
-PAYMENT HISTORY
-========================= -->
-
-<section class="activity-section">
-
-<div class="activity-header">
-
-<h2>
-
-<i class="fa-solid fa-table"></i>
-
-Recent Fee Collection
-
-</h2>
-
-</div>
-
-<div class="table-responsive">
-
-<table class="data-table">
-
-<thead>
-
-<tr>
-
-<th>Receipt</th>
-
-<th>Student</th>
-
-<th>Class</th>
-
-<th>Month</th>
-
-<th>Paid</th>
-
-<th>Balance</th>
-
-<th>Status</th>
-
-<th>Print</th>
-
-<th>Delete</th>
-
-</tr>
-
-</thead>
-
-<tbody id="feeHistory">
-
-<tr>
-
-<td colspan="9">
-
-No Records Found
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-</div>
 
 <script src="js/fees-management.js"></script>
 

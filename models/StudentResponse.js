@@ -27,6 +27,21 @@ const studentResponseSchema = new mongoose.Schema({
     examName: String,
 
     totalMarks: Number,
+    
+    obtainedMarks: {
+    type: Number,
+    default: 0
+},
+
+percentage: {
+    type: Number,
+    default: 0
+},
+
+grade: {
+    type: String,
+    default: ""
+},
 
     answers: [{
 

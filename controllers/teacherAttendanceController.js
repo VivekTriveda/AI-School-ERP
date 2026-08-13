@@ -274,3 +274,77 @@ exports.rejectLeave = async (req, res) => {
     }
 
 };
+
+// ======================================
+// Teacher My Attendance
+// ======================================
+
+exports.getMyAttendance = async (req, res) => {
+
+    try {
+
+        const { teacherId } = req.params;
+
+        const attendance =
+            await TeacherAttendance.find({ teacherId })
+            .sort({ date: -1 });
+
+        const present =
+            attendance.filter(a => a.status === "Present").length;
+
+        const absent =
+            attendance.filter(a => a.status === "Absent").length;
+
+        const leave =
+            attendance.filter(a =>
+                ["CL","EL","SL"].includes(a.status)
+            ).length;
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        const todayAttendance =
+            attendance.find(a => a.date === today);
+
+        const percentage =
+            attendance.length
+                ? ((present / attendance.length) * 100).toFixed(1)
+                : 0;
+
+        res.json({
+
+            success:true,
+
+            summary:{
+                total:attendance.length,
+                present,
+                absent,
+                leave,
+                percentage,
+                todayStatus:
+                    todayAttendance?.status || "Not Marked",
+                checkIn:
+                    todayAttendance?.checkIn || "-",
+                checkOut:
+                    todayAttendance?.checkOut || "-"
+            },
+
+            attendance
+
+        });
+
+    } catch(err){
+
+        console.error(err);
+
+        res.status(500).json({
+
+            success:false,
+
+            message:err.message
+
+        });
+
+    }
+
+};

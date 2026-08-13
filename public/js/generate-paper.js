@@ -2,11 +2,14 @@ let generatedPaper = [];
 let editingIndex = -1;
 let currentPaperId = "";
 
-const role = localStorage.getItem("role");
+const currentUser =
+    JSON.parse(localStorage.getItem("currentUser")) || {};
 
-const teacher = JSON.parse(
-    localStorage.getItem("teacher")
-);
+const teacher =
+    JSON.parse(localStorage.getItem("teacher")) || currentUser;
+
+const role =
+    currentUser.role || "admin";
 
 // =========================
 // Auto Fill School Name
@@ -165,7 +168,12 @@ selectedTypes.forEach((type, index) => {
 
 
         generatedPaper = [];
-        if (!localStorage.getItem("schoolId")) {
+      const schoolId =
+    role === "teacher"
+        ? teacher.schoolId
+        : localStorage.getItem("schoolId");
+
+if (!schoolId) {
 
     showToast("Please select a school first.", true);
 

@@ -28,6 +28,10 @@ router.put(
     attendanceController.rejectLeave
 
 );
+router.get(
+    "/my/:teacherId",
+    attendanceController.getMyAttendance
+);
 
 router.get(
 

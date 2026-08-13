@@ -442,18 +442,17 @@ const school = JSON.parse(localStorage.getItem("currentSchool"));
 
 if (school) {
 
-    // Top Header
-    document.getElementById("topSchoolName").innerText = school.schoolName;
+    const schoolName = document.getElementById("schoolName");
+    if (schoolName) {
+        schoolName.value = school.schoolName;
+        schoolName.readOnly = true;
+    }
 
-    document.getElementById("topPrincipalName").innerText =
-        "Principal : " + (school.principal || "Not Assigned");
-
-    // Form
-    document.getElementById("schoolName").value = school.schoolName;
-    document.getElementById("schoolName").readOnly = true;
-
-    document.getElementById("board").value = school.board;
-    document.getElementById("board").disabled = true;
+    const board = document.getElementById("board");
+    if (board) {
+        board.value = school.board;
+        board.disabled = true;
+    }
 
 }
 

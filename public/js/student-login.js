@@ -106,6 +106,29 @@ async function loginStudent(e) {
             "student",
             JSON.stringify(data.student)
         );
+    
+
+        localStorage.setItem("role", "student");
+
+localStorage.setItem("schoolId", data.student.schoolId);
+
+localStorage.setItem("currentUser", JSON.stringify({
+
+    _id: data.student._id || data.student.id,
+
+    role: "student",
+
+    schoolId: data.student.schoolId,
+
+    name: data.student.studentName,
+
+    className: data.student.className,
+
+    section: data.student.section,
+
+    studentId: data.student.studentId
+
+}));
 
         message.style.color = "green";
 

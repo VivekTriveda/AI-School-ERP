@@ -8,17 +8,9 @@ const paperController = require("../controllers/paperController");
 Generate Paper using Blueprint
 */
 
-router.post(
-    "/generate-blueprint",
-    paperController.generateBlueprint
-);
+router.post("/generate-blueprint", paperController.generateBlueprint);
 
-router.get(
-    "/list",
-    paperController.getPaperList
-);
-router.get(
-    "/filters",
-    paperController.getPaperFilters
-);
+router.get("/list", paperController.getPaperList);
+router.get("/filters", paperController.getPaperFilters);
+router.get("/:paperId", paperController.getPaperById);
 module.exports = router;

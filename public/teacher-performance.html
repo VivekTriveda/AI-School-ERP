@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Performance</title>
+
+<link rel="stylesheet"
+href="css/dashboard.css">
+
+<link rel="stylesheet"
+href="css/school-dashboard.css">
+
+<link rel="stylesheet"
+href="css/teacher-performance.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+<body>
+
+<div class="tp-container">
+
+    <!-- =======================================
+            HEADER
+    ======================================== -->
+
+    <div class="tp-header">
+
+        <div class="tp-title">
+
+            <div class="tp-icon">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+            </div>
+
+            <div>
+
+                <h1>Teacher Performance Dashboard</h1>
+
+                <p>
+                    Monitor teacher productivity, academic performance,
+                    examinations and student outcomes.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="tp-actions">
+
+            <button class="btn-light"
+                onclick="location.href='school-dashboard.html'">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Dashboard
+
+            </button>
+
+            <button class="btn-primary">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Export Report
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =======================================
+            SUMMARY CARDS
+    ======================================== -->
+
+    <div class="cards-grid">
+
+        <div class="stat-card blue">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <div>
+
+                <span>Total Teachers</span>
+
+                <h2 id="totalTeachers">0</h2>
+
+                <small>Active Faculty</small>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card green">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-trophy"></i>
+
+            </div>
+
+            <div>
+
+                <span>Best Performer</span>
+
+                <h2 id="bestTeacher">--</h2>
+
+                <small>Highest Score</small>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card orange">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+            <div>
+
+                <span>Average Rating</span>
+
+                <h2 id="averageRating">0%</h2>
+
+                <small>Overall Performance</small>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card red">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+            <div>
+
+                <span>Need Improvement</span>
+
+                <h2 id="needImprovement">0</h2>
+
+                <small>Teachers Below 60%</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+        FILTER SECTION
+========================================== -->
+
+<section class="filter-section">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+
+                <i class="fa-solid fa-filter"></i>
+
+                Performance Filters
+
+            </h2>
+
+            <p>
+
+                Filter teacher performance by academic year, class, subject and rating.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="filter-grid">
+
+        <div class="filter-box">
+
+            <label>Academic Year</label>
+
+            <select id="academicYear">
+
+                <option value="">All Years</option>
+
+            </select>
+
+        </div>
+
+        <div class="filter-box">
+
+            <label>Class</label>
+
+            <select id="classFilter">
+
+                <option value="">All Classes</option>
+
+            </select>
+
+        </div>
+
+        <div class="filter-box">
+
+            <label>Subject</label>
+
+            <select id="subjectFilter">
+
+                <option value="">All Subjects</option>
+
+            </select>
+
+        </div>
+
+        <div class="filter-box">
+
+            <label>Teacher</label>
+
+            <select id="teacherFilter">
+
+                <option value="">All Teachers</option>
+
+            </select>
+
+        </div>
+
+        <div class="filter-box">
+
+            <label>Minimum Rating</label>
+
+            <select id="ratingFilter">
+
+                <option value="">All</option>
+                <option value="90">90% & Above</option>
+                <option value="80">80% & Above</option>
+                <option value="70">70% & Above</option>
+                <option value="60">60% & Above</option>
+
+            </select>
+
+        </div>
+
+        <div class="action-box">
+
+            <button
+                class="search-btn"
+                onclick="loadTeacherPerformance()">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="reset-btn"
+                onclick="resetFilters()">
+
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        PERFORMANCE REPORT
+========================================== -->
+
+<section class="report-section">
+
+    <div class="report-header">
+
+        <div>
+
+            <h2>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Teacher Performance Report
+
+            </h2>
+
+            <p>
+
+                Overall academic performance of teachers.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table class="performance-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Teacher</th>
+
+                    <th>Subject</th>
+
+                    <th>Classes</th>
+
+                    <th>Student Avg</th>
+
+                    <th>Attendance</th>
+
+                    <th>Tests</th>
+
+                    <th>Results</th>
+
+                    <th>Rating</th>
+
+                    <th>Score</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="teacherPerformanceTable">
+
+                <tr>
+
+                    <td colspan="10" class="empty-state">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <br><br>
+
+                        Loading teacher performance...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        PERFORMANCE INSIGHTS
+========================================== -->
+
+<section class="insight-grid">
+
+    <div class="insight-card">
+
+        <div class="insight-header">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <h3>Top Performer</h3>
+
+        </div>
+
+        <div class="insight-body">
+
+            <h2 id="topPerformerName">
+
+                --
+
+            </h2>
+
+            <p>
+
+                Highest Overall Performance Score
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="insight-card">
+
+        <div class="insight-header">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h3>Average Student Result</h3>
+
+        </div>
+
+        <div class="insight-body">
+
+            <h2 id="overallStudentAverage">
+
+                0%
+
+            </h2>
+
+            <p>
+
+                Across All Teachers
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="insight-card">
+
+        <div class="insight-header">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <h3>Total Tests Conducted</h3>
+
+        </div>
+
+        <div class="insight-body">
+
+            <h2 id="totalTestsConducted">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Current Academic Session
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        CHART SECTION
+========================================== -->
+
+<section class="chart-section">
+
+    <div class="chart-header">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Teacher Performance Overview
+
+        </h2>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <h4>
+
+                Performance Distribution
+
+            </h4>
+
+            <canvas id="performanceChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h4>
+
+                Student Result Comparison
+
+            </h4>
+
+            <canvas id="resultChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        TEACHER PERFORMANCE MODAL
+========================================== -->
+
+<div id="teacherModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-user-graduate"></i>
+                Teacher Performance Report
+            </h2>
+
+            <span class="close" onclick="closeTeacherModal()">
+                &times;
+            </span>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="teacher-profile">
+
+                <div class="teacher-photo">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div>
+
+                    <h2 id="modalTeacherName">--</h2>
+
+                    <p id="modalTeacherSubject">
+                        Subject
+                    </p>
+
+                    <p id="modalTeacherClasses">
+                        Classes
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="performance-grid">
+
+                <div class="performance-card">
+
+                    <span>Overall Score</span>
+
+                    <h2 id="modalScore">0%</h2>
+
+                </div>
+
+                <div class="performance-card">
+
+                    <span>Student Average</span>
+
+                    <h2 id="modalStudentAverage">0%</h2>
+
+                </div>
+
+                <div class="performance-card">
+
+                    <span>Attendance</span>
+
+                    <h2 id="modalAttendance">0%</h2>
+
+                </div>
+
+                <div class="performance-card">
+
+                    <span>Tests Conducted</span>
+
+                    <h2 id="modalTests">0</h2>
+
+                </div>
+
+                <div class="performance-card">
+
+                    <span>Results Submitted</span>
+
+                    <h2 id="modalResults">0</h2>
+
+                </div>
+
+                <div class="performance-card">
+
+                    <span>Performance Rating</span>
+
+                    <h2 id="modalRating">--</h2>
+
+                </div>
+
+            </div>
+
+            <div class="recommendation-box">
+
+                <h3>
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    AI Recommendation
+
+                </h3>
+
+                <p id="modalRecommendation">
+
+                    --
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<footer>
+
+© 2026 AI School ERP | Teacher Performance Module
+
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/teacher-performance.js"></script>
+
+</body>
+
+</html>

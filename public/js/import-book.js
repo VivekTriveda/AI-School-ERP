@@ -1,9 +1,3 @@
-const role = localStorage.getItem("role");
-
-if (role === "teacher") {
-    window.location.href = "teacher-dashboard.html";
-}
-
 
 const board = document.getElementById("board");
 const className = document.getElementById("class");

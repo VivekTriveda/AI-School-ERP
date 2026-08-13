@@ -844,10 +844,11 @@ exports.getStudentResults = async (req, res) => {
 
         const results = await Evaluation.find({
 
-            schoolId: student.schoolId,
-            rollNo: student.rollNo
+    schoolId: student.schoolId,
+    rollNo: student.rollNo,
+    published: true
 
-        }).sort({ createdAt: -1 });
+}).sort({ createdAt: -1 });
 
         res.json({
 
@@ -870,3 +871,161 @@ exports.getStudentResults = async (req, res) => {
     }
 
 };
+// ======================================
+// TEACHER RESULTS
+// ======================================
+
+exports.teacherResults = async (req, res) => {
+
+    try {
+
+        const {
+            schoolId,
+            className,
+            section,
+            subject,
+            examName
+        } = req.query;
+
+        const filter = {};
+
+        if (schoolId) filter.schoolId = schoolId;
+        if (className) filter.className = className;
+        if (section) filter.section = section;
+        if (subject) filter.subject = subject;
+        if (examName) filter.examName = examName;
+
+        const results = await Evaluation.find(filter)
+            .sort({
+                rollNo: 1
+            });
+
+        res.json({
+
+            success: true,
+
+            count: results.length,
+
+            results
+
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+
+            success: false,
+
+            message: err.message
+
+        });
+
+    }
+
+};
+
+
+// ======================================
+// PUBLISH RESULT
+// ======================================
+
+exports.publishResults = async (req, res) => {
+
+    try {
+
+        const {
+            schoolId,
+            className,
+            section,
+            subject,
+            examName,
+            teacherName
+        } = req.body;
+
+        const result = await Evaluation.updateMany(
+
+            {
+                schoolId,
+                className,
+                section,
+                subject,
+                examName
+            },
+
+            {
+                $set: {
+
+                    published: true,
+
+                    publishedBy: teacherName,
+
+                    publishedAt: new Date()
+
+                }
+
+            }
+
+        );
+
+        res.json({
+
+            success: true,
+
+            message: `${result.modifiedCount} results published successfully.`
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+
+            success: false,
+
+            message: err.message
+
+        });
+
+    }
+
+};
+
+
+// ======================================
+// GET EXAM NAMES
+// ======================================
+
+exports.getExamNames = async (req, res) => {
+
+    try {
+
+        const { schoolId, className, section, subject } = req.query;
+
+        const exams = await Evaluation.distinct("examName", {
+            schoolId,
+            className,
+            section,
+            subject
+        });
+
+        res.json({
+            success: true,
+            exams
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+
+    }
+
+};
+

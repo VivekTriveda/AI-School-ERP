@@ -4,6 +4,7 @@ const router = express.Router();
 const {
     getStudents,
     getStudentById,
+    getStudentsBySchool,
     addStudent,
     updateStudent,
     deleteStudent,
@@ -15,6 +16,8 @@ router.get("/", getStudents);
 
 // Search Student
 router.get("/search", searchStudent);
+
+router.get("/school/:schoolId", getStudentsBySchool);
 
 // Get single student
 router.get("/:id", getStudentById);

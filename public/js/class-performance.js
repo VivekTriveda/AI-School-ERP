@@ -138,143 +138,244 @@ function loadPageInformation() {
 }
 
 
+
 // =========================================================
-// CREATE EXAM SELECTOR
+// LOAD EXAMS FROM EVALUATION API
 // =========================================================
 
-function createExamSelector() {
+async function loadExams() {
 
-    const tableActions =
-        document.querySelector(".table-actions");
+    const examSelect =
+        document.getElementById("examSelect");
 
-    if (!tableActions) {
-        console.warn(
-            "Table actions area not found."
+    if (!examSelect) {
+        console.error(
+            "examSelect dropdown not found in HTML"
+        );
+        return;
+    }
+
+    try {
+
+        examSelect.innerHTML = `
+            <option value="">
+                Loading exams...
+            </option>
+        `;
+
+        const className =
+            teacherClasses[0] || "";
+
+        const subject =
+            teacherSubjects[0] || "";
+
+        let section =
+            teacher?.classTeacherOf?.section ||
+            teacher?.section ||
+            "";
+
+        // Same fallback as mobile
+        if (!section) {
+
+            section =
+                allStudents.find(
+                    student =>
+                        student?.section
+                )?.section || "";
+        }
+
+        if (!section) {
+            section = "A";
+        }
+
+        console.log(
+            "========== LOAD EXAMS FROM EVALUATION =========="
         );
 
-        return;
-    }
+        console.log(
+            "schoolId:",
+            schoolId
+        );
 
+        console.log(
+            "className:",
+            className
+        );
 
-    // Prevent duplicate selector
-    if (
-        document.getElementById(
-            "examSelector"
-        )
-    ) {
-        return;
-    }
+        console.log(
+            "section:",
+            section
+        );
 
+        console.log(
+            "subject:",
+            subject
+        );
 
-    const wrapper =
-        document.createElement("div");
+        if (
+            !schoolId ||
+            !className ||
+            !subject
+        ) {
 
-    wrapper.className =
-        "exam-selector-wrapper";
+            throw new Error(
+                "School, class or subject information is missing."
+            );
+        }
 
-    wrapper.style.display = "flex";
-    wrapper.style.alignItems = "center";
-    wrapper.style.gap = "10px";
-    wrapper.style.marginRight = "10px";
+        const params =
+            new URLSearchParams({
 
+                schoolId:
+                    String(schoolId),
 
-    const label =
-        document.createElement("label");
+                className:
+                    String(className),
 
-    label.textContent = "Exam:";
+                section:
+                    String(section),
 
-    label.style.fontWeight = "600";
-    label.style.color = "#1d4ed8";
+                subject:
+                    String(subject)
 
+            });
 
-    const select =
-        document.createElement("select");
+        const url =
+            "/api/evaluation/exam-names?" +
+            params.toString();
 
-    select.id = "examSelector";
+        console.log(
+            "EVALUATION EXAM API:",
+            url
+        );
 
-    select.style.padding = "10px 14px";
-    select.style.border =
-        "1px solid #d1d5db";
-    select.style.borderRadius = "8px";
-    select.style.background = "#fff";
-    select.style.minWidth = "180px";
-    select.style.fontSize = "14px";
+        const response =
+            await fetch(url);
 
+        console.log(
+            "EVALUATION EXAM STATUS:",
+            response.status
+        );
 
-    const defaultOption =
-        document.createElement("option");
+        if (!response.ok) {
 
-    defaultOption.value = "";
+            throw new Error(
+                "Exam API failed. HTTP " +
+                response.status
+            );
+        }
 
-    defaultOption.textContent =
-        "Select Exam";
+        const data =
+            await response.json();
 
-    select.appendChild(
-        defaultOption
-    );
+        console.log(
+            "EVALUATION EXAM RESPONSE:",
+            data
+        );
 
+        examSelect.innerHTML = `
+            <option value="">
+                Select Exam
+            </option>
+        `;
 
-    wrapper.appendChild(label);
+        if (
+            !data.success ||
+            !Array.isArray(data.exams) ||
+            data.exams.length === 0
+        ) {
 
-    wrapper.appendChild(select);
+            examSelect.innerHTML = `
+                <option value="">
+                    No exams available
+                </option>
+            `;
 
+            console.log(
+                "NO EXAMS FOUND"
+            );
 
-    // Put exam selector before search
-    tableActions.prepend(wrapper);
+            return;
+        }
 
+        // Remove duplicate exam names
+        const uniqueExams =
+            [
+                ...new Set(
+                    data.exams
+                        .filter(Boolean)
+                        .map(
+                            exam =>
+                                String(exam).trim()
+                        )
+                )
+            ];
 
-    // Exam changed
-    select.addEventListener(
-        "change",
-        async function () {
+        uniqueExams.forEach(
+            exam => {
 
-            const exam =
-                this.value;
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            if (!exam) {
+                option.value =
+                    exam;
 
-                allPerformanceData = [];
+                option.textContent =
+                    exam;
 
-                renderEmptyState(
-                    "Select an exam to view performance."
+                examSelect.appendChild(
+                    option
                 );
-
-                updateSummary([]);
-
-                renderTopStudents([]);
-
-                renderImprovementStudents([]);
-
-                return;
             }
+        );
 
+        console.log(
+            "EXAMS LOADED:",
+            uniqueExams
+        );
 
-            // Update URL
-            const url =
-                new URL(
-                    window.location.href
-                );
+        // -------------------------------------------------
+        // CHECK URL EXAM
+        // -------------------------------------------------
 
-            url.searchParams.set(
-                "exam",
-                exam
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
             );
 
-            window.history.replaceState(
-                {},
-                "",
-                url
-            );
+        const urlExam =
+            urlParams.get("exam");
 
+        if (
+            urlExam &&
+            uniqueExams.includes(urlExam)
+        ) {
+
+            examSelect.value =
+                urlExam;
 
             await loadMarks(
                 allStudents,
-                exam
+                urlExam
             );
         }
-    );
-}
 
+    } catch (error) {
+
+        console.error(
+            "Load exams error:",
+            error
+        );
+
+        examSelect.innerHTML = `
+            <option value="">
+                Unable to load exams
+            </option>
+        `;
+    }
+}
 
 // =========================================================
 // LOAD STUDENTS
@@ -406,32 +507,40 @@ async function loadStudents() {
         );
 
 
-        // Create exam selector
-        createExamSelector();
+       
 
 
-        // Try URL exam first
-        const examSelect =
+        // =================================================
+// CHECK URL EXAM
+// =================================================
+
+const examSelect =
     document.getElementById("examSelect");
 
-const exam =
-    examSelect?.value || "";
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const urlExam =
+    urlParams.get("exam");
 
 
-        // If URL contains exam, load it
-        if (urlExam) {
+if (urlExam) {
 
-            setExamSelectorValue(
-                urlExam
-            );
+    if (examSelect) {
 
-            await loadMarks(
-                students,
-                urlExam
-            );
+        examSelect.value =
+            urlExam;
+    }
 
-            return;
-        }
+    await loadMarks(
+        students,
+        urlExam
+    );
+
+    return;
+}
 
 
         // Otherwise show empty state
@@ -621,7 +730,7 @@ async function loadMarks(
 
 
         const url =
-            "/api/marks?" +
+            "/api/evaluation/exam-names?" +
             params.toString();
 
 
@@ -1712,8 +1821,7 @@ window.addEventListener(
         loadPageInformation();
 
 
-        // Create exam selector immediately
-        createExamSelector();
+      
 
 
         // Load students
@@ -1739,68 +1847,159 @@ window.addEventListener(
 );
 
 // =========================================================
-// LOAD EXAMS
+// LOAD PERFORMANCE MARKS
 // =========================================================
 
-async function loadExams() {
-
-    const examSelect =
-        document.getElementById("examSelect");
-
-    if (!examSelect) {
-        console.error(
-            "examSelect element not found"
-        );
-        return;
-    }
+async function loadMarks(
+    students,
+    selectedExam
+) {
 
     try {
 
-        examSelect.innerHTML =
-            `<option value="">Loading exams...</option>`;
+        if (!selectedExam) {
 
-        const className =
-            teacherClasses[0] || "";
+            allPerformanceData = [];
 
-        const subject =
-            teacherSubjects[0] || "";
+            renderEmptyState(
+                "Select an exam to view performance."
+            );
 
-        if (!schoolId || !className || !subject) {
+            updateSummary([]);
 
-            examSelect.innerHTML =
-                `<option value="">No exams available</option>`;
+            renderTopStudents([]);
+
+            renderImprovementStudents([]);
 
             return;
         }
 
-        const params =
-            new URLSearchParams();
+        console.log(
+            "========== LOAD PERFORMANCE =========="
+        );
 
-        params.set(
-            "schoolId",
+        const className =
+            teacher?.classes?.[0] ||
+            teacher?.className ||
+            teacher?.class ||
+            "";
+
+        const subject =
+            teacher?.subjects?.[0] ||
+            teacher?.subject ||
+            "";
+
+        if (!schoolId) {
+
+            throw new Error(
+                "School information is missing."
+            );
+        }
+
+        if (!className) {
+
+            throw new Error(
+                "Teacher class information is missing."
+            );
+        }
+
+        if (!subject) {
+
+            throw new Error(
+                "Teacher subject information is missing."
+            );
+        }
+
+        // -------------------------------------------------
+        // SECTION
+        // -------------------------------------------------
+
+        let section =
+            teacher?.classTeacherOf?.section ||
+            teacher?.section ||
+            "";
+
+        // If teacher does not have section,
+        // use first student's section
+        if (!section && Array.isArray(students)) {
+
+            section =
+                students.find(
+                    student =>
+                        student?.section
+                )?.section || "";
+        }
+
+        // Mobile app uses A as default
+        if (!section) {
+            section = "A";
+        }
+
+        console.log(
+            "schoolId:",
             schoolId
         );
 
-        params.set(
-            "className",
+        console.log(
+            "className:",
             className
         );
 
-        params.set(
-            "subject",
+        console.log(
+            "section:",
+            section
+        );
+
+        console.log(
+            "examName:",
+            selectedExam
+        );
+
+        console.log(
+            "subject:",
             subject
         );
 
+        // -------------------------------------------------
+        // API PARAMETERS
+        // -------------------------------------------------
+
+        const params =
+            new URLSearchParams({
+                schoolId: String(schoolId),
+                className: String(className),
+                section: String(section),
+                examName: String(selectedExam),
+                subject: String(subject)
+            });
+
+        // IMPORTANT:
+        // Use Evaluation API like mobile app
+        const url =
+            "/api/evaluation/teacher-results?" +
+            params.toString();
+
+        console.log(
+            "EVALUATION PERFORMANCE API:",
+            url
+        );
+
+        showLoadingState(
+            "Loading performance..."
+        );
+
         const response =
-            await fetch(
-                "/api/marks/exams?" +
-                params.toString()
-            );
+            await fetch(url);
+
+        console.log(
+            "EVALUATION PERFORMANCE STATUS:",
+            response.status
+        );
 
         if (!response.ok) {
 
             throw new Error(
-                "Exam API error: HTTP " +
+                "Evaluation API unavailable. HTTP " +
                 response.status
             );
         }
@@ -1809,60 +2008,172 @@ async function loadExams() {
             await response.json();
 
         console.log(
-            "EXAMS FROM BACKEND:",
+            "EVALUATION PERFORMANCE RESPONSE:",
             data
         );
 
-        examSelect.innerHTML =
-            `<option value="">Select Exam</option>`;
+        if (!data.success) {
 
-        if (
-            !data.success ||
-            !Array.isArray(data.exams) ||
-            data.exams.length === 0
-        ) {
-
-            examSelect.innerHTML +=
-                `<option value="">
-                    No exams available
-                </option>`;
-
-            return;
+            throw new Error(
+                data.message ||
+                "Unable to load evaluation results."
+            );
         }
 
-        data.exams.forEach(
-            exam => {
+        const evaluations =
+            data.results || [];
 
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-                option.value = exam;
-
-                option.textContent =
-                    exam;
-
-                examSelect.appendChild(
-                    option
-                );
-            }
+        console.log(
+            "EVALUATIONS FOUND:",
+            evaluations
         );
+
+        // -------------------------------------------------
+        // PREPARE DATA
+        // -------------------------------------------------
+
+        const performanceData =
+            evaluations.map(
+                item => {
+
+                    const obtained =
+                        Number(
+                            item.finalMarks ??
+                            item.obtainedMarks ??
+                            item.marksObtained ??
+                            item.score ??
+                            0
+                        );
+
+                    const total =
+                        Number(
+                            item.totalMarks ??
+                            item.maxMarks ??
+                            100
+                        );
+
+                    const percentage =
+                        total > 0
+                            ? (
+                                obtained /
+                                total
+                            ) * 100
+                            : 0;
+
+                    return {
+
+                        studentId:
+                            item.studentId?._id ||
+                            item.studentId ||
+                            "",
+
+                        studentName:
+                            item.studentName ||
+                            item.student?.studentName ||
+                            item.student?.name ||
+                            "Student",
+
+                        rollNo:
+                            item.rollNo ||
+                            item.rollNumber ||
+                            item.student?.rollNo ||
+                            "-",
+
+                        className:
+                            item.className ||
+                            className,
+
+                        section:
+                            item.section ||
+                            section,
+
+                        exam:
+                            item.examName ||
+                            item.exam ||
+                            selectedExam,
+
+                        subject:
+                            item.subject ||
+                            subject,
+
+                        marksObtained:
+                            obtained,
+
+                        totalMarks:
+                            total,
+
+                        percentage:
+                            Number(
+                                percentage.toFixed(2)
+                            ),
+
+                        grade:
+                            item.grade ||
+                            getGrade(
+                                percentage
+                            ),
+
+                        performance:
+                            getPerformanceLabel(
+                                percentage
+                            )
+                    };
+                }
+            );
+
+        allPerformanceData =
+            performanceData;
+
+        console.log(
+            "PREPARED PERFORMANCE:",
+            performanceData
+        );
+
+        // -------------------------------------------------
+        // UPDATE UI
+        // -------------------------------------------------
+
+        updateSummary(
+            performanceData
+        );
+
+        renderPerformanceTable(
+            performanceData
+        );
+
+        renderTopStudents(
+            performanceData
+        );
+
+        renderImprovementStudents(
+            performanceData
+        );
+
+        hideLoadingState();
 
     } catch (error) {
 
         console.error(
-            "Exam loading error:",
+            "Evaluation loading error:",
             error
         );
 
-        examSelect.innerHTML =
-            `<option value="">
-                Unable to load exams
-            </option>`;
+        allPerformanceData = [];
+
+        hideLoadingState();
+
+        renderEmptyState(
+            error.message ||
+            "No evaluation data available yet."
+        );
+
+        updateSummary([]);
+
+        renderTopStudents([]);
+
+        renderImprovementStudents([]);
     }
 }
-
 
 // =========================================================
 // EXAM CHANGE
@@ -1878,9 +2189,11 @@ document.addEventListener(
             );
 
         if (!examSelect) {
+
             console.error(
                 "Exam dropdown not found"
             );
+
             return;
         }
 
@@ -1891,7 +2204,14 @@ document.addEventListener(
                 const exam =
                     examSelect.value;
 
+                console.log(
+                    "SELECTED EXAM:",
+                    exam
+                );
+
                 if (!exam) {
+
+                    allPerformanceData = [];
 
                     renderEmptyState(
                         "Select an exam to view performance."
@@ -1906,15 +2226,33 @@ document.addEventListener(
                     return;
                 }
 
+                // Save selected exam in URL
+                const url =
+                    new URL(
+                        window.location.href
+                    );
+
+                url.searchParams.set(
+                    "exam",
+                    exam
+                );
+
+                window.history.replaceState(
+                    {},
+                    "",
+                    url
+                );
+
                 await loadMarks(
-                    window.classPerformanceStudents ||
-                    []
+                    allStudents,
+                    exam
                 );
             }
         );
 
     }
 );
+
 // =========================================================
 // HIDE PAGE LOADING OVERLAY
 // =========================================================

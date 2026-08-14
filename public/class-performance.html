@@ -214,16 +214,26 @@
             </div>
 
 
-            <div class="table-actions">
+           <div class="table-actions">
 
-                <input
-                    type="text"
-                    id="studentSearch"
-                    placeholder="Search student..."
-                    oninput="filterStudents()"
-                >
+    <div class="exam-selector">
 
-            </div>
+        <label for="examSelect">Exam:</label>
+
+        <select id="examSelect">
+            <option value="">Loading exams...</option>
+        </select>
+
+    </div>
+
+    <input
+        type="text"
+        id="studentSearch"
+        placeholder="Search student..."
+        oninput="filterStudents()"
+    >
+
+</div>
 
         </div>
 

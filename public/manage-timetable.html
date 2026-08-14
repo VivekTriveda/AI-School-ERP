@@ -1,266 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Manage Time Table</title>
+    <title>School Timetable</title>
 
-    <link rel="stylesheet" href="css/dashboard.css">
-
-    <link rel="stylesheet" href="css/manage-timetable.css">
-
+    <link
+        rel="stylesheet"
+        href="css/manage-timetable.css"
+    >
 </head>
 
 <body>
 
+<div class="page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <div class="title-row">
+
+                <div class="title-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <h1>
+                        Timetable
+                    </h1>
+
+                    <p>
+                        Class-wise daily school schedule
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
-<!-- Main -->
+        <div class="school-card">
 
-<div class="main">
+            <div class="school-icon">
+                🏫
+            </div>
 
-<div class="topbar">
+            <div>
 
-<div>
+                <div
+                    id="schoolName"
+                    class="school-name"
+                >
+                    School
+                </div>
 
-<h1>
+                <div
+                    id="principalName"
+                    class="principal-name"
+                >
+                    Principal
+                </div>
 
-📅 Manage School Time Table
+            </div>
 
-</h1>
+        </div>
 
-<p>
+    </header>
 
-Create and Manage Teacher Time Table
 
-</p>
+    <!-- =====================================================
+         FILTER CARD
+    ====================================================== -->
+
+    <section class="main-card">
+
+        <!-- CLASS -->
+
+        <div class="filter-section">
+
+            <div class="filter-label">
+                🏫 Select Class
+            </div>
+
+            <div
+                id="classPills"
+                class="pill-container"
+            ></div>
+
+        </div>
+
+
+        <!-- SECTION -->
+
+        <div class="filter-section">
+
+            <div class="filter-label">
+                📚 Select Section
+            </div>
+
+            <div
+                id="sectionPills"
+                class="pill-container"
+            ></div>
+
+        </div>
+
+
+        <!-- SELECTED CLASS -->
+
+        <div class="selected-class-card">
+
+            <div class="selected-class-icon">
+                🏫
+            </div>
+
+            <div class="selected-class-content">
+
+                <div
+                    id="selectedClassTitle"
+                    class="selected-class-title"
+                >
+                    Class 1 • All Sections
+                </div>
+
+                <div class="selected-class-subtitle">
+                    Select a day below
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DAY -->
+
+        <div class="filter-section day-section">
+
+            <div class="filter-label">
+                📅 Select Day
+            </div>
+
+            <div
+                id="dayPills"
+                class="pill-container day-container"
+            ></div>
+
+        </div>
+
+
+        <!-- DAY HEADER -->
+
+        <div class="day-header">
+
+            <div>
+
+                <h2 id="selectedDayTitle">
+                    Monday
+                </h2>
+
+                <p id="selectedDaySubtitle">
+                    Class 1 • All Sections
+                </p>
+
+            </div>
+
+
+            <div
+                id="periodCountBadge"
+                class="period-count"
+            >
+                0/6 Periods
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TIMETABLE
+        ================================================== -->
+
+        <div
+            id="timetableView"
+            class="timetable-view"
+        >
+
+            <div class="loading">
+                Loading timetable...
+            </div>
+
+        </div>
+
+
+        <!-- ADD BUTTON -->
+
+        <button
+            id="showAddBtn"
+            class="add-button"
+            type="button"
+        >
+            ＋ Add Timetable
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADD TIMETABLE FORM
+    ====================================================== -->
+
+    <section
+        id="formCard"
+        class="main-card form-card"
+    >
+
+        <div class="form-header">
+
+            <div class="form-header-icon">
+                ➕
+            </div>
+
+            <div>
+
+                <h2>
+                    Add Timetable
+                </h2>
+
+                <p>
+                    Assign teacher, subject and period
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <!-- CLASS -->
+
+            <div class="form-field">
+
+                <label for="className">
+                    Class
+                </label>
+
+                <select
+                    id="className"
+                ></select>
+
+            </div>
+
+
+            <!-- SECTION -->
+
+            <div class="form-field">
+
+                <label for="section">
+                    Section
+                </label>
+
+                <select
+                    id="section"
+                ></select>
+
+            </div>
+
+
+            <!-- DAY -->
+
+            <div class="form-field">
+
+                <label for="day">
+                    Day
+                </label>
+
+                <select
+                    id="day"
+                ></select>
+
+            </div>
+
+
+            <!-- PERIOD -->
+
+            <div class="form-field">
+
+                <label for="period">
+                    Period
+                </label>
+
+                <select
+                    id="period"
+                ></select>
+
+            </div>
+
+
+            <!-- TEACHER -->
+
+            <div class="form-field">
+
+                <label for="teacher">
+                    Teacher
+                </label>
+
+                <select
+                    id="teacher"
+                >
+
+                    <option value="">
+                        Select Teacher
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SUBJECT -->
+
+            <div class="form-field">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <select
+                    id="subject"
+                >
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ROOM -->
+
+            <div class="form-field">
+
+                <label for="roomNo">
+                    Room No
+                </label>
+
+                <input
+                    type="text"
+                    id="roomNo"
+                    placeholder="101"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PERIOD SUMMARY -->
+
+        <div
+            id="periodSummary"
+            class="period-summary"
+        >
+            Select a period to see its fixed time.
+        </div>
+
+
+        <!-- FORM BUTTONS -->
+
+        <div class="form-actions">
+
+            <button
+                id="saveBtn"
+                class="save-button"
+                type="button"
+            >
+                💾 Save Timetable
+            </button>
+
+            <button
+                id="cancelBtn"
+                class="cancel-button"
+                type="button"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </section>
 
 </div>
 
-<div class="admin-box">
-
-<div class="admin-avatar">
-
-🏫
-
-</div>
-
-<div>
-
-<h4 id="topSchoolName"></h4>
-
-<span id="topPrincipalName"></span>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Form -->
-
-<div class="form-card">
-
-<h2>Add Time Table</h2>
-
-<div class="grid">
-
-<div>
-
-<label>Day</label>
-
-<select id="day">
-
-<option>Monday</option>
-
-<option>Tuesday</option>
-
-<option>Wednesday</option>
-
-<option>Thursday</option>
-
-<option>Friday</option>
-
-<option>Saturday</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Teacher</label>
-
-<select id="teacher">
-
-<option value="">Select Teacher</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Class</label>
-
-<select id="className">
-
-<option value="">Select Class</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Subject</label>
-
-<select id="subject">
-
-<option value="">Select Subject</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Period</label>
-
-<select id="period">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Start Time</label>
-
-<input
-type="time"
-id="startTime">
-
-</div>
-
-<div>
-
-<label>End Time</label>
-
-<input
-type="time"
-id="endTime">
-
-</div>
-
-<div>
-
-<label>Room No</label>
-
-<input
-type="text"
-id="roomNo"
-placeholder="101">
-
-</div>
-
-</div>
-
-<button id="saveBtn">
-
-💾 Save Time Table
-
-</button>
-
-</div>
-
-<!-- Existing Time Table -->
-
-<div class="table-card">
-
-<h2>
-
-Existing Time Table
-
-</h2>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Day</th>
-
-<th>Period</th>
-
-<th>Teacher</th>
-
-<th>Class</th>
-
-<th>Subject</th>
-
-<th>Time</th>
-
-<th>Room</th>
-
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="timeTableBody">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
 
 <script src="js/manage-timetable.js"></script>
 
-<script>
-
-const school =
-JSON.parse(localStorage.getItem("currentSchool"));
-
-if (school){
-
-document.getElementById("topSchoolName").innerText =
-school.schoolName;
-
-document.getElementById("topPrincipalName").innerText =
-"Principal : " +
-(school.principal || "Not Assigned");
-
-}
-
-</script>
-
 </body>
-
 </html>
